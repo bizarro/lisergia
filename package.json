@@ -1,0 +1,47 @@
+{
+  "author": "Luis Bizarro",
+  "name": "lisergia",
+  "version": "32.0.0",
+  "main": "index.js",
+  "types": "./types",
+  "scripts": {
+    "dev": "rollup -c -w --bundleConfigAsCjs",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "start": "npm run dev"
+  },
+  "bin": {
+    "lisergia": "./command"
+  },
+  "dependencies": {
+    "@gsap/business": "^3.12.5",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^6.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "autoprefixer": "^10.4.20",
+    "fs-extra": "^11.2.0",
+    "gsap": "npm:@gsap/business@^3.12.5",
+    "include-media": "^2.0.0",
+    "postcss": "^8.4.49",
+    "rollup": "^4.28.1",
+    "rollup-plugin-browsersync": "^1.3.3",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-glslify": "^1.3.1",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-svg-icons": "^2.1.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "sass": "^1.82.0"
+  },
+  "peerDependencies": {
+    "auto-bind": "^5.0.1",
+    "eslint": "^9.16.0",
+    "eslint-config-love": "^110.0.0",
+    "lenis": "^1.1.18",
+    "mobx": "^6.13.5",
+    "nanoevents": "^9.1.0",
+    "normalize-wheel": "^1.0.1",
+    "typescript": "^5.7.2"
+  }
+}

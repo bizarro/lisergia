@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationDir": "./types",
+    "lib": ["DOM", "ESNext"],
+    "target": "ESNext",
+    "moduleResolution": "node"
+  }
+}

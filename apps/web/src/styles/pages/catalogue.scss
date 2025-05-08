@@ -1,0 +1,196 @@
+.catalogue {
+  @extend %page;
+}
+
+.catalogue__wrapper {
+  @extend %page__wrapper;
+
+  padding-top: 14.5rem;
+
+  @include media('<phone') {
+    padding-top: 10.4rem;
+  }
+}
+
+// .catalogue__category {
+// }
+
+.catalogue__header {
+  background: var(--color-black);
+  border-radius: 0 0 1rem 1rem;
+  color: var(--color-white);
+  padding: 1.3rem 2.7rem;
+  position: absolute;
+  top: 8rem;
+  width: 100%;
+  z-index: 2;
+
+  &::after {
+    background: var(--color-pampas);
+    content: '';
+    height: 8rem;
+    left: 0;
+    position: absolute;
+    top: -8rem;
+    width: 100%;
+  }
+
+  @include media('<phone') {
+    padding: 1.3rem 2rem;
+    top: 6rem;
+  }
+}
+
+.catalogue__header__titles {
+  display: block;
+  height: 5.5rem;
+  overflow: hidden;
+
+  @include media('<phone') {
+    height: 2.4rem;
+  }
+}
+
+.catalogue__header__titles__wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 5.5rem;
+  transition: transform 1s var(--ease-out-expo);
+
+  @include media('<phone') {
+    height: 2.4rem;
+  }
+}
+
+.catalogue__header__title {
+  font-size: 5rem;
+  line-height: 1.1;
+  margin-right: auto;
+  position: relative;
+
+  @include media('<phone') {
+    font-size: 2.2rem;
+  }
+}
+
+// .catalogue__header__title__text {
+// }
+
+.catalogue__header__title__number {
+  font-size: 1.3rem;
+  left: 100%;
+  position: absolute;
+  top: 0.5rem;
+
+  @include media('<phone') {
+    font-size: 1.2rem;
+    margin-left: 0.2rem;
+    top: 0;
+  }
+}
+
+.catalogue__category {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.catalogue__category__item {
+  background: #beb3a1;
+  border-bottom: 1px solid var(--color-black);
+  min-height: 51.7rem;
+  overflow: hidden;
+  position: relative;
+  width: 50%;
+
+  &:nth-child(1),
+  &:nth-child(3) {
+    border-right: 1px solid var(--color-black);
+  }
+
+  @include media('<phone') {
+    min-height: 33.5rem;
+    order: 1;
+    width: 100%;
+  }
+}
+
+.catalogue__category__item__media {
+  @extend %cover;
+
+  transition: transform 1s var(--ease-out-expo);
+
+  .catalogue__category__item:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.catalogue__category__item__media__image {
+  @extend %cover;
+}
+
+.catalogue__category__content {
+  bottom: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  left: 2.2rem;
+  line-height: 1;
+  position: absolute;
+}
+
+.catalogue__category__label {
+  @extend %label-12;
+
+  margin-bottom: 0.8rem;
+  margin-right: auto;
+  position: relative;
+}
+
+.catalogue__category__title {
+  @extend %appear;
+  @extend %description-18;
+
+  margin-bottom: 1rem;
+  margin-right: auto;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    @extend %link__line;
+    @extend %link__line--hidden;
+  }
+
+  .catalogue__category__item:hover & {
+    &::after {
+      @extend %link__line--visible;
+    }
+  }
+}
+
+.catalogue__category__price {
+  @extend %appear;
+
+  margin-right: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.catalogue__category__media {
+  border-bottom: 1px solid var(--color-black);
+  height: 80rem;
+  position: relative;
+  width: 50%;
+
+  &:nth-child(3) {
+    border-right: 1px solid var(--color-black);
+  }
+
+  @include media('<phone') {
+    height: 50rem;
+    order: 2;
+    width: 100%;
+  }
+}
+
+.catalogue__category__media__image {
+  @extend %cover;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@lisergia/config-stylelint",
+  "version": "0.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-order": "^7.0.0"
+  }
+}

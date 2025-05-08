@@ -1,0 +1,16 @@
+{
+  "name": "@lisergia/managers",
+  "version": "0.0.0",
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "main": "./src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@lisergia/core": "*",
+    "mobx": "^6.13.7",
+    "nanoevents": "^9.1.0"
+  }
+}

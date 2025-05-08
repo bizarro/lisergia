@@ -1,0 +1,15 @@
+{
+  "extends": "@lisergia/config-tsconfig/base.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "module": "preserve",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

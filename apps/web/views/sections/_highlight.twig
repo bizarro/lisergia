@@ -1,0 +1,35 @@
+<section class="highlight">
+    <p class="highlight__label" data-animation="label">
+        {{ section.label }}
+    </p>
+
+    <h2 class="highlight__title" data-title="left,top,bottom">
+        {{ section.title }}
+    </h2>
+
+    <p class="highlight__description" data-paragraph>
+        {{ section.description }}
+    </p>
+
+    {% for media in section.list %}
+        {% set speed = 0 %}
+
+        {% if loop.index == 1 %}
+            {% set speed = 1.5 %}
+        {% elseif loop.index == 2 %}
+            {% set speed = -0.5 %}
+        {% elseif loop.index == 3 %}
+            {% set speed = 1 %}
+        {% elseif loop.index == 4 %}
+            {% set speed = -2 %}
+        {% endif %}
+
+        <figure class="highlight__media" data-translate="{{ speed }}">
+            <div class="highlight__media__box">
+                {% set asset = getAsset(media) %}
+
+                <img alt="{{ asset.alt }}" class="highlight__media__image" data-animation="trigger" data-src="{{ asset.url }}" height="100%" width="100%"/>
+            </div>
+        </figure>
+    {% endfor %}
+</section>

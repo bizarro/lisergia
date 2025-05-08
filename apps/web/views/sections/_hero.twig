@@ -1,0 +1,21 @@
+<header class="hero">
+    <div class="hero__box">
+        <figure class="hero__media">
+            {% set asset = getAsset(section.image) %}
+
+            <img alt="{{ asset.alt }}" class="hero__media__image" data-src="{{ asset.url }}" height="100%" width="100%" />
+        </figure>
+
+        <div class="hero__content">
+            <h1 class="hero__title" data-reveal="hero__title--active" data-title="twice">
+                {{ section.title }}
+            </h1>
+        </div>
+    </div>
+
+    {% include '../components/button.twig' with {
+        class: 'hero__button',
+        text: section.button.text,
+        url: section.button.url
+    } %}
+</header>

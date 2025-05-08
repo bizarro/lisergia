@@ -1,0 +1,135 @@
+.quote {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 16rem 0;
+
+  @include media('<phone') {
+    padding: 5rem 0;
+  }
+}
+
+.quote__box {
+  max-width: 104rem;
+  position: relative;
+
+  @include media('<phone') {
+    width: 89%;
+  }
+}
+
+.quote__description {
+  font: 4.6rem/1.35 $font-editorial-new;
+  text-align: center;
+
+  @include media('<phone') {
+    font-size: 3.2rem;
+    line-height: 4.3rem;
+
+    br {
+      display: none;
+    }
+  }
+}
+
+.quote__description__text {
+  display: inline-block;
+  transition: transform 1s var(--ease-out-expo);
+
+  &[data-animation-in] {
+    &:nth-of-type(1) {
+      transform: translateX(-5.3rem);
+    }
+
+    &:nth-of-type(2) {
+      transform: translateX(5.2rem);
+    }
+
+    &:nth-of-type(3) {
+      transform: translateX(-5.2rem);
+    }
+
+    &:nth-of-type(4) {
+      transform: translateX(5.2rem);
+    }
+  }
+
+  @include media('<phone') {
+    display: inline;
+
+    &[data-animation-in] {
+      &:nth-of-type(1),
+      &:nth-of-type(2),
+      &:nth-of-type(3),
+      &:nth-of-type(4) {
+        transform: none;
+      }
+    }
+  }
+}
+
+.quote__image {
+  border-radius: 50%;
+  height: 8rem;
+  opacity: 0;
+  position: absolute;
+  transform: scale(0.5);
+  transform-origin: center;
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+  width: 8rem;
+
+  &:nth-of-type(1) {
+    left: 15.5rem;
+    top: -0.8rem;
+  }
+
+  &:nth-of-type(2) {
+    left: 100.8rem;
+    top: 5.2rem;
+  }
+
+  &:nth-of-type(3) {
+    left: 58rem;
+    top: 17.5rem;
+  }
+
+  &[data-animation-in] {
+    opacity: 1;
+    transform: scale(1);
+
+    &:nth-of-type(1) {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-of-type(2) {
+      transition-delay: 0.3s;
+    }
+
+    &:nth-of-type(3) {
+      transition-delay: 0.2s;
+    }
+  }
+
+  @include media('<phone') {
+    height: 4.8rem;
+    width: 4.8rem;
+
+    &:nth-of-type(1) {
+      left: 28rem;
+      top: -0.3rem;
+    }
+
+    &:nth-of-type(2) {
+      left: 0;
+      top: 34.5rem;
+    }
+
+    &:nth-of-type(3) {
+      left: auto;
+      right: -1rem;
+      top: 42.8rem;
+    }
+  }
+}

@@ -1,0 +1,127 @@
+.ingredients {
+  padding: 4rem;
+  position: relative;
+
+  @include media('<phone') {
+    color: var(--color-white);
+    padding: 0 2rem 2rem;
+  }
+}
+
+.ingredients__box {
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
+}
+
+.ingredients__content {
+  padding: 7rem 6rem;
+  position: relative;
+  z-index: 2;
+
+  @include media('<phone') {
+    padding: 3rem 2rem 15rem;
+  }
+}
+
+.ingredients__title {
+  @extend %title-70;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 1.4rem;
+
+  @include media('<phone') {
+    span {
+      font-size: 3rem !important;
+    }
+  }
+}
+
+.ingredients__description {
+  font-size: 1.4rem;
+  margin-top: 3.5rem;
+  max-width: 59rem;
+
+  @include media('<phone') {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    margin-top: 1rem;
+    max-width: 14rem;
+  }
+}
+
+.ingredients__list {
+  font-size: 1.4rem;
+  margin-top: 5rem;
+  width: 66.5rem;
+
+  @include media('<phone') {
+    height: 100%;
+    margin-top: 0;
+    overflow: auto;
+    padding: 2rem 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+  }
+}
+
+.ingredients__item {
+  padding: 0.9rem 3rem;
+  position: relative;
+}
+
+.ingredients__item__dash {
+  @extend %dash;
+
+  &--active {
+    @extend %dash--active;
+  }
+
+  @include media('<phone') {
+    display: none;
+  }
+}
+
+.ingredients__name {
+  display: inline-block;
+  width: 21rem;
+
+  @include media('<phone') {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
+
+.ingredients__region {
+  display: inline-block;
+  width: 21rem;
+
+  @include media('<phone') {
+    width: 100%;
+  }
+}
+
+.ingredients__type {
+  display: inline-block;
+  font-family: $font-anonymous;
+
+  @include media('<phone') {
+    font-family: $font-neue-montreal;
+  }
+}
+
+.ingredients__media {
+  @extend %cover;
+}
+
+.ingredients__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}

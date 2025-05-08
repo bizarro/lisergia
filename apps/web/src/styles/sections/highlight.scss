@@ -1,0 +1,136 @@
+.highlight {
+  align-items: center;
+  background: var(--color-pampas);
+  border-radius: 0 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 86rem;
+  padding-top: 19rem;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+
+  @include media('<phone') {
+    height: 65rem;
+  }
+}
+
+.highlight__label {
+  @extend %label-12;
+
+  @include media('<phone') {
+    letter-spacing: 0.3rem;
+    width: 16rem;
+  }
+}
+
+.highlight__title {
+  @extend %title-70;
+
+  margin-top: 1.5rem;
+  overflow: hidden;
+  width: 40rem;
+
+  @include media('<phone') {
+    width: 31rem;
+  }
+}
+
+.highlight__description {
+  @extend %description-18;
+
+  margin-top: 5rem;
+  width: 32rem;
+
+  @include media('<phone') {
+    margin-top: 2.5rem;
+    width: 24rem;
+  }
+}
+
+.highlight__media {
+  position: absolute;
+
+  &:nth-of-type(1) {
+    border-radius: 1rem 0 0 1rem;
+    height: 28.2rem;
+    right: 0;
+
+    // top: 0;
+    top: 18rem;
+    width: 41rem;
+  }
+
+  &:nth-of-type(2) {
+    height: 27.5rem;
+    right: 25.5rem;
+    top: 22.8rem;
+    width: 21.7rem;
+  }
+
+  &:nth-of-type(3) {
+    height: 32.8rem;
+    left: 15rem;
+    top: 26.8rem;
+    width: 25.7rem;
+    z-index: 1;
+  }
+
+  &:nth-of-type(4) {
+    height: 26rem;
+
+    // left: 12rem;
+    left: 6rem;
+
+    // top: 50.3rem;
+    top: 40.3rem;
+    width: 46.2rem;
+  }
+
+  @include media('<phone') {
+    &:nth-of-type(1) {
+      border-radius: 1rem;
+      height: 12.6rem;
+      right: 1.9rem;
+      top: 3rem;
+      width: 18.8rem;
+    }
+
+    &:nth-of-type(2) {
+      height: 18.1rem;
+      right: -4.4rem;
+      top: 5.8rem;
+      width: 14.3rem;
+    }
+
+    &:nth-of-type(3) {
+      height: 17.5rem;
+      left: -7rem;
+      top: 40.3rem;
+      width: 13.7rem;
+    }
+
+    &:nth-of-type(4) {
+      height: 12.6rem;
+      left: -3rem;
+      top: 49.1rem;
+      width: 22.4rem;
+    }
+  }
+}
+
+.highlight__media__box {
+  border-radius: 1rem;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.highlight__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}

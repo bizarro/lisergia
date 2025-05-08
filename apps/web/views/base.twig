@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html
+    class="{{ isPhone ? 'phone' : isTablet ? 'tablet' : 'desktop' }}"
+    data-template="{{ template }}"
+    id="{{ slug.current }}"
+    lang="en"
+>
+    <head>
+        {% include 'shared/header.twig' %}
+    </head>
+    <body>
+        {% include 'layout/menu.twig' %}
+        {% include 'layout/navigation.twig' %}
+
+        <div class="app">
+            {% block content %}{% endblock %}
+        </div>
+
+        {% include 'shared/scripts.twig' %}
+    </body>
+</html>

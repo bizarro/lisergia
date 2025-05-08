@@ -1,0 +1,19 @@
+@mixin hover($element: '') {
+  @if $element == '' {
+    html.desktop &:hover {
+      @content;
+    }
+  } @else {
+    html.desktop #{$element}:hover & {
+      @content;
+    }
+  }
+}
+
+%cover {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

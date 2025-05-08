@@ -1,0 +1,19 @@
+{% for section in content %}
+    {% set layout = section._type %}
+
+    {% if layout == 'categories' %}
+        {% include './_categories.twig' with section %}
+    {% elseif layout == 'hero' %}
+        {% include './_hero.twig' with section %}
+    {% elseif layout == 'highlight' %}
+        {% include './_highlight.twig' with section %}
+    {% elseif layout == 'ingredients' %}
+        {% include './_ingredients.twig' with section %}
+    {% elseif layout == 'list' %}
+        {% include './_list.twig' with section %}
+    {% elseif layout == 'media' %}
+        {% include './_media.twig' with section %}
+    {% elseif layout == 'quote' %}
+        {% include './_quote.twig' with section %}
+    {% endif %}
+{% endfor %}

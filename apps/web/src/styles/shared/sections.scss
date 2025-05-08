@@ -1,0 +1,54 @@
+%label-12 {
+  font: 1.2rem $font-anonymous;
+  text-transform: uppercase;
+}
+
+%label-14 {
+  font: 1.4rem $font-anonymous;
+  text-transform: uppercase;
+}
+
+%title-70 {
+  font: 7rem/0.9 $font-editorial-new;
+
+  @include media('<phone') {
+    font-size: 6rem;
+  }
+}
+
+%description-18 {
+  font-size: 1.8rem;
+
+  @include media('<phone') {
+    font-size: 1.6rem;
+  }
+}
+
+%dash {
+  border-bottom: 1px solid var(--color-black);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: left;
+  width: 100%;
+
+  &--active {
+    transform: scaleX(1);
+    transition: transform 1.5s var(--ease-out-expo);
+  }
+}
+
+%appear {
+  span {
+    display: block;
+    transform: translateY(100%);
+    transition: transform 1.5s 0.5s var(--ease-out-expo);
+  }
+
+  [data-animation-in] & {
+    span {
+      transform: translateY(0);
+    }
+  }
+}

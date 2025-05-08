@@ -1,0 +1,241 @@
+.menu {
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transition: visibility 1.2s;
+  visibility: hidden;
+  width: 100%;
+  z-index: z('menu');
+
+  .navigation--open & {
+    transition: visibility 0s;
+    visibility: visible;
+  }
+}
+
+.menu__box {
+  color: var(--color-white);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 62.3rem;
+  z-index: 1;
+
+  &::before {
+    border-radius: 0 1rem 1rem 0;
+    content: '';
+    height: 100%;
+    position: absolute;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    width: 100%;
+  }
+
+  @include media('<phone') {
+    width: 100%;
+
+    &::before {
+      border-radius: 0;
+    }
+  }
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  font-size: 11rem;
+  height: 100%;
+  justify-content: center;
+  line-height: 1;
+  padding-bottom: 15rem;
+  padding-left: 4rem;
+
+  @include media('<phone') {
+    font-size: 7rem;
+    padding-left: 2rem;
+  }
+}
+
+.menu__list__item {
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.menu__list__link {
+  @extend %link--hidden;
+
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  .navigation--open & {
+    transform: translateY(0);
+  }
+
+  .navigation--open .menu__list__item:nth-child(1) & {
+    transition-delay: 0.6s;
+  }
+
+  .navigation--open .menu__list__item:nth-child(2) & {
+    transition-delay: 0.7s;
+  }
+
+  .navigation--open .menu__list__item:nth-child(3) & {
+    transition-delay: 0.8s;
+  }
+}
+
+.menu__list__link--active {
+  @extend %link;
+}
+
+.menu__footer {
+  // bottom: 4rem;
+  bottom: 5vh;
+  font-size: 1.4rem;
+  left: 4rem;
+  position: absolute;
+
+  @include media('<phone') {
+    left: 2rem;
+  }
+}
+
+.menu__footer__item {
+  opacity: 0.5;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &:hover {
+    opacity: 0.25;
+  }
+}
+
+.menu__footer__link {
+  @extend %link--hidden;
+
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  .navigation--open & {
+    transform: translateY(0);
+  }
+
+  .navigation--open .menu__footer__item:nth-child(1) & {
+    transition-delay: 0.9s;
+  }
+
+  .navigation--open .menu__footer__item:nth-child(2) & {
+    transition-delay: 1s;
+  }
+
+  .navigation--open .menu__footer__item:nth-child(3) & {
+    transition-delay: 1.1s;
+  }
+}
+
+.menu__social {
+  align-items: center;
+
+  // bottom: 4rem;
+  bottom: 5vh;
+  display: flex;
+  fill: var(--color-white);
+  position: absolute;
+  right: 4rem;
+
+  @include media('<phone') {
+    bottom: 13.7rem;
+    left: 2rem;
+    right: auto;
+  }
+}
+
+.menu__social__item {
+  opacity: 0.5;
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  &:hover {
+    opacity: 0.25;
+  }
+}
+
+.menu__social__link {
+  font-size: 0;
+}
+
+.menu__social__icon {
+  display: block;
+  fill: currentcolor;
+  height: 2rem;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 2rem;
+
+  .navigation--open & {
+    opacity: 1;
+  }
+
+  .navigation--open .menu__social__item:nth-child(1) & {
+    transition-delay: 0.9s;
+  }
+
+  .navigation--open .menu__social__item:nth-child(2) & {
+    transition-delay: 1s;
+  }
+
+  .navigation--open .menu__social__item:nth-child(3) & {
+    transition-delay: 1.1s;
+  }
+}
+
+.menu__medias {
+  background: var(--color-bison-hide);
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.2s;
+  width: 56.7rem + 1rem;
+
+  .navigation--open & {
+    transform: translateY(0);
+  }
+
+  @include media('<phone') {
+    display: none;
+  }
+}
+
+.menu__medias__image {
+  @extend %cover;
+
+  opacity: 0;
+  transform: translateY(100%);
+  transition:
+    opacity 0.4s ease,
+    transform 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.2s;
+
+  .navigation--open & {
+    transform: translateY(0);
+  }
+
+  &--active {
+    opacity: 1;
+  }
+}

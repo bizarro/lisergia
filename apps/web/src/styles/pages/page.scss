@@ -1,0 +1,14 @@
+.page {
+  @extend %page;
+
+  z-index: z('content');
+}
+
+.page__wrapper {
+  background: var(--color-pampas);
+  border-radius: 0 0 1rem 1rem;
+  overflow: hidden;
+  position: relative;
+  transform-origin: bottom;
+  z-index: 1;
+}

@@ -1,0 +1,244 @@
+.hero {
+  height: var(--100vh);
+  position: relative;
+  width: 100%;
+}
+
+.hero__media {
+  @extend %cover;
+
+  transform: scale(1.2);
+}
+
+.hero__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.hero__wrapper {
+  height: var(--100vh);
+  position: relative;
+  width: 100%;
+}
+
+.hero__box {
+  align-items: center;
+  border-radius: 1rem;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  inset: 7.5rem 4rem 4rem;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  transform: translateZ(0);
+
+  @include media('<phone') {
+    inset: 6rem 2rem 2rem;
+  }
+}
+
+.hero__content {
+  padding-bottom: 10rem;
+  position: relative;
+  width: 55rem;
+  z-index: 1;
+
+  @include media('<phone') {
+    width: 25rem;
+  }
+}
+
+.hero__title {
+  font-size: 8rem;
+  line-height: 1;
+  overflow: hidden;
+
+  // &:after {
+  //   border-left: 1px solid #f0f;
+  //   content: '';
+  //   height: 100%;
+  //   left: 50%;
+  //   position: absolute;
+  //   top: 0;
+  // }
+
+  span {
+    overflow: hidden;
+    transition: transform 1.5s var(--ease-out-expo) !important;
+  }
+
+  span span {
+    transition: transform 1.5s var(--ease-out-expo) !important;
+  }
+
+  > span:nth-child(1) {
+    transform: translateX(5rem);
+  }
+
+  span:nth-child(1) span {
+    font-style: italic;
+    padding-right: 1rem;
+    transform: translateX(100%);
+  }
+
+  > span:nth-child(2) {
+    transform: translateY(-100%);
+  }
+
+  span:nth-child(2) span {
+    font-family: $font-editorial-new;
+  }
+
+  > span:nth-child(3) {
+    transform: translateX(-11.5rem);
+  }
+
+  span:nth-child(3) span {
+    font-family: $font-editorial-new;
+    transform: translateX(-100%);
+  }
+
+  > span:nth-child(4) {
+    margin-bottom: 1rem;
+    margin-top: -2rem;
+    transform: translateX(18.5rem);
+  }
+
+  span:nth-child(4) span {
+    font-family: $font-editorial-new;
+    transform: translateX(100%);
+  }
+
+  > span:nth-child(5) {
+    margin-bottom: 1rem;
+    margin-top: -2rem;
+    transform: translateY(100%);
+  }
+
+  span:nth-child(5) span {
+    font-family: $font-editorial-new;
+  }
+
+  > span:nth-child(6) {
+    margin-bottom: 1rem;
+    margin-top: -2rem;
+    transform: translateX(0);
+  }
+
+  span:nth-child(6) span {
+    font-style: italic;
+    padding-right: 1rem;
+    transform: translateX(-100%);
+  }
+
+  &--active {
+    span,
+    span span {
+      transform: none;
+    }
+
+    span:nth-child(2),
+    span:nth-child(5) {
+      transition-delay: 0.2s;
+    }
+  }
+
+  @include media('<phone') {
+    span span {
+      font-size: 6rem;
+    }
+
+    > span:nth-child(1) {
+      transform: translateY(-100%);
+    }
+
+    span:nth-child(1) span {
+      transform: translateX(0);
+    }
+
+    > span:nth-child(2) {
+      margin-bottom: 0;
+      margin-top: -2rem;
+      transform: translateX(-50vw);
+    }
+
+    > span:nth-child(3) {
+      margin-bottom: 0;
+      margin-top: -2rem;
+      transform: translateX(50vw);
+    }
+
+    span:nth-child(3) span {
+      transform: translateX(0);
+    }
+
+    > span:nth-child(4) {
+      margin-bottom: 0;
+      margin-top: -2rem;
+      transform: translateX(-50vw);
+    }
+
+    span:nth-child(4) span {
+      transform: translateX(0);
+    }
+
+    > span:nth-child(5) {
+      margin-bottom: 0;
+      margin-top: -2rem;
+      transform: translateX(50vw);
+    }
+
+    > span:nth-child(6) {
+      margin-bottom: 1rem;
+      margin-top: -2rem;
+      transform: translateY(100%);
+    }
+
+    span:nth-child(6) span {
+      transform: translateX(0);
+    }
+
+    &--active {
+      span,
+      span span {
+        transform: none;
+      }
+
+      span:nth-child(2),
+      span:nth-child(5) {
+        transition-delay: 0;
+      }
+    }
+  }
+}
+
+.hero__button {
+  --color: var(--color-black);
+  --background: var(--color-white);
+
+  color: var(--color-black);
+  left: 50%;
+  margin-top: 8rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, 100%);
+
+  &--active {
+    transform: translate(-50%, 0);
+  }
+
+  &:hover {
+    transform: scale(1.05) translate(-50%, 0);
+  }
+
+  &::after {
+    background: var(--color-black);
+  }
+
+  @include media('<phone') {
+    margin-top: 12rem;
+  }
+}

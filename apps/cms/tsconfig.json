@@ -1,0 +1,11 @@
+{
+  "extends": "@lisergia/config-tsconfig/base.json",
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "Preserve",
+    "jsx": "preserve",
+    "incremental": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

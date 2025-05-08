@@ -1,0 +1,51 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "content": "tsx download.ts",
+    "dev": "concurrently --kill-others \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:server": "nodemon",
+    "dev:client": "lisergia dev",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "tsup index.ts",
+    "build:client": "npm run content && lisergia build",
+    "postinstall": "npm run build:client",
+    "lint": "stylelint \"**/*.scss\"",
+    "start": "npm run build && tsx index.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "@portabletext/to-html": "^2.0.14",
+    "@sanity/asset-utils": "^2.2.1",
+    "@sanity/client": "^6.29.1",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.9.0",
+    "express": "^5.1.0",
+    "staticify": "^5.0.0",
+    "stylelint": "^16.19.1",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "twig": "^1.17.1",
+    "ua-parser-js": "^2.0.3"
+  },
+  "devDependencies": {
+    "@lisergia/cli": "*",
+    "@lisergia/config-eslint": "*",
+    "@lisergia/config-stylelint": "*",
+    "@lisergia/config-tsconfig": "*",
+    "@lisergia/core": "*",
+    "@lisergia/managers": "*",
+    "@lisergia/styles": "*",
+    "@lisergia/utilities": "*",
+    "@types/express": "^5.0.1",
+    "@types/express-serve-static-core": "^5.0.6",
+    "@types/node": "^22.15.3",
+    "concurrently": "^9.1.2",
+    "eslint-config-prettier": "^8.6.0",
+    "mobx": "^6.13.7",
+    "prettier": "^3.0.2",
+    "typescript": "^5.1.6"
+  }
+}

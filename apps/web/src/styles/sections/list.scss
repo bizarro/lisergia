@@ -1,0 +1,174 @@
+.list {
+  color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  height: 52.7rem;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.list__label {
+  @extend %label-12;
+
+  letter-spacing: 0.5rem;
+  opacity: 0;
+  position: relative;
+  transition:
+    opacity 1s var(--ease-out-expo),
+    letter-spacing 1s var(--ease-out-expo);
+  z-index: 2;
+
+  .list--active & {
+    letter-spacing: 0.05rem;
+    opacity: 1;
+  }
+}
+
+.list__list {
+  margin: 5.5rem auto 0;
+  position: relative;
+  z-index: 2;
+
+  @include media('<phone') {
+    margin-top: 3.5rem;
+  }
+}
+
+.list__item {
+  overflow: hidden;
+
+  &:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+
+  @include media('<phone') {
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.list__link {
+  color: transparent;
+  display: block;
+  font-size: 7.8rem;
+  line-height: 1.3;
+  overflow: hidden;
+  position: relative;
+  transform: translateY(100%);
+  transition: transform 1s var(--ease-out-expo);
+  white-space: nowrap;
+  z-index: 2;
+
+  &::before,
+  &::after {
+    color: var(--color-black);
+    content: attr(data-text);
+    left: 0;
+    position: absolute;
+    transition: transform 1s var(--ease-out-expo);
+    width: 100%;
+  }
+
+  &::after {
+    font-family: $font-editorial-new;
+    top: 100%;
+  }
+
+  &:hover::before {
+    transform: translateY(-100%);
+  }
+
+  &:hover::after {
+    transform: translateY(-100%);
+  }
+
+  .list--active & {
+    transform: translateY(0);
+  }
+
+  @include media('<phone') {
+    font-size: 4.3rem;
+  }
+}
+
+.list__button {
+  margin: 4.5rem auto 0;
+  position: relative;
+  z-index: 2;
+
+  .list--active & {
+    transform: translateY(0);
+  }
+
+  .list--active:hover & {
+    transform: translateY(0) scale(1.05);
+  }
+
+  @include media('<phone') {
+    margin-top: 5rem;
+  }
+}
+
+.list__medias {
+  border-radius: 1rem;
+  height: 43.2rem;
+  margin-left: -37.6rem * 0.5;
+  margin-top: -43.2rem;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  transition:
+    background 1s var(--ease-out-expo),
+    opacity 1s var(--ease-out-expo);
+  width: 37.6rem;
+  z-index: 1;
+
+  .home__list--active & {
+    opacity: 1;
+  }
+
+  .list__medias--1,
+  .list__medias--2,
+  .list__medias--3 {
+    background: var(--color-bison-hide);
+  }
+
+  @include media('<phone') {
+    display: none;
+  }
+}
+
+.list__medias__media {
+  height: 43.2rem;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 37.5rem;
+  z-index: 0;
+}
+
+.list__medias__media__image {
+  height: 43.2rem;
+  left: 0;
+  object-fit: cover;
+  opacity: 0;
+  position: absolute;
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+  width: 37.5rem;
+  z-index: 0;
+
+  .list__medias--1 .list__medias__media:nth-child(1) &,
+  .list__medias--2 .list__medias__media:nth-child(2) &,
+  .list__medias--3 .list__medias__media:nth-child(3) & {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}

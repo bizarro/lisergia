@@ -1,0 +1,15 @@
+<section class="quote">
+    <div class="quote__box">
+        <p class="quote__description">
+            {{ section.title }}
+        </p>
+
+        {% for image in section.images %}
+            <figure class="quote__media">
+                {% set asset = getAsset(image) %}
+
+                <img alt="{{ asset.alt }}" class="quote__image" data-animation="trigger" data-src="{{ image.image }}" height="100%" width="100%"/>
+            </figure>
+        {% endfor %}
+    </div>
+</section>

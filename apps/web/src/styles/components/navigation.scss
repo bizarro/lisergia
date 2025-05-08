@@ -1,0 +1,160 @@
+.navigation {
+  align-items: center;
+  display: flex;
+  font-size: 1.4rem;
+  height: 8rem;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 4rem;
+  position: fixed;
+  top: 0;
+  transition: color 1.5s ease;
+  width: 100%;
+  z-index: z('navigation');
+
+  .navigation--open & {
+    color: var(--color-white);
+  }
+
+  @include media('<phone') {
+    height: 6rem;
+    padding: 0 2rem;
+  }
+}
+
+.navigation__button {
+  align-items: center;
+  display: flex;
+  font-size: 0;
+}
+
+.navigation__button__dashes {
+  align-items: center;
+  display: flex;
+  height: 26px;
+  position: relative;
+  width: 26px;
+}
+
+.navigation__button__dashes__dash {
+  border-top: 1px solid;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  width: 100%;
+
+  &:nth-child(1) {
+    transform: translate(-50%, -4px);
+  }
+
+  &:nth-child(2) {
+    display: block;
+    left: 0;
+    transform: none;
+  }
+
+  &:nth-child(3) {
+    transform: translate(-50%, 4px);
+  }
+
+  .navigation--open & {
+    &:nth-child(1) {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:nth-child(3) {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      transform: scaleX(0);
+    }
+  }
+}
+
+.navigation__button__text {
+  display: block;
+  font-size: 1.6rem;
+  margin-left: 1.2rem;
+  transition: opacity 0.4s ease;
+
+  .navigation__button:hover & {
+    opacity: 0.5;
+  }
+
+  @include media('<phone') {
+    display: none;
+  }
+}
+
+.navigation__logo {
+  font-size: 0;
+  width: 8.5rem;
+
+  path {
+    transition: transform 0.4s ease;
+  }
+
+  &:hover {
+    path {
+      transition: transform 0.4s ease;
+    }
+
+    path:first-child {
+      transform: translateX(27px);
+    }
+
+    path:last-child {
+      transform: translateX(-27px);
+    }
+
+    path:not(:first-child, :last-child) {
+      transform: translateY(100%);
+    }
+  }
+}
+
+.navigation__logo__icon {
+  display: block;
+  fill: currentcolor;
+  margin: auto;
+}
+
+.navigation__bag {
+  align-items: center;
+  display: flex;
+  transition:
+    color 1s var(--ease-out-expo),
+    opacity 0.4s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  .bag--active & {
+    color: var(--color-white);
+  }
+}
+
+.navigation__bag__text {
+  display: block;
+  margin-right: 1.2rem;
+
+  @include media('<phone') {
+    display: none;
+  }
+}
+
+.navigation__bag__counter {
+  align-items: center;
+  border: 1px solid currentcolor;
+  border-radius: 50%;
+  display: flex;
+  height: 2.6rem;
+  justify-content: center;
+  text-align: center;
+  width: 2.6rem;
+}

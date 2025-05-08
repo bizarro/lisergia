@@ -1,0 +1,69 @@
+.not-found {
+  @extend %page;
+
+  align-items: center;
+  background: var(--color-pampas);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+}
+
+.not-found__wrapper {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.not-found__media {
+  border-radius: 10rem;
+  height: 62.6rem;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10rem;
+
+  @include media('<phone') {
+    width: 17rem;
+  }
+}
+
+.not-found__media__image {
+  height: 126.5rem;
+  left: 50%;
+  margin-left: -72rem * 0.5;
+  margin-top: -126.5rem * 0.15;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 72rem;
+}
+
+.not-found__title {
+  font: 29rem/1 $font-editorial-new;
+
+  @include media('<phone') {
+    font-size: 15.6rem;
+  }
+}
+
+.not-found__description {
+  font: 3rem $font-editorial-new;
+  margin-top: -1.5rem;
+
+  @include media('<phone') {
+    margin-top: 2.5rem;
+  }
+}
+
+.not-found__button {
+  margin: 5rem auto 0;
+
+  @include media('<phone') {
+    margin-top: 3.5rem;
+  }
+}

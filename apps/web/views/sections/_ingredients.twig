@@ -1,0 +1,44 @@
+<section class="ingredients">
+    <div class="ingredients__box">
+        <div class="ingredients__content">
+            <h2 class="ingredients__title" data-title="top,bottom">
+                {{ section.title }}
+
+                {#
+                <span data-animation-direction="top">Natural</span> <br/>
+                <span data-animation-direction="bottom">Ingredients</span>
+                #}
+            </h2>
+
+            <div class="ingredients__description" data-paragraph>
+                {{ parseHTML(section.description) }}
+            </div>
+
+            <div class="ingredients__list">
+                {% for ingredient in section.list %}
+                    <div class="ingredients__item" data-paragraph>
+                        <p class="ingredients__name">
+                            {{ ingredient.title }}
+                        </p>
+
+                        <p class="ingredients__region">
+                            {{ ingredient.region }}
+                        </p>
+
+                        <p class="ingredients__type">
+                            {{ ingredient.ingredient }}
+                        </p>
+
+                        <span class="ingredients__item__dash" data-reveal="ingredients__item__dash--active"></span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <figure class="ingredients__media" data-animation="parallax">
+            {% set asset = getAsset(section.image) %}
+
+            <img alt="{{ asset.alt }}" class="ingredients__media__image" data-src="{{ asset.url }}" height="100%" width="100%" />
+        </figure>
+    </div>
+</section>

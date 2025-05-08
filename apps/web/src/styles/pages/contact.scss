@@ -1,0 +1,103 @@
+.contact {
+  @extend %page;
+}
+
+.contact__wrapper {
+  @extend %page__wrapper;
+
+  align-items: center;
+  display: flex;
+  height: 100%;
+  padding-top: 8rem;
+  width: 100%;
+
+  @include media('<phone') {
+    padding-top: 6rem;
+  }
+}
+
+.contact__box {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 73rem;
+
+  @include media('<phone') {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.contact__section {
+  &:nth-child(1) {
+    width: 34.5rem;
+  }
+
+  &:nth-child(3) {
+    margin-top: 4rem;
+    width: 34.5rem;
+  }
+
+  &:nth-child(4) {
+    margin-top: 4rem;
+  }
+
+  &:nth-child(5) {
+    margin-left: 34.5rem;
+    margin-top: 4rem;
+  }
+
+  @include media('<phone') {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5) {
+      width: 50%;
+    }
+
+    &:nth-child(3) {
+      margin-top: 0;
+      order: 1;
+    }
+
+    &:nth-child(1) {
+      order: 2;
+    }
+
+    &:nth-child(2) {
+      margin-left: 50%;
+      order: 3;
+    }
+
+    &:nth-child(4) {
+      margin-left: 50%;
+      order: 4;
+    }
+
+    &:nth-child(5) {
+      margin-left: 50%;
+      order: 5;
+    }
+  }
+}
+
+.contact__section__title {
+  font-size: 1.6rem;
+}
+
+.contact__section__description {
+  font: 1.4rem $font-editorial-new;
+  margin-top: 1.5rem;
+
+  @include media('<phone') {
+    .contact__section:nth-child(3) & {
+      width: 13rem;
+    }
+  }
+}
+
+.contact__section__link {
+  @extend %link--hidden;
+
+  min-width: 6rem;
+}

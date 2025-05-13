@@ -26,7 +26,7 @@ export const categories = defineType({
             }),
 
             defineField({
-              name: 'Link',
+              name: 'link',
               title: 'Link',
               type: 'link',
             }),

@@ -23,5 +23,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@zackad/prettier-plugin-twig": "^0.16.0"
+  }
 }

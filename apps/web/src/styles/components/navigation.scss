@@ -16,6 +16,12 @@
     color: var(--color-white);
   }
 
+  @include media('>=desktop') {
+    font-size: 14px;
+    height: 80px;
+    padding: 0 40px;
+  }
+
   @include media('<phone') {
     height: 6rem;
     padding: 0 2rem;
@@ -34,6 +40,12 @@
   height: 26px;
   position: relative;
   width: 26px;
+
+  @include media('>=desktop') {
+    height: 26px;
+    margin-top: -2px;
+    width: 26px;
+  }
 }
 
 .navigation__button__dashes__dash {
@@ -73,6 +85,16 @@
       transform: scaleX(0);
     }
   }
+
+  @include media('>=desktop') {
+    &:nth-child(1) {
+      transform: translate(-50%, -4px);
+    }
+
+    &:nth-child(3) {
+      transform: translate(-50%, 4px);
+    }
+  }
 }
 
 .navigation__button__text {
@@ -83,6 +105,11 @@
 
   .navigation__button:hover & {
     opacity: 0.5;
+  }
+
+  @include media('>=desktop') {
+    font-size: 16px;
+    margin-left: 12px;
   }
 
   @include media('<phone') {
@@ -115,6 +142,20 @@
       transform: translateY(100%);
     }
   }
+
+  @include media('>=desktop') {
+    width: 85px;
+
+    &:hover {
+      path:first-child {
+        transform: translateX(27px);
+      }
+
+      path:last-child {
+        transform: translateX(-27px);
+      }
+    }
+  }
 }
 
 .navigation__logo__icon {
@@ -143,6 +184,10 @@
   display: block;
   margin-right: 1.2rem;
 
+  @include media('>=desktop') {
+    margin-right: 12px;
+  }
+
   @include media('<phone') {
     display: none;
   }
@@ -157,4 +202,9 @@
   justify-content: center;
   text-align: center;
   width: 2.6rem;
+
+  @include media('>=desktop') {
+    height: 26px;
+    width: 26px;
+  }
 }

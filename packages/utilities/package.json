@@ -9,7 +9,6 @@
     "src"
   ],
   "dependencies": {
-    "@activetheory/balance-text": "^1.0.2",
-    "@activetheory/split-text": "^1.1.2"
+    "gsap": "^3.13.0"
   }
 }

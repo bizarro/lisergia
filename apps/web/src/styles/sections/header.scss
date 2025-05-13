@@ -1,0 +1,85 @@
+.header {
+  align-items: center;
+  background: #beb4a0;
+  display: flex;
+  height: 69.5rem;
+  overflow: hidden;
+  position: relative;
+
+  @include media('<phone') {
+    align-items: flex-start;
+    height: 63rem;
+  }
+}
+
+.header__media {
+  @extend %cover;
+}
+
+.header__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+
+  @include media('<phone') {
+    object-position: -78rem 12rem;
+  }
+}
+
+.header__title {
+  font-size: 8rem;
+  line-height: 1;
+  margin-left: 9rem;
+  overflow: hidden;
+  position: relative;
+  width: 64rem;
+
+  div {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  div:nth-child(1) {
+    font-style: italic;
+    padding-right: 1rem;
+  }
+
+  div:nth-child(2) {
+    font-family: $font-editorial-new;
+  }
+
+  div:nth-child(3) {
+    font-family: $font-editorial-new;
+  }
+
+  div:nth-child(4) {
+    font-family: $font-editorial-new;
+  }
+
+  div:nth-child(5) {
+    font-style: italic;
+    padding-right: 1rem;
+  }
+
+  @include media('>=desktop') {
+    font-size: 90px;
+    width: 720px;
+
+    span:nth-child(1),
+    span:nth-child(5) {
+      padding-right: 10px;
+    }
+  }
+
+  @include media('<phone') {
+    margin: 14rem auto 0;
+    transform: translateX(0.5rem);
+    width: 30rem;
+
+    div {
+      font-size: 3.7rem;
+      text-align: center;
+    }
+  }
+}

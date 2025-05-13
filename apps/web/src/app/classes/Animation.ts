@@ -1,4 +1,4 @@
-import { Component, ComponentElements, ComponentSelector, ComponentSelectors } from '@lisergia/core'
+import { Component, ComponentSelector, ComponentSelectors } from '@lisergia/core'
 
 export default class extends Component {
   declare delay: number
@@ -27,18 +27,15 @@ export default class extends Component {
   declare observer: IntersectionObserver
 
   createObserver() {
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!this.isVisible && entry.isIntersecting) {
-            this.animateIn()
-          } else {
-            this.animateOut()
-          }
-        })
-      },
-      { rootMargin: '25%' },
-    )
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!this.isVisible && entry.isIntersecting) {
+          this.animateIn()
+        } else {
+          this.animateOut()
+        }
+      })
+    })
 
     this.observer.observe(this.elements.target)
   }

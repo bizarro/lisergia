@@ -19,24 +19,23 @@ export default class Hero extends Component {
     })
 
     makeObservable(this, {
-      offset: computed,
+      bounds: computed,
     })
 
     autorun(this.onUpdate)
   }
 
-  get offset() {
+  get bounds() {
     return DOMUtils.getBounds(this.element)
   }
 
   onUpdate() {
-    const scroll = this.application!.scroll
+    const { scroll } = this.application!
+    const { height, top } = this.bounds
 
-    const { height, top } = this.offset
+    const scale = MathUtils.map(scroll, top, top + height, 1, 1.5)
+    const translateY = MathUtils.map(scroll, top, top + height, 0, 100)
 
-    const headerScale = MathUtils.map(scroll, top, top + height, 1, 1.5)
-    const headerY = MathUtils.map(scroll, top, top + height, 0, 100)
-
-    this.elements.heroMedia.style.transform = `translate3d(0, ${headerY}px, 0) scale(${headerScale})`
+    this.elements.heroMedia.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`
   }
 }

@@ -1,14 +1,20 @@
-<section class="quote">
+<section class="quote" data-reveal="quote--active">
     <div class="quote__box">
         <p class="quote__description">
-            {{ section.title }}
+            <span>
+                {{
+                    section.title|replace({
+                        '|': '</span><span>'
+                    })
+                }}
+            </span>
         </p>
 
-        {% for image in section.images %}
+        {% for item in section.list %}
             <figure class="quote__media">
-                {% set asset = getAsset(image) %}
+                {% set asset = getAsset(item.asset) %}
 
-                <img alt="{{ asset.alt }}" class="quote__image" data-animation="trigger" data-src="{{ image.image }}" height="100%" width="100%"/>
+                <img alt="{{ asset.alt }}" class="quote__image" data-src="{{ asset.url }}" height="100%" width="100%" />
             </figure>
         {% endfor %}
     </div>

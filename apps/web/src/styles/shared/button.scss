@@ -1,7 +1,7 @@
 .button {
   align-items: center;
   border-radius: 2.4rem;
-  color: var(--color-white);
+  color: var(--color, var(--color-white));
   display: flex;
   height: 4rem;
   justify-content: center;
@@ -18,7 +18,7 @@
   }
 
   &::after {
-    background: var(--color-white);
+    background: var(--color, var(--color-white));
     border-radius: 50%;
     bottom: 0;
     content: '';
@@ -44,10 +44,20 @@
       transform: translate(-50%, -50%) scale(1);
     }
   }
+
+  @include media('>=desktop') {
+    height: 40px;
+    border-radius: 24px;
+    width: 140px;
+
+    &:after {
+      border-radius: 50%;
+    }
+  }
 }
 
 .button__background {
-  background: var(--color-black);
+  background: var(--background, var(--color-black));
   border-radius: 2.4rem;
   height: 100%;
   left: 50%;
@@ -59,6 +69,15 @@
   .button--active & {
     transition: width 1s 0.6s ease;
     width: 100%;
+  }
+
+  @include media('>=desktop') {
+    border-radius: 24px;
+    width: 40px;
+
+    .button--active & {
+      width: 100%;
+    }
   }
 }
 
@@ -89,14 +108,19 @@
   }
 
   &::after {
-    color: var(--color-black);
+    color: var(--background, var(--color-black));
     content: attr(data-text);
     left: 0;
     position: absolute;
     top: 100%;
   }
-}
 
-.button__text__line--hover {
-  transform: translateY(-100%) !important;
+  .button:hover & {
+    transform: translateY(-100%) !important;
+  }
+
+  @include media('>=desktop') {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
 }

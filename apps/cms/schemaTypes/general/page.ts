@@ -4,6 +4,10 @@ export const page = defineType({
   fields: [
     defineField({
       name: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
       title: 'Slug',
       type: 'slug',
     }),

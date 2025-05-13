@@ -1,0 +1,132 @@
+.columns {
+  align-items: center;
+  display: flex;
+  margin: auto;
+  width: calc(100% - 8rem);
+
+  &--left {
+    flex-direction: row-reverse;
+  }
+
+  @include media('>=desktop') {
+    width: calc(100% - 80px);
+  }
+
+  @include media('<phone') {
+    flex-direction: column-reverse;
+    margin: 7.5rem auto 0;
+    width: calc(100% - 4rem);
+  }
+}
+
+.columns__content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+
+  @include media('<phone') {
+    width: 100%;
+  }
+}
+
+.columns__content__wrapper {
+  text-align: center;
+}
+
+.columns__content__label {
+  @extend %animation-letter-spacing;
+  @extend %label-12;
+
+  &--active {
+    @extend %animation-letter-spacing--active;
+  }
+}
+
+.columns__content__title {
+  @extend %title-70;
+
+  margin: 1.5rem auto 0;
+  overflow: hidden;
+  width: 30rem;
+
+  .columns--left & {
+    width: 46rem;
+  }
+
+  @include media('>=desktop') {
+    margin-top: 15px;
+    padding-bottom: 13px;
+    width: 300px;
+
+    .columns--left & {
+      width: 460px;
+    }
+  }
+
+  @include media('<phone') {
+    font-size: 4rem;
+
+    .columns--left & {
+      width: 26rem;
+    }
+  }
+}
+
+.columns__content__description {
+  @extend %description-18;
+
+  margin: 5rem auto 0;
+  max-width: 41rem;
+
+  @include media('>=desktop') {
+    margin-top: 50px;
+    max-width: 410px;
+  }
+
+  @include media('<phone') {
+    margin-top: 3rem;
+    max-width: 26rem;
+
+    br {
+      display: none;
+    }
+  }
+}
+
+.columns__media {
+  border-radius: 1rem;
+  height: 81rem;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
+  width: 50%;
+
+  @include media('<phone') {
+    height: 40rem;
+    margin-top: 5rem;
+    width: 100%;
+  }
+}
+
+.columns__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.columns__media__image--2 {
+  border-radius: 1rem;
+  height: 40.4rem;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 33.8rem;
+
+  @include media('<phone') {
+    height: 21.2rem;
+    width: 17.6rem;
+  }
+}

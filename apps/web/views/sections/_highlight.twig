@@ -1,11 +1,9 @@
 <section class="highlight">
-    <p class="highlight__label" data-animation="label">
+    <p class="highlight__label" data-reveal="highlight__label--active">
         {{ section.label }}
     </p>
 
-    <h2 class="highlight__title" data-title="left,top,bottom">
-        {{ section.title }}
-    </h2>
+    <h2 class="highlight__title" data-title="left,top,bottom">{{ section.title }}</h2>
 
     <p class="highlight__description" data-paragraph>
         {{ section.description }}
@@ -28,7 +26,13 @@
             <div class="highlight__media__box">
                 {% set asset = getAsset(media) %}
 
-                <img alt="{{ asset.alt }}" class="highlight__media__image" data-animation="trigger" data-src="{{ asset.url }}" height="100%" width="100%"/>
+                <img
+                    alt="{{ asset.alt }}"
+                    class="highlight__media__image"
+                    data-src="{{ asset.url }}"
+                    height="100%"
+                    width="100%"
+                />
             </div>
         </figure>
     {% endfor %}

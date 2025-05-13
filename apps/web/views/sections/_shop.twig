@@ -1,0 +1,72 @@
+<section class="shop">
+    <div class="shop__wrapper">
+        <header class="shop__header">
+            <span class="shop__header__titles">
+                <span class="shop__header__titles__wrapper">
+                    {% for category in categories %}
+                        <span class="shop__header__title">
+                            <span class="shop__header__title__text">{{ category.title }}</span>
+
+                            {# TODO: Add filter to list how many products are in a category. #}
+                            <span class="shop__header__title__number">({{ 3 }})</span>
+                        </span>
+                    {% endfor %}
+                </span>
+            </span>
+        </header>
+
+        <div class="shop__content">
+            {% for category in section.list %}
+                <section class="shop__category">
+                    {% for item in category.content %}
+                        {% if item.entry.type == 'product' %}
+                            <article class="shop__category__item">
+                                <a href="/product/{{ item.entry.product.slug.current }}">
+                                    {% set asset = getAsset(item.entry.product.image.asset) %}
+
+                                    <figure class="shop__category__item__media">
+                                        <img
+                                            alt="{{ asset.alt }}"
+                                            class="shop__category__item__media__image"
+                                            data-src="{{ asset.url }}"
+                                            height="100%"
+                                            width="100%"
+                                        />
+                                    </figure>
+
+                                    <div class="shop__category__content">
+                                        <p class="shop__category__label" data-reveal="shop__category__label--active">
+                                            {{ item.entry.product.label }}
+                                        </p>
+
+                                        <div data-paragraph>
+                                            <p class="shop__category__title">
+                                                {{ item.entry.product.title }}
+                                            </p>
+
+                                            <p class="shop__category__price">
+                                                {{ item.entry.product.price }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </article>
+                        {% elseif item.entry.type == 'image' %}
+                            <figure class="shop__category__media" data-parallax>
+                                {% set asset = getAsset(item.entry.image.asset) %}
+
+                                <img
+                                    alt="{{ asset.alt }}"
+                                    class="shop__category__media__image"
+                                    data-src="{{ asset.url }}"
+                                    height="100%"
+                                    width="100%"
+                                />
+                            </figure>
+                        {% endif %}
+                    {% endfor %}
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+</section>

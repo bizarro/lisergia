@@ -3,17 +3,41 @@
 
     {% if layout == 'categories' %}
         {% include './_categories.twig' with section %}
+    {% elseif layout == 'columns' %}
+        {% include './_columns.twig' with section %}
+    {% elseif layout == 'contact' %}
+        {% include './_contact.twig' with section %}
+    {% elseif layout == 'details' %}
+        {% include './_details.twig' with section %}
+    {% elseif layout == 'disclaimer' %}
+        {% include './_disclaimer.twig' with section %}
+    {% elseif layout == 'gallery' %}
+        {% include './_gallery.twig' with section %}
+    {% elseif layout == 'header' %}
+        {% include './_header.twig' with section %}
     {% elseif layout == 'hero' %}
         {% include './_hero.twig' with section %}
     {% elseif layout == 'highlight' %}
         {% include './_highlight.twig' with section %}
+    {% elseif layout == 'information' %}
+        {% include './_information.twig' with section %}
     {% elseif layout == 'ingredients' %}
         {% include './_ingredients.twig' with section %}
+    {% elseif layout == 'intro' %}
+        {% include './_intro.twig' with section %}
     {% elseif layout == 'list' %}
         {% include './_list.twig' with section %}
+    {% elseif layout == 'lookbook' %}
+        {% include './_lookbook.twig' with section %}
+    {% elseif layout == 'marquee' %}
+        {% include './_marquee.twig' with section %}
     {% elseif layout == 'media' %}
         {% include './_media.twig' with section %}
     {% elseif layout == 'quote' %}
         {% include './_quote.twig' with section %}
+    {% elseif layout == 'seasons' %}
+        {% include './_seasons.twig' with section %}
+    {% elseif layout == 'shop' %}
+        {% include './_shop.twig' with section %}
     {% endif %}
 {% endfor %}

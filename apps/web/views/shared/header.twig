@@ -1,29 +1,43 @@
 {# Default #}
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
 
-<title>{{ social.title }}</title>
+<title>
+    {{ social.title }}
+</title>
 
-<meta name="description" content="{{ social.description }}">
+<meta name="description" content="{{ social.description }}" />
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="{{ social.title }}">
-<meta property="og:description" content="{{ social.description }}">
-<meta property="og:image" content="{{ social.image ? getAsset(social.image).url }}">
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ social.title }}">
-<meta name="twitter:description" content="{{ social.description }}">
-<meta name="twitter:image" content="{{ social.image ? getAsset(social.image).url }}">
+{% if social.title %}
+    <meta property="og:title" content="{{ social.title }}" />
+    <meta name="twitter:title" content="{{ social.title }}" />
+{% endif %}
+
+{% if social.image %}
+    {% set asset = getAsset(social.image) %}
+
+    <meta property="og:image" content="{{ asset.url }}" />
+    <meta name="twitter:image" content="{{ asset.url }}" />
+{% endif %}
+
+{% if social.description %}
+    <meta property="og:description" content="{{ social.description }}" />
+    <meta name="twitter:description" content="{{ social.description }}" />
+{% endif %}
 
 {# Stylesheets #}
-<link rel="preconnect" href="https://use.typekit.net">
-<link rel="preconnect" href="https://api.sanity.io">
+<link rel="preconnect" href="https://api.sanity.io" />
 
-<link rel="preload" href="https://use.typekit.net/fxd0iol.css" as="style">
-<link rel="stylesheet" href="https://use.typekit.net/fxd0iol.css" media="print" onload="this.media='all'">
+{% if typekit %}
+    <link rel="preconnect" href="https://use.typekit.net" />
+    <link rel="preload" href="https://use.typekit.net/{{ typekit }}.css" as="style" />
+    <link rel="stylesheet" href="https://use.typekit.net/{{ typekit }}.css" media="print" onload="this.media='all'" />
+{% endif %}
 
-<link rel="stylesheet" href="{{ getVersionedPath('/bundle.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ getVersionedPath('/bundle.css') }}" type="text/css" />
 
 {# Favicons #}
 <meta name="apple-mobile-web-app-title" content="{{ social.title }}" />

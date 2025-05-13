@@ -7,47 +7,36 @@ export default class extends Animation {
   declare elements: {
     paragraphs: NodeListOf<HTMLElement>
     lines: NodeListOf<HTMLElement>
+    target: HTMLElement
   }
 
   constructor({ element }: { element: HTMLElement }) {
-    const paragraphs = element.querySelectorAll('h1, h2, p')
+    const paragraphs = element.querySelectorAll('h1, h2, h3, h4, h5, h6, li, p')
 
     if (paragraphs.length) {
       paragraphs.forEach((element) => {
-        const splitText = new SplitText(element as HTMLElement, {
-          noBalance: true,
+        SplitText.create(element, {
           type: 'lines',
         })
 
-        splitText.split()
-
-        const splitText2 = new SplitText(element as HTMLElement, {
-          noBalance: true,
+        SplitText.create(element, {
           type: 'lines',
         })
-
-        splitText2.split()
       })
     } else {
-      const splitText = new SplitText(element, {
-        noBalance: true,
+      SplitText.create(element, {
         type: 'lines',
       })
 
-      splitText.split()
-
-      const splitText2 = new SplitText(element, {
-        noBalance: true,
+      SplitText.create(element, {
         type: 'lines',
       })
-
-      splitText2.split()
     }
 
     super({
       element,
       elements: {
-        lines: element.querySelectorAll('.line .line'),
+        lines: element.querySelectorAll('div div'),
       },
     })
   }
@@ -69,7 +58,7 @@ export default class extends Animation {
     this.elements.lines.forEach((element, lineIndex) => {
       rotation += 0.15
 
-      element.style.transform = `translateY(110%) rotate(${rotation}deg)`
+      element.style.transform = `translateY(120%) rotate(${rotation}deg)`
     })
   }
 }

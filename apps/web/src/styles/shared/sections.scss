@@ -1,15 +1,27 @@
 %label-12 {
   font: 1.2rem $font-anonymous;
   text-transform: uppercase;
+
+  @include media('>=desktop') {
+    font-size: 12px;
+  }
 }
 
 %label-14 {
   font: 1.4rem $font-anonymous;
   text-transform: uppercase;
+
+  @include media('>=desktop') {
+    font-size: 14px;
+  }
 }
 
 %title-70 {
   font: 7rem/0.9 $font-editorial-new;
+
+  @include media('>=desktop') {
+    font-size: 70px;
+  }
 
   @include media('<phone') {
     font-size: 6rem;
@@ -18,6 +30,10 @@
 
 %description-18 {
   font-size: 1.8rem;
+
+  @include media('>=desktop') {
+    font-size: 18px;
+  }
 
   @include media('<phone') {
     font-size: 1.6rem;

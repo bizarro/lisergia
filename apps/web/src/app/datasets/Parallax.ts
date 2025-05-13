@@ -1,53 +1,49 @@
-import { Component } from '@lisergia/core'
+import { ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
-import { autorun } from 'mobx'
+import { DOMUtils, MathUtils } from '@lisergia/utilities'
 
-export default class extends Component {
-  declare amount: number
-  declare offset: DOMRectBounds
+import { autorun, computed, makeObservable } from 'mobx'
 
+export default class Parallax extends Component {
   declare element: HTMLElement
   declare elements: {
-    media: HTMLImageElement | HTMLVideoElement
+    media: HTMLElement
   }
 
-  constructor({ element }: { element: HTMLElement }) {
+  constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
+      application,
       element,
       elements: {
-        media: element.querySelector('img, video')!,
+        media: element.firstElementChild as HTMLElement,
       },
     })
 
-    Viewport.on('resize', this.onResize)
+    makeObservable(this, {
+      amount: computed,
+      bounds: computed,
+    })
 
     autorun(this.onUpdate)
   }
 
-  onResize() {
-    this.amount = Viewport.isPhone ? 10 : 100
-    this.offset = DOMUtils.getBounds(this.element)
+  get amount() {
+    return Viewport.isPhone ? 10 : 100
+  }
+
+  get bounds() {
+    return DOMUtils.getBounds(this.element)
   }
 
   onUpdate() {
-    const scroll = this.application!.scroll
-    const offset = scroll + innerHeight
+    const { scroll } = this.application!
+    const { top, height } = this.bounds
 
-    if (offset >= this.offset.top) {
-      const parallax = MathUtils.map(
-        this.offset.top - scroll,
-        -this.offset.height,
-        innerHeight,
-        this.amount,
-        -this.amount,
-      )
+    const scale = MathUtils.map(top - scroll, -height, Viewport.height, 1, 1.2, true)
+    const translateY = MathUtils.map(top - scroll, -height, Viewport.height, this.amount, -this.amount, true)
 
-      const scale = MathUtils.map(this.offset.top - scroll, -this.offset.height, innerHeight, 1, 1.2)
+    console.log(top - scroll, -height, Viewport.height, -this.amount, this.amount)
 
-      this.elements.media.style.transform = `translate3d(0, ${parallax}px, 0) scale(${scale})`
-    } else {
-      this.elements.media.style.transform = `translate3d(0, -${this.amount}px, 0) scale(1.2)`
-    }
+    this.elements.media.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`
   }
 }

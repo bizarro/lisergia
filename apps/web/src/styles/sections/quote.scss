@@ -22,6 +22,51 @@
   font: 4.6rem/1.35 $font-editorial-new;
   text-align: center;
 
+  .quote--active & {
+    span:nth-of-type(1) {
+      transform: translateX(-5.3rem);
+    }
+
+    span:nth-of-type(2) {
+      transform: translateX(5.2rem);
+    }
+
+    span:nth-of-type(5) {
+      transform: translateX(-5.2rem);
+    }
+
+    span:nth-of-type(6) {
+      transform: translateX(5.2rem);
+    }
+  }
+
+  span {
+    display: inline-block;
+    transition: transform 1s var(--ease-out-expo);
+  }
+
+  @include media('>=desktop') {
+    font-size: 46px;
+
+    .quote--active & {
+      span:nth-of-type(1) {
+        transform: translateX(-53px);
+      }
+
+      span:nth-of-type(2) {
+        transform: translateX(52px);
+      }
+
+      span:nth-of-type(3) {
+        transform: translateX(-52px);
+      }
+
+      span:nth-of-type(4) {
+        transform: translateX(52px);
+      }
+    }
+  }
+
   @include media('<phone') {
     font-size: 3.2rem;
     line-height: 4.3rem;
@@ -29,46 +74,14 @@
     br {
       display: none;
     }
-  }
-}
 
-.quote__description__text {
-  display: inline-block;
-  transition: transform 1s var(--ease-out-expo);
-
-  &[data-animation-in] {
-    &:nth-of-type(1) {
-      transform: translateX(-5.3rem);
-    }
-
-    &:nth-of-type(2) {
-      transform: translateX(5.2rem);
-    }
-
-    &:nth-of-type(3) {
-      transform: translateX(-5.2rem);
-    }
-
-    &:nth-of-type(4) {
-      transform: translateX(5.2rem);
-    }
-  }
-
-  @include media('<phone') {
-    display: inline;
-
-    &[data-animation-in] {
-      &:nth-of-type(1),
-      &:nth-of-type(2),
-      &:nth-of-type(3),
-      &:nth-of-type(4) {
-        transform: none;
-      }
+    span {
+      display: inline;
     }
   }
 }
 
-.quote__image {
+.quote__media {
   border-radius: 50%;
   height: 8rem;
   opacity: 0;
@@ -81,21 +94,21 @@
   width: 8rem;
 
   &:nth-of-type(1) {
-    left: 15.5rem;
+    left: 16.5rem;
     top: -0.8rem;
   }
 
   &:nth-of-type(2) {
-    left: 100.8rem;
+    left: 101.8rem;
     top: 5.2rem;
   }
 
   &:nth-of-type(3) {
-    left: 58rem;
+    left: 59rem;
     top: 17.5rem;
   }
 
-  &[data-animation-in] {
+  .quote--active & {
     opacity: 1;
     transform: scale(1);
 
@@ -109,6 +122,26 @@
 
     &:nth-of-type(3) {
       transition-delay: 0.2s;
+    }
+  }
+
+  @include media('>=desktop') {
+    height: 80px;
+    width: 80px;
+
+    &:nth-of-type(1) {
+      left: 155px;
+      top: -8px;
+    }
+
+    &:nth-of-type(2) {
+      left: 1008px;
+      top: 52px;
+    }
+
+    &:nth-of-type(3) {
+      left: 580px;
+      top: 175px;
     }
   }
 

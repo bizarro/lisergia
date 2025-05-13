@@ -10,6 +10,7 @@
   z-index: z('menu');
 
   .navigation--open & {
+    pointer-events: auto;
     transition: visibility 0s;
     visibility: visible;
   }
@@ -35,6 +36,10 @@
     width: 100%;
   }
 
+  @include media('>=desktop') {
+    width: 623px;
+  }
+
   @include media('<phone') {
     width: 100%;
 
@@ -53,6 +58,12 @@
   line-height: 1;
   padding-bottom: 15rem;
   padding-left: 4rem;
+
+  @include media('>=desktop') {
+    font-size: 110px;
+    padding-bottom: 150px;
+    padding-left: 40px;
+  }
 
   @include media('<phone') {
     font-size: 7rem;
@@ -99,6 +110,11 @@
   left: 4rem;
   position: absolute;
 
+  @include media('>=desktop') {
+    font-size: 14px;
+    left: 40px;
+  }
+
   @include media('<phone') {
     left: 2rem;
   }
@@ -116,6 +132,12 @@
 
   &:hover {
     opacity: 0.25;
+  }
+
+  @include media('>=desktop') {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -152,6 +174,10 @@
   position: absolute;
   right: 4rem;
 
+  @include media('>=desktop') {
+    right: 40px;
+  }
+
   @include media('<phone') {
     bottom: 13.7rem;
     left: 2rem;
@@ -170,6 +196,12 @@
 
   &:hover {
     opacity: 0.25;
+  }
+
+  @include media('>=desktop') {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
   }
 }
 
@@ -200,42 +232,9 @@
   .navigation--open .menu__social__item:nth-child(3) & {
     transition-delay: 1.1s;
   }
-}
 
-.menu__medias {
-  background: var(--color-bison-hide);
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translateY(-100%);
-  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.2s;
-  width: 56.7rem + 1rem;
-
-  .navigation--open & {
-    transform: translateY(0);
-  }
-
-  @include media('<phone') {
-    display: none;
-  }
-}
-
-.menu__medias__image {
-  @extend %cover;
-
-  opacity: 0;
-  transform: translateY(100%);
-  transition:
-    opacity 0.4s ease,
-    transform 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.2s;
-
-  .navigation--open & {
-    transform: translateY(0);
-  }
-
-  &--active {
-    opacity: 1;
+  @include media('>=desktop') {
+    height: 20px;
+    width: 20px;
   }
 }

@@ -1,0 +1,29 @@
+{% for entry in section.list %}
+    {% set index = loop.index %}
+
+    <article class="lookbook-{{ loop.index }}">
+        {% for item in entry.content %}
+            {% if item.entry.type == 'image' %}
+                <figure class="lookbook-{{ index }}__media" data-parallax>
+                    {% set asset = getAsset(item.entry.image) %}
+
+                    <img
+                        alt="{{ asset.alt }}"
+                        class="lookbook-{{ index }}__media__image loaded"
+                        data-src="{{ asset.url }}"
+                        height="100%"
+                        width="100%"
+                    />
+                </figure>
+            {% endif %}
+
+            {% if item.entry.type == 'text' %}
+                <div class="lookbook-{{ index }}__content">
+                    <div class="lookbook-{{ index }}__content__text" data-paragraph>
+                        {{ parseHTML(item.entry.title) }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </article>
+{% endfor %}

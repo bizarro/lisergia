@@ -1,16 +1,11 @@
 import { Component } from '@lisergia/core'
 
 export default class Source extends Component {
-  declare classes: {}
-
   declare element: HTMLElement
-  declare elements: {}
 
   constructor({ element }: { element: HTMLElement }) {
     super({
-      classes: {},
       element,
-      elements: {},
     })
   }
 
@@ -38,8 +33,6 @@ export default class Source extends Component {
 
     this.removeEventListeners()
   }
-
-  animateOut() {}
 
   addEventListeners() {
     this.createObserver()

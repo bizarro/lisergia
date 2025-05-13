@@ -51,12 +51,11 @@ export class Page extends Component {
       elements,
     })
 
-    this.scrollOptions = scrollOptions
-
     this.application = application
     this.datasets = datasets
 
     this.scrollEnabled = scrollEnabled
+    this.scrollOptions = scrollOptions
 
     makeObservable(this, {
       components: observable,

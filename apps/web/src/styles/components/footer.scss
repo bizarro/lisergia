@@ -6,13 +6,18 @@
   font-size: 1.4rem;
   line-height: 1;
   padding: 7rem 3.8rem 6rem;
-  position: absolute;
+  position: fixed;
   text-transform: uppercase;
   transition: transform 1s ease;
   width: 100%;
+  z-index: z('footer');
 
   .navigation--open & {
     transform: translateY(7.5rem);
+  }
+
+  @include media('>=desktop') {
+    font-size: 14px;
   }
 
   @include media('<phone') {
@@ -27,6 +32,14 @@
   &:nth-child(6),
   &:nth-child(7) {
     margin-top: 15rem;
+  }
+
+  @include media('>=desktop') {
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7) {
+      margin-top: 150px;
+    }
   }
 
   @include media('<phone') {
@@ -78,6 +91,7 @@
   font-size: 0;
   margin-right: auto;
   transition: opacity 0.4s ease;
+  width: fit-content;
 
   &:hover {
     opacity: 0.5;
@@ -87,6 +101,10 @@
 .footer__logo__icon {
   display: block;
   width: 9rem;
+
+  @include media('>=desktop') {
+    width: 90px;
+  }
 }
 
 .footer__list {
@@ -97,6 +115,10 @@
 .footer__list__item {
   margin-bottom: 1.5rem;
   width: 50%;
+
+  @include media('>=desktop') {
+    margin-bottom: 15px;
+  }
 }
 
 .footer__list__link {
@@ -109,16 +131,30 @@
   }
 }
 
-// .footer__newsletter {
-// }
+.footer__newsletter {
+  position: relative;
+}
 
 .footer__newsletter__box {
   display: inline-block;
   position: relative;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+
+  .footer__newsletter--error &,
+  .footer__newsletter--success & {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .footer__newsletter__title {
   margin-bottom: 1.5rem;
+
+  @include media('>=desktop') {
+    margin-bottom: 15px;
+  }
 }
 
 .footer__newsletter__input {
@@ -129,32 +165,27 @@
   border-width: 0 0 1px;
   color: currentcolor;
   font: inherit;
+  outline: none;
   padding: 0 0 1rem;
   pointer-events: auto;
-  transition:
-    opacity 0.4s ease,
-    visibility 0.4s ease;
   width: 22rem;
 
-  .footer__newsletter__box--active & {
-    opacity: 0;
-    visibility: hidden;
+  @include media('>=desktop') {
+    padding-bottom: 10px;
+    width: 220px;
   }
 }
 
 .footer__newsletter__button {
+  font-size: 0;
   opacity: 0.8;
   position: absolute;
   right: 0;
   stroke: currentcolor;
   top: 0.2rem;
-  transition:
-    opacity 0.4s ease,
-    visibility 0.4s ease;
 
-  .footer__newsletter__box--active & {
-    opacity: 0;
-    visibility: hidden;
+  @include media('>=desktop') {
+    top: 2px;
   }
 }
 
@@ -163,22 +194,32 @@
   opacity: 0.8;
   stroke: currentcolor;
   width: 1.2rem;
+
+  @include media('>=desktop') {
+    height: 12px;
+    width: 12px;
+  }
 }
 
 .footer__newsletter__feedback {
+  bottom: 0;
+  color: var(--color-white);
   left: 0;
   opacity: 0;
   position: absolute;
   text-transform: none;
-  top: 0;
+  transition:
+    opacity 0.4s 0.4s ease,
+    visibility 0.4s 0.4s ease;
   visibility: hidden;
 
-  .footer__newsletter__box--active & {
-    color: rgba(var(--color-white), 0.5);
-    opacity: 1;
-    transition:
-      opacity 0.4s 0.4s ease,
-      visibility 0.4s 0.4s ease;
+  .footer__newsletter--error &--error {
+    opacity: 0.5;
+    visibility: visible;
+  }
+
+  .footer__newsletter--success &--success {
+    opacity: 0.5;
     visibility: visible;
   }
 }
@@ -188,6 +229,10 @@
 
 .footer__social__title {
   margin-bottom: 2rem;
+
+  @include media('>=desktop') {
+    margin-bottom: 20px;
+  }
 
   @include media('<phone') {
     display: none;
@@ -212,21 +257,38 @@
   &:hover {
     opacity: 0.25;
   }
+
+  @include media('>=desktop') {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
 }
 
-// .footer__social__link {
-// }
+.footer__social__link {
+  display: block;
+  font-size: 0;
+}
 
 .footer__social__icon {
   display: block;
   fill: currentcolor;
   height: 2rem;
   width: 2rem;
+
+  @include media('>=desktop') {
+    height: 20px;
+    width: 20px;
+  }
 }
 
 .footer__copyright {
   font-size: 1.2rem;
   opacity: 0.5;
+
+  @include media('>=desktop') {
+    font-size: 12px;
+  }
 }
 
 .footer__credits {
@@ -236,5 +298,9 @@
 
   a {
     @extend %link--hidden;
+  }
+
+  @include media('>=desktop') {
+    font-size: 12px;
   }
 }

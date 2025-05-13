@@ -1,13 +1,7 @@
 .contact {
-  @extend %page;
-}
-
-.contact__wrapper {
-  @extend %page__wrapper;
-
   align-items: center;
   display: flex;
-  height: 100%;
+  height: var(--100vh);
   padding-top: 8rem;
   width: 100%;
 
@@ -18,8 +12,8 @@
 
 .contact__box {
   display: flex;
-  flex-wrap: wrap;
   padding-left: 73rem;
+  flex-wrap: wrap;
 
   @include media('<phone') {
     padding-left: 2rem;
@@ -89,15 +83,17 @@
   font: 1.4rem $font-editorial-new;
   margin-top: 1.5rem;
 
+  a {
+    @extend %link--hidden;
+  }
+
+  p:not(:first-child) {
+    margin-top: 1rem;
+  }
+
   @include media('<phone') {
     .contact__section:nth-child(3) & {
       width: 13rem;
     }
   }
-}
-
-.contact__section__link {
-  @extend %link--hidden;
-
-  min-width: 6rem;
 }

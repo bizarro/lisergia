@@ -4,6 +4,10 @@ export const product = defineType({
   fields: [
     defineField({
       name: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
       title: 'Slug',
       type: 'slug',
     }),
@@ -15,13 +19,31 @@ export const product = defineType({
     }),
 
     defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+    }),
+
+    defineField({
+      name: 'label',
+      title: 'Label',
+      type: 'string',
+    }),
+
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
     }),
 
     defineField({
-      name: 'Content',
+      name: 'price',
+      title: 'Price',
+      type: 'string',
+    }),
+
+    defineField({
+      name: 'content',
       title: 'Content',
       type: 'content',
     }),

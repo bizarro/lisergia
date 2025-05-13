@@ -1,67 +1,37 @@
-<div class="home__categories__products">
-  <div class="home__medias" aria-hidden="true">
-    <div class="home__medias__media">
-      <img
-        class="home__medias__media__image"
-        alt="alt"
-        data-src="products/atlantic-chamomile-hydrating-mask.jpg"
-        data-src-webp="products/atlantic-chamomile-hydrating-mask.webp"
-        height="100%"
-        width="100%"
-      />
+<div class="list">
+    <div class="list__wrapper">
+        <div class="list__medias">
+            {% for item in section.list %}
+                <div class="list__medias__media">
+                    {% set asset = getAsset(item.image.asset) %}
+
+                    <img
+                        alt="{{ asset.alt }}"
+                        class="list__medias__media__image"
+                        data-src="{{ asset.url }}"
+                        height="100%"
+                        width="100%"
+                    />
+                </div>
+            {% endfor %}
+        </div>
+
+        <p class="list__label">
+            {{ section.label }}
+        </p>
+
+        <ul class="list__list">
+            {% for item in section.list %}
+                <li class="list__item">
+                    <a class="list__link" data-text="{{ item.text }}" href="{{ item.url }}">{{ item.text }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% include '../components/button.twig' with {
+            class: 'list__button',
+            text: section.button.text,
+            url: section.button.url
+        } %}
     </div>
-    <div class="home__medias__media">
-      <img
-        class="home__medias__media__image"
-        alt="alt"
-        data-src="products/atlantic-cedar-facial-moisturizer.jpg"
-        data-src-webp="products/atlantic-cedar-facial-moisturizer.webp"
-        height="100%"
-        width="100%"
-      />
-    </div>
-    <div class="home__medias__media">
-      <img
-        class="home__medias__media__image"
-        alt="alt"
-        data-src="products/atlantic-leaf-exfoliant-paste.jpg"
-        data-src-webp="products/atlantic-leaf-exfoliant-paste.webp"
-        height="100%"
-        width="100%"
-      />
-    </div>
-  </div>
-  <p class="home__categories__products__label">Essentials</p>
-  <ul class="home__categories__products__list">
-    <li class="home__categories__products__item" data-media="1">
-      <a
-        class="home__categories__products__link"
-        data-text="Facial Moisturizer"
-        href="/product/atlantic-cedar-facial-moisturizer"
-        >Facial Moisturizer</a
-      >
-    </li>
-    <li class="home__categories__products__item" data-media="2">
-      <a
-        class="home__categories__products__link"
-        data-text="Hydrating Mask"
-        href="/product/atlantic-chamomile-hydrating-mask"
-        >Hydrating Mask</a
-      >
-    </li>
-    <li class="home__categories__products__item" data-media="3">
-      <a
-        class="home__categories__products__link"
-        data-text="Exfoliant Paste"
-        href="/product/atlantic-leaf-exfoliant-paste"
-        >Exfoliant Paste</a
-      >
-    </li>
-  </ul>
-  <a class="home__categories__products__button" href="/catalogue"
-    ><span class="home__categories__products__button__background"></span
-    ><span class="home__categories__products__button__text"
-      ><span class="home__categories__products__button__text__line" data-text="Shop All">Shop All</span></span
-    ></a
-  >
 </div>

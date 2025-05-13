@@ -1,0 +1,12 @@
+%animation-letter-spacing {
+  letter-spacing: 0.5rem;
+  opacity: 0;
+  transition:
+    opacity 1s var(--ease-out-expo),
+    letter-spacing 1s var(--ease-out-expo);
+
+  &--active {
+    letter-spacing: 0.05rem;
+    opacity: 1;
+  }
+}

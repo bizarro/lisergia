@@ -16,7 +16,12 @@
 }
 
 .highlight__label {
+  @extend %animation-letter-spacing;
   @extend %label-12;
+
+  &--active {
+    @extend %animation-letter-spacing--active;
+  }
 
   @include media('<phone') {
     letter-spacing: 0.3rem;
@@ -31,6 +36,11 @@
   overflow: hidden;
   width: 40rem;
 
+  @include media('>=desktop') {
+    margin-top: 15px;
+    width: 400px;
+  }
+
   @include media('<phone') {
     width: 31rem;
   }
@@ -41,6 +51,11 @@
 
   margin-top: 5rem;
   width: 32rem;
+
+  @include media('>=desktop') {
+    margin-top: 50px;
+    width: 320px;
+  }
 
   @include media('<phone') {
     margin-top: 2.5rem;

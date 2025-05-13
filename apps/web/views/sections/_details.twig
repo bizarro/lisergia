@@ -1,0 +1,58 @@
+<header class="details">
+    <div class="details__gallery">
+        {% for item in section.gallery %}
+            <figure
+                class="details__header__media {{ loop.index == 1 ? 'details__header__media--active' }}"
+                data-parallax
+            >
+                {% set asset = getAsset(item) %}
+
+                <img
+                    alt="{{ asset.alt }}"
+                    class="details__header__media__image"
+                    data-src="{{ asset.url }}"
+                    height="100%"
+                    width="100%"
+                />
+            </figure>
+        {% endfor %}
+
+        <div class="details__gallery__navigation">
+            {% for item, index in section.gallery %}
+                <button
+                    class="details__gallery__navigation__button {{
+                    loop.index == 1
+                        ? 'details__gallery__navigation__button--active'
+                    }}"
+                    data-index="{{ loop.index0 }}"
+                >
+                    See {{ loop.index }}
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="details__information">
+        <p class="details__information__label" data-reveal="details__information__label--active">
+            {{ label }}
+        </p>
+
+        <h2 class="details__information__title" data-title="left,top,bottom,right">{{ title }}</h2>
+
+        <div class="details__information__description">
+            {{
+                parseHTML(section.description)|replace({
+                    '<p>': '<p data-paragraph>',
+                    '<ul>': '<ul class="details__information__description__list">',
+                    '<li>': '<li class="details__information__description__item" data-paragraph data-reveal="details__information__description__item--active">'
+                })
+            }}
+        </div>
+
+        {% include '../components/button.twig' with {
+            class: 'details__information__button',
+            text: 'Add to Your Bag — ' ~ price,
+            value: details.slug.current
+        } %}
+    </div>
+</header>

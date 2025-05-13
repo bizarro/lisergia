@@ -1,0 +1,30 @@
+<section class="information information--{{ section.type }}">
+    <div class="information__media">
+        {% set asset = getAsset(section.image.asset) %}
+
+        <figure class="information__media__image" data-parallax>
+            <img
+                alt="{{ asset.alt }}"
+                class="information__media__image"
+                data-src="{{ asset.url }}"
+                height="100%"
+                width="100%"
+            />
+        </figure>
+    </div>
+
+    <div class="information__content">
+        <div class="information__content__wrapper">
+            {{
+                parseHTML(section.description)|replace({
+                    '<h2>': '<h2 class="information__content__title" data-reveal="information__content__title--active">',
+                    '<p>': '<p data-paragraph>',
+                    '<ul>': '<ul class="information__content__list">',
+                    '<li>': '<li class="information__content__item" data-paragraph data-reveal="information__content__item--active"><span>',
+                    '<br/>': '</span><span>',
+                    '</li>': '</span></li>'
+                })
+            }}
+        </div>
+    </div>
+</section>

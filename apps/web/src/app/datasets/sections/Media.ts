@@ -5,8 +5,6 @@ import { DOMUtils, MathUtils } from '@lisergia/utilities'
 import { autorun, computed, makeObservable } from 'mobx'
 
 export default class Hero extends Component {
-  declare amount: number
-
   declare element: HTMLElement
   declare elements: {
     mediaVideo: HTMLElement
@@ -22,20 +20,19 @@ export default class Hero extends Component {
     })
 
     makeObservable(this, {
-      offset: computed,
+      bounds: computed,
     })
 
     autorun(this.onUpdate)
   }
 
-  get offset() {
+  get bounds() {
     return DOMUtils.getBounds(this.element)
   }
 
   onUpdate() {
-    const scroll = this.application!.scroll
-
-    const { height, top } = this.offset
+    const { scroll } = this.application!
+    const { height, top } = this.bounds
 
     const headerScale = MathUtils.map(scroll, top - Viewport.height, top + height, 1, 1.5, true)
     const headerY = scroll - top

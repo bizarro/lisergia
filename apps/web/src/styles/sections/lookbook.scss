@@ -1,120 +1,23 @@
-.lookbook {
-  @extend %page;
-
+.lookbook-1 {
+  align-items: center;
+  display: flex;
   font-size: 2.9rem;
-}
-
-.lookbook__wrapper {
-  @extend %page__wrapper;
-
-  padding-top: 8rem;
-
-  @include media('<phone') {
-    padding-top: 6rem;
-  }
-}
-
-.lookbook__header {
-  align-items: center;
-  display: flex;
-  height: 85rem;
-  position: relative;
-  text-align: center;
-
-  @include media('<phone') {
-    flex-direction: column;
-    height: auto;
-  }
-}
-
-.lookbook__header__content {
-  align-items: center;
-  background: var(--color-black);
-  color: var(--color-white);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  width: 59.5rem;
-
-  @include media('<phone') {
-    height: 55rem;
-  }
-}
-
-.lookbook__header__label {
-  @extend %label-14;
-}
-
-.lookbook__header__title {
-  font-size: 0;
-  margin-top: 3rem;
-  width: 29rem;
-
-  span {
-    font: 5.6rem / 120% $font-editorial-new;
-  }
-}
-
-.lookbook__header__description {
-  bottom: 2rem;
-  position: absolute;
-
-  @include media('<phone') {
-    font-size: 2.2rem;
-  }
-}
-
-.lookbook__header__figure {
-  height: 100%;
-  position: relative;
-  width: calc(100% - 59.5rem);
-
-  @include media('<phone') {
-    height: 44.3rem;
-    width: 100%;
-  }
-}
-
-.lookbook__header__figure__image {
-  @extend %cover;
-}
-
-.lookbook__highlight {
-  border-bottom: 1px solid var(--color-black);
-  font-size: 0;
-  padding: 0.8rem 0;
-
-  @include media('<phone') {
-    display: none;
-  }
-}
-
-.lookbook__highlight__wrapper {
-  display: inline-block;
-  white-space: nowrap;
-
-  span {
-    display: inline-block;
-    font-size: 2.9rem;
-  }
-}
-
-.lookbook__section-1 {
-  align-items: center;
-  display: flex;
   height: 77.5rem;
   position: relative;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
 
   @include media('<phone') {
     flex-direction: column-reverse;
   }
 }
 
-.lookbook__section-1__media {
+.lookbook-1__media {
   border-right: 1px solid var(--color-black);
   height: 100%;
+  overflow: hidden;
   position: relative;
   width: 72rem;
 
@@ -125,18 +28,20 @@
   }
 }
 
-.lookbook__section-1__media__image {
+.lookbook-1__media__image {
   @extend %cover;
+
+  object-fit: cover;
 }
 
-.lookbook__section-1__content {
+.lookbook-1__content {
   font-family: $font-editorial-new;
   height: 100%;
   padding: 2rem;
   position: relative;
   width: calc(100% - 72rem);
 
-  span {
+  div {
     &:nth-of-type(2) {
       font-family: $font-neue-montreal;
       font-style: italic;
@@ -154,11 +59,16 @@
   }
 }
 
-.lookbook__section-2 {
+.lookbook-2 {
   border-top: 1px solid var(--color-black);
+  font-size: 2.9rem;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
 }
 
-.lookbook__section-2__content {
+.lookbook-2__content {
   align-items: flex-end;
   background: var(--color-bison-hide);
   color: var(--color-white);
@@ -172,7 +82,7 @@
   }
 }
 
-.lookbook__section-2__content__text {
+.lookbook-2__content__text {
   strong {
     font-family: $font-editorial-new;
     line-height: 0;
@@ -195,9 +105,10 @@
   }
 }
 
-.lookbook__section-2__media {
+.lookbook-2__media {
   border-top: 1px solid var(--color-black);
   height: 75rem;
+  overflow: hidden;
   position: relative;
 
   @include media('<phone') {
@@ -205,15 +116,22 @@
   }
 }
 
-.lookbook__section-2__media__image {
+.lookbook-2__media__image {
   @extend %cover;
+
+  object-fit: cover;
 }
 
-.lookbook__section-3 {
+.lookbook-3 {
   align-items: center;
   border-top: 1px solid var(--color-black);
   display: flex;
+  font-size: 2.9rem;
   height: 66.2rem;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
 
   @include media('<phone') {
     flex-direction: column;
@@ -221,7 +139,7 @@
   }
 }
 
-.lookbook__section-3__content {
+.lookbook-3__content {
   align-items: flex-end;
   display: flex;
   font-family: $font-neue-montreal;
@@ -248,10 +166,11 @@
   }
 }
 
-.lookbook__section-3__media {
+.lookbook-3__media {
   border-left: 1px solid var(--color-black);
   border-right: 1px solid var(--color-black);
   height: 100%;
+  overflow: hidden;
   position: relative;
   width: 59rem;
 
@@ -262,15 +181,22 @@
   }
 }
 
-.lookbook__section-3__media__image {
+.lookbook-3__media__image {
   @extend %cover;
+
+  object-fit: cover;
 }
 
-.lookbook__section-4 {
+.lookbook-4 {
   align-items: center;
   border-top: 1px solid var(--color-black);
   display: flex;
+  font-size: 2.9rem;
   height: 66.2rem;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
 
   @include media('<phone') {
     flex-direction: column;
@@ -278,9 +204,10 @@
   }
 }
 
-.lookbook__section-4__media {
+.lookbook-4__media {
   align-items: flex-end;
   height: 100%;
+  overflow: hidden;
   position: relative;
   width: 85rem * 0.5;
 
@@ -305,11 +232,13 @@
   }
 }
 
-.lookbook__section-4__media__image {
+.lookbook-4__media__image {
   @extend %cover;
+
+  object-fit: cover;
 }
 
-.lookbook__section-4__content {
+.lookbook-4__content {
   align-items: flex-end;
   display: flex;
   font-family: $font-neue-montreal;
@@ -330,22 +259,31 @@
   }
 }
 
-.lookbook__section-5 {
+.lookbook-5 {
   border-top: 1px solid var(--color-black);
+  font-size: 2.9rem;
   height: 58.6rem;
   position: relative;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
 
   @include media('<phone') {
     height: 37.5rem;
   }
 }
 
-.lookbook__section-5__media {
+.lookbook-5__media {
   @extend %cover;
+
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.lookbook__section-6 {
+.lookbook-6 {
   border-top: 1px solid var(--color-black);
+  font-size: 2.9rem;
 
   &::after {
     clear: both;
@@ -354,16 +292,21 @@
     width: 100%;
   }
 
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
+
   @include media('<phone') {
     display: flex;
     flex-direction: column-reverse;
   }
 }
 
-.lookbook__section-6__media {
+.lookbook-6__media {
   border-right: 1px solid var(--color-black);
   float: left;
   height: 109rem;
+  overflow: hidden;
   position: relative;
   width: 94rem;
 
@@ -375,11 +318,13 @@
   }
 }
 
-.lookbook__section-6__media__image {
+.lookbook-6__media__image {
   @extend %cover;
+
+  object-fit: cover;
 }
 
-.lookbook__section-6__content {
+.lookbook-6__content {
   float: left;
   font-family: $font-editorial-new;
   height: 109rem * 0.5;

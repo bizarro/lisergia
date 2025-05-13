@@ -19,6 +19,18 @@ export const menu = defineType({
       ],
       type: 'array',
     }),
+
+    defineField({
+      name: 'sublist',
+      of: [
+        defineArrayMember({
+          name: 'link',
+          title: 'Link',
+          type: 'link',
+        }),
+      ],
+      type: 'array',
+    }),
   ],
   name: 'menu',
   title: 'Menu',

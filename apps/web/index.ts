@@ -51,6 +51,11 @@ app.use((request, response, next) => {
     }
   }
 
+  // Utilities
+  response.locals.lowercase = (string: string) => {
+    return string.toLowerCase()
+  }
+
   next()
 })
 

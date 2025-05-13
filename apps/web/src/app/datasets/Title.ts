@@ -1,40 +1,36 @@
 import { SplitText } from '@lisergia/utilities'
+
 import Animation from '../classes/Animation'
 
 export default class extends Animation {
   declare element: HTMLElement
   declare elements: {
-    spans: NodeListOf<HTMLElement>
+    words: NodeListOf<HTMLElement>
+    target: HTMLElement
   }
 
   constructor({ element }: { element: HTMLElement }) {
-    const splitText = new SplitText(element, {
-      noBalance: true,
+    SplitText.create(element, {
       type: 'words',
     })
 
-    splitText.split()
-
     if (element.dataset.title == 'twice') {
-      const splitText2 = new SplitText(element, {
-        noBalance: true,
+      SplitText.create(element, {
         type: 'words',
       })
-
-      splitText2.split()
     }
 
     super({
       element,
       elements: {
-        spans: '.word',
+        words: 'div div',
       },
     })
 
     const directions = element.dataset.title?.split(',') ?? []
 
-    this.elements.spans.forEach((span, index) => {
-      span.dataset.direction = directions[index]
+    this.elements.words.forEach((word, index) => {
+      word.dataset.direction = directions[index]
     })
 
     this.animateOut()
@@ -43,26 +39,26 @@ export default class extends Animation {
   animateIn() {
     super.animateIn()
 
-    this.elements.spans.forEach((span, spanIndex) => {
-      span.style.transform = 'translate(0, 0)'
-      span.style.transition = `transform 1.5s ${spanIndex * 0.1}s var(--ease-out-expo)`
+    this.elements.words.forEach((word, wordIndex) => {
+      word.style.transform = 'translate(0, 0)'
+      word.style.transition = `transform 1.5s ${wordIndex * 0.1}s var(--ease-out-expo)`
     })
   }
 
   animateOut() {
     super.animateOut()
 
-    this.elements.spans.forEach((span, spanIndex) => {
-      const direction = span.dataset.direction
+    this.elements.words.forEach((word, wordIndex) => {
+      const direction = word.dataset.direction
 
       if (direction === 'top') {
-        span.style.transform = 'translateY(-120%)'
+        word.style.transform = 'translateY(-120%)'
       } else if (direction === 'bottom') {
-        span.style.transform = 'translateY(120%)'
+        word.style.transform = 'translateY(120%)'
       } else if (direction === 'left') {
-        span.style.transform = 'translateX(-120%)'
+        word.style.transform = 'translateX(-120%)'
       } else if (direction === 'right') {
-        span.style.transform = 'translateX(120%)'
+        word.style.transform = 'translateX(120%)'
       }
     })
   }

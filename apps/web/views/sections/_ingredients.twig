@@ -1,14 +1,7 @@
 <section class="ingredients">
     <div class="ingredients__box">
         <div class="ingredients__content">
-            <h2 class="ingredients__title" data-title="top,bottom">
-                {{ section.title }}
-
-                {#
-                <span data-animation-direction="top">Natural</span> <br/>
-                <span data-animation-direction="bottom">Ingredients</span>
-                #}
-            </h2>
+            <h2 class="ingredients__title" data-title="top,bottom">{{ section.title }}</h2>
 
             <div class="ingredients__description" data-paragraph>
                 {{ parseHTML(section.description) }}
@@ -38,7 +31,13 @@
         <figure class="ingredients__media" data-animation="parallax">
             {% set asset = getAsset(section.image) %}
 
-            <img alt="{{ asset.alt }}" class="ingredients__media__image" data-src="{{ asset.url }}" height="100%" width="100%" />
+            <img
+                alt="{{ asset.alt }}"
+                class="ingredients__media__image"
+                data-src="{{ asset.url }}"
+                height="100%"
+                width="100%"
+            />
         </figure>
     </div>
 </section>

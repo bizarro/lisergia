@@ -1,0 +1,165 @@
+.gallery {
+  height: 114.1rem;
+  margin: 10rem 0;
+  position: relative;
+
+  @include media('<phone') {
+    height: 30.7rem;
+    margin: 10rem 0 3rem;
+  }
+}
+
+.gallery__title {
+  font: 8.4rem/0.9 $font-editorial-new;
+  left: 50%;
+  overflow: hidden;
+  padding-bottom: 1.6rem;
+  position: absolute;
+  text-align: center;
+  top: 22rem;
+  transform: translateX(-50%);
+  width: 40rem;
+
+  @include media('<phone') {
+    font-size: 4rem;
+    top: 2.3rem;
+    width: 19rem;
+  }
+}
+
+.gallery__media {
+  position: absolute;
+
+  &--1 {
+    height: 49.1rem;
+    left: -7.5rem;
+    top: 29.5rem;
+    width: 33.6rem;
+  }
+
+  &--2 {
+    height: 32.4rem;
+    left: 28.6rem;
+    top: 46.2rem;
+    width: 25.5rem;
+  }
+
+  &--3 {
+    height: 46.7rem;
+    left: 56.6rem;
+    top: 54.1rem;
+    width: 36.7rem;
+  }
+
+  &--4 {
+    height: 35rem;
+    left: 95.8rem;
+    top: 33.5rem;
+    width: 27.4rem;
+  }
+
+  &--5 {
+    height: 39rem;
+    left: 125.7rem;
+    top: 0;
+    width: 34.9rem;
+  }
+
+  &--6 {
+    height: 27rem;
+    left: 125.7rem;
+    top: 41.5rem;
+    width: 41.9rem;
+  }
+
+  &--7 {
+    height: 30.8rem;
+    left: 95.7rem;
+    top: 70.9rem;
+    width: 54.7rem;
+  }
+
+  &--8 {
+    height: 32.8rem;
+    left: -4.1rem;
+    top: 85.1rem;
+    width: 58.2rem;
+  }
+
+  @include media('<phone') {
+    &--1 {
+      height: 13.2rem;
+      left: -2.9rem;
+      top: 8rem;
+      width: 9rem;
+    }
+
+    &--2 {
+      height: 8.8rem;
+      left: 6.8rem;
+      top: 12.4rem;
+      width: 6.9rem;
+    }
+
+    &--3 {
+      height: 12.6rem;
+      left: 14.4rem;
+      top: 14.6rem;
+      width: 9.9rem;
+    }
+
+    &--4 {
+      height: 9.5rem;
+      left: 24.9rem;
+      top: 9rem;
+      width: 7.4rem;
+    }
+
+    &--5 {
+      height: 10.5rem;
+      left: auto;
+      right: -4.9rem;
+      top: 0;
+      width: 9.4rem;
+    }
+
+    &--6 {
+      height: 7.3rem;
+      left: auto;
+      right: -6.8rem;
+      top: 11.2rem;
+      width: 11.3rem;
+    }
+
+    &--7 {
+      height: 8.3rem;
+      left: auto;
+      right: -2.1rem;
+      top: 19.1rem;
+      width: 14.7rem;
+    }
+
+    &--8 {
+      height: 8.8rem;
+      left: -1.9rem;
+      top: 21.9rem;
+      width: 15.6rem;
+    }
+  }
+}
+
+.gallery__media__box {
+  border-radius: 1rem;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.gallery__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}

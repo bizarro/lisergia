@@ -7,6 +7,7 @@ export const structure: StructureResolver = (S, context) =>
     .id('root')
     .title('Lisergia')
     .items([
+      S.documentTypeListItem('category').title('Categories').icon(DocumentsIcon),
       S.documentTypeListItem('product').title('Products').icon(DocumentsIcon),
       S.documentTypeListItem('page').title('Pages').icon(TiersIcon),
 

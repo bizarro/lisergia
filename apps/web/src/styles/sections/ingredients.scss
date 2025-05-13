@@ -2,6 +2,10 @@
   padding: 4rem;
   position: relative;
 
+  @include media('>=desktop') {
+    padding: 40px;
+  }
+
   @include media('<phone') {
     color: var(--color-white);
     padding: 0 2rem 2rem;
@@ -45,6 +49,16 @@
   margin-top: 3.5rem;
   max-width: 59rem;
 
+  p:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+
+  @include media('>=desktop') {
+    font-size: 14px;
+    margin-top: 35px;
+    max-width: 590px;
+  }
+
   @include media('<phone') {
     font-size: 1.2rem;
     line-height: 1.5rem;
@@ -57,6 +71,12 @@
   font-size: 1.4rem;
   margin-top: 5rem;
   width: 66.5rem;
+
+  @include media('>=desktop') {
+    font-size: 14px;
+    margin-top: 50px;
+    width: 665px;
+  }
 
   @include media('<phone') {
     height: 100%;
@@ -73,6 +93,10 @@
 .ingredients__item {
   padding: 0.9rem 3rem;
   position: relative;
+
+  @include media('>=desktop') {
+    padding: 9px 30px;
+  }
 }
 
 .ingredients__item__dash {
@@ -91,6 +115,10 @@
   display: inline-block;
   width: 21rem;
 
+  @include media('>=desktop') {
+    width: 210px;
+  }
+
   @include media('<phone') {
     font-weight: bold;
     margin-bottom: 1rem;
@@ -101,6 +129,10 @@
 .ingredients__region {
   display: inline-block;
   width: 21rem;
+
+  @include media('>=desktop') {
+    width: 210px;
+  }
 
   @include media('<phone') {
     width: 100%;

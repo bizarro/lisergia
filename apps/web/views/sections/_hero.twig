@@ -3,13 +3,17 @@
         <figure class="hero__media">
             {% set asset = getAsset(section.image) %}
 
-            <img alt="{{ asset.alt }}" class="hero__media__image" data-src="{{ asset.url }}" height="100%" width="100%" />
+            <img
+                alt="{{ asset.alt }}"
+                class="hero__media__image"
+                data-src="{{ asset.url }}"
+                height="100%"
+                width="100%"
+            />
         </figure>
 
         <div class="hero__content">
-            <h1 class="hero__title" data-reveal="hero__title--active" data-title="twice">
-                {{ section.title }}
-            </h1>
+            <h1 class="hero__title" data-reveal="hero__title--active" data-title="twice">{{ section.title }}</h1>
         </div>
     </div>
 

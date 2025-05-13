@@ -21,4 +21,7 @@
 
 .media__video {
   @extend %cover;
+
+  height: var(--100vh);
+  object-fit: cover;
 }

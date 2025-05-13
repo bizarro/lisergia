@@ -1,13 +1,10 @@
 import { ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
+import { DOMUtils, MathUtils } from '@lisergia/utilities'
 
-import { autorun } from 'mobx'
+import { autorun, computed, makeObservable } from 'mobx'
 
 export default class Translate extends Component {
-  declare amount: number
-  declare offset: DOMRectBounds
-
   declare element: HTMLElement
   declare elements: {
     media: HTMLElement
@@ -22,32 +19,28 @@ export default class Translate extends Component {
       },
     })
 
-    Viewport.on('resize', this.onResize)
+    makeObservable(this, {
+      amount: computed,
+      bounds: computed,
+    })
 
     autorun(this.onUpdate)
   }
 
-  onResize() {
-    this.amount = (Viewport.isPhone ? 10 : 100) * parseFloat(this.element.dataset.translate!)
-    this.offset = DOMUtils.getBounds(this.element)
+  get amount() {
+    return (Viewport.isPhone ? 10 : 100) * parseFloat(this.element.dataset.translate!)
+  }
+
+  get bounds() {
+    return DOMUtils.getBounds(this.element)
   }
 
   onUpdate() {
-    const scroll = this.application!.scroll
-    const offset = scroll + Viewport.height
+    const { scroll } = this.application!
+    const { top, height } = this.bounds
 
-    if (offset >= this.offset.top) {
-      const parallax = MathUtils.map(
-        this.offset.top - scroll,
-        -this.offset.height,
-        Viewport.height,
-        this.amount,
-        -this.amount,
-      )
+    const parallax = MathUtils.map(top - scroll, -height, Viewport.height, this.amount, -this.amount)
 
-      this.elements.media.style.transform = `translate3d(0, ${parallax}px, 0)`
-    } else {
-      this.elements.media.style.transform = `translate3d(0, -${this.amount}px, 0)`
-    }
+    this.elements.media.style.transform = `translate3d(0, ${parallax}px, 0)`
   }
 }

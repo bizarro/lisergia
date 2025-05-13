@@ -1,0 +1,115 @@
+.seasons {
+  height: calc(4 * var(--100vh));
+  width: 100%;
+}
+
+.seasons__wrapper {
+  height: var(--100vh);
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.seasons__box {
+  align-items: center;
+  border-radius: 1rem;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  inset: 7.5rem 4rem 4rem;
+  justify-content: center;
+  overflow: hidden;
+  padding-bottom: 19.5rem;
+  position: absolute;
+  text-align: center;
+
+  @include media('>=desktop') {
+    bottom: 40px;
+    padding-bottom: 195px;
+    left: 40px;
+    right: 40px;
+    top: 75px;
+  }
+
+  @include media('<phone') {
+    inset: 6rem 2rem 2rem;
+  }
+}
+
+.seasons__title {
+  @extend %title-70;
+
+  overflow: hidden;
+
+  @include media('<phone') {
+    width: 16rem;
+  }
+}
+
+.seasons__description {
+  @extend %description-18;
+
+  margin-top: 1rem;
+  width: 33.75rem;
+
+  @include media('>=desktop') {
+    margin-top: 10px;
+    width: 337.5px;
+  }
+
+  @include media('<phone') {
+    margin-top: 3rem;
+    width: 23rem;
+
+    br {
+      display: none;
+    }
+  }
+}
+
+.seasons__highlight {
+  bottom: 9rem;
+  font-size: 12rem;
+  left: 50%;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translateX(-11%);
+  white-space: nowrap;
+
+  @include media('>=desktop') {
+    bottom: 90px;
+    font-size: 120px;
+  }
+}
+
+.seasons__gallery {
+  @extend %cover;
+
+  z-index: -1;
+}
+
+.seasons__gallery__media {
+  @extend %cover;
+
+  &--1 {
+    z-index: 4;
+  }
+
+  &--2 {
+    z-index: 3;
+  }
+
+  &--3 {
+    z-index: 2;
+  }
+
+  &--4 {
+    z-index: 1;
+  }
+}
+
+.seasons__gallery__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}

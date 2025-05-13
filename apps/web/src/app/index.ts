@@ -21,6 +21,7 @@ import Menu from './components/Menu'
 import Navigation from './components/Navigation'
 import Transition from './components/Transition'
 
+import Newsletter from './datasets/Newsletter'
 import Paragraph from './datasets/Paragraph'
 import Parallax from './datasets/Parallax'
 import Reveal from './datasets/Reveal'
@@ -28,8 +29,12 @@ import Source from './datasets/Source'
 import Title from './datasets/Title'
 import Translate from './datasets/Translate'
 
+import Categories from './datasets/sections/Categories'
+import Footer from './datasets/sections/Footer'
 import Hero from './datasets/sections/Hero'
+import List from './datasets/sections/List'
 import Media from './datasets/sections/Media'
+import Shop from './datasets/sections/Shop'
 
 import Standard from './templates/Standard'
 
@@ -46,6 +51,10 @@ const components: Array<ApplicationComponentData> = [
 ]
 
 const datasets: Array<ApplicationComponentDatasetData> = [
+  {
+    component: Newsletter as new (params?: ComponentParameters) => Component,
+    selector: '[data-newsletter]',
+  },
   {
     component: Parallax as new (params?: ComponentParameters) => Component,
     selector: '[data-parallax]',
@@ -72,12 +81,28 @@ const datasets: Array<ApplicationComponentDatasetData> = [
   },
 
   {
+    component: Categories as new (params?: ComponentParameters) => Component,
+    selector: '.categories',
+  },
+  {
+    component: Footer as new (params?: ComponentParameters) => Component,
+    selector: '.footer',
+  },
+  {
     component: Hero as new (params?: ComponentParameters) => Component,
     selector: '.hero',
   },
   {
+    component: List as new (params?: ComponentParameters) => Component,
+    selector: '.list',
+  },
+  {
     component: Media as new (params?: ComponentParameters) => Component,
     selector: '.media',
+  },
+  {
+    component: Shop as new (params?: ComponentParameters) => Component,
+    selector: '.shop',
   },
 ]
 

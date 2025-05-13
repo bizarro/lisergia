@@ -1,54 +1,49 @@
 <section class="categories">
     <div class="categories__wrapper">
         <div class="categories__content">
-            <p class="categories__label" data-animation="label">
+            <p class="categories__label" data-reveal="categories__label--active">
                 {{ section.label }}
             </p>
 
-            <h2 class="categories__title" data-title="top,bottom">
-                {{ section.title }}
-            </h2>
+            <h2 class="categories__title" data-title="top,bottom">{{ section.title }}</h2>
         </div>
 
         <div class="categories__gallery">
+            {% set item = section.list|last %}
+
             <div class="categories__gallery__media categories__gallery__media--effect">
-                Exfoliant Paste
+                {{ item.link.title }}
 
                 <figure>
-                    <img class="categories__gallery__image" alt="alt" data-src="home/categories-3.jpg" data-src-webp="home/categories-3.webp" height="100%" width="100%" />
-                    <figcaption class="categories__gallery__description"><span>Exfoliant Paste</span><span>€ 28</span></figcaption>
+                    {% set asset = getAsset(item.image) %}
+
+                    <img
+                        alt="{{ asset.alt }}"
+                        class="categories__gallery__image"
+                        data-src="{{ asset.url }}"
+                        height="100%"
+                        width="100%"
+                    />
                 </figure>
             </div>
 
-            <a class="categories__gallery__media" href="/product/atlantic-cedar-facial-moisturizer">
-                Facial Moisturizer
+            {% for item in section.list %}
+                <div class="categories__gallery__media">
+                    {{ item.link.title }}
 
-                <figure data-cursor="1">
-                    <img class="categories__gallery__image" alt="alt" data-src="home/categories-1.jpg" data-src-webp="home/categories-1.webp" height="100%" width="100%"/>
-                    <figcaption class="categories__gallery__description"><span>Facial Moisturizer</span><span>€ 28</span></figcaption>
-                </figure>
-            </a>
+                    <figure>
+                        {% set asset = getAsset(item.image) %}
 
-            <a class="categories__gallery__media" href="/product/atlantic-chamomile-hydrating-mask">
-                Hydrating Mask
-
-                <figure data-cursor="2">
-                    <img class="categories__gallery__image" alt="alt" data-src="home/categories-2.jpg" data-src-webp="home/categories-2.webp" height="100%" width="100%" />
-
-                    <figcaption class="categories__gallery__description">
-                        <span>Hydrating Mask</span><span>€ 28</span>
-                    </figcaption>
-                </figure>
-            </a>
-
-            <a class="categories__gallery__media" href="/product/atlantic-leaf-exfoliant-paste">
-                Exfoliant Paste
-
-                <figure data-cursor="3">
-                    <img class="categories__gallery__image" alt="alt" data-src="home/categories-3.jpg" data-src-webp="home/categories-3.webp" height="100%" width="100%"/>
-                    <figcaption class="categories__gallery__description"><span>Exfoliant Paste</span><span>€ 28</span></figcaption>
-                </figure>
-            </a>
+                        <img
+                            alt="{{ asset.alt }}"
+                            class="categories__gallery__image"
+                            data-src="{{ asset.url }}"
+                            height="100%"
+                            width="100%"
+                        />
+                    </figure>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </section>

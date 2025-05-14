@@ -22,6 +22,7 @@ function map(
 
   if (clamp) {
     const [minOut, maxOut] = outMin < outMax ? [outMin, outMax] : [outMax, outMin]
+
     mapped = Math.min(Math.max(mapped, minOut), maxOut)
   }
 

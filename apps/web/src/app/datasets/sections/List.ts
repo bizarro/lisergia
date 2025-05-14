@@ -42,7 +42,7 @@ export default class List extends Component {
     const { top } = this.bounds
     const { width } = Viewport
 
-    if (scroll >= top + width * 0.5) {
+    if (scroll >= top + width * 0.6) {
       this.element.classList.add(this.classes.active)
     } else {
       this.element.classList.remove(this.classes.active)

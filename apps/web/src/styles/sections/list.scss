@@ -60,7 +60,7 @@
   overflow: hidden;
   position: relative;
   transform: translateY(100%);
-  transition: transform 1s 0.4s var(--ease-out-expo);
+  transition: transform 1s var(--ease-out-expo);
   white-space: nowrap;
   z-index: 2;
 
@@ -91,6 +91,12 @@
     transform: translateY(0);
   }
 
+  @for $i from 1 through 3 {
+    .list--active .list__item:nth-child(#{$i}) & {
+      transition-delay: 0.1s * $i;
+    }
+  }
+
   @include media('>=desktop') {
     font-size: 78px;
   }
@@ -104,15 +110,11 @@
   margin: 4.5rem auto 0;
   opacity: 0;
   position: relative;
+  transition: opacity 1.2s var(--ease-out-expo);
   z-index: 2;
 
   .list--active & {
     opacity: 1;
-    transform: translateY(0);
-  }
-
-  .list--active:hover & {
-    transform: translateY(0) scale(1.05);
   }
 
   @include media('<phone') {

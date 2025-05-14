@@ -21,9 +21,9 @@ export default class Shop extends Component {
       },
     })
 
-    autorun(this.onUpdate)
-
     Viewport.on('resize', this.onResize)
+
+    autorun(this.onUpdate)
   }
 
   onResize() {
@@ -38,7 +38,7 @@ export default class Shop extends Component {
     let index = 0
 
     this.elements.categories.forEach((category, categoryIndex) => {
-      if (scroll + Viewport.height > category.bounds.top) {
+      if (scroll + Viewport.height > category.bounds?.top) {
         index = categoryIndex
       }
     })

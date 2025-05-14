@@ -24,11 +24,12 @@
 
 .hero__box {
   align-items: center;
-  border-radius: 1rem;
+  background: var(--color-black);
+  border-radius: calc(1rem * var(--border));
   color: var(--color-white);
   display: flex;
   flex-direction: column;
-  inset: 7.5rem 4rem 4rem;
+  inset: calc(7.5rem * var(--inset)) calc(4rem * var(--inset)) calc(4rem * var(--inset));
   justify-content: center;
   overflow: hidden;
   position: absolute;
@@ -36,22 +37,20 @@
   transform: translateZ(0);
 
   @include media('>=desktop') {
-    inset: 75px 40px 40px;
+    inset: calc(75px * var(--inset)) calc(40px * var(--inset)) calc(40px * var(--inset));
   }
 
   @include media('<phone') {
-    inset: 6rem 2rem 2rem;
+    inset: calc(6rem * var(--inset)) calc(2rem * var(--inset)) calc(2rem * var(--inset));
   }
 }
 
 .hero__content {
-  padding-bottom: 10rem;
   position: relative;
   width: 55rem;
   z-index: 1;
 
   @include media('>=desktop') {
-    padding-bottom: 100px;
     width: 550px;
   }
 
@@ -61,21 +60,12 @@
 }
 
 .hero__title {
+  clip-path: polygon(0 0, 110% 0, 110% 110%, 0 110%);
   font-size: 8rem;
-  line-height: 1;
-  overflow: hidden;
-
-  // &:after {
-  //   border-left: 1px solid #f0f;
-  //   content: '';
-  //   height: 100%;
-  //   left: 50%;
-  //   position: absolute;
-  //   top: 0;
-  // }
+  line-height: 0.9;
 
   div {
-    overflow: hidden;
+    clip-path: polygon(0 0, 110% 0, 110% 130%, 0 130%);
     transition: transform 1.5s var(--ease-out-expo) !important;
   }
 
@@ -85,65 +75,57 @@
 
   > div:nth-child(1) {
     transform: translateX(5rem);
-  }
 
-  div:nth-child(1) div {
-    font-style: italic;
-    padding-right: 1rem;
-    transform: translateX(100%);
+    div {
+      font-style: italic;
+      transform: translateX(120%);
+    }
   }
 
   > div:nth-child(2) {
-    transform: translateY(-100%);
-  }
+    transform: translateY(-120%);
 
-  div:nth-child(2) div {
-    font-family: $font-editorial-new;
+    div {
+      font-family: $font-editorial-new;
+    }
   }
 
   > div:nth-child(3) {
     transform: translateX(-11.5rem);
-  }
 
-  div:nth-child(3) div {
-    font-family: $font-editorial-new;
-    transform: translateX(-100%);
+    div {
+      font-family: $font-editorial-new;
+      transform: translateX(-120%);
+    }
   }
 
   > div:nth-child(4) {
-    margin-bottom: 1rem;
-    margin-top: -2rem;
     transform: translateX(18.5rem);
-  }
 
-  div:nth-child(4) div {
-    font-family: $font-editorial-new;
-    transform: translateX(100%);
+    div {
+      font-family: $font-editorial-new;
+      transform: translateX(120%);
+    }
   }
 
   > div:nth-child(5) {
-    margin-bottom: 1rem;
-    margin-top: -2rem;
-    transform: translateY(100%);
-  }
+    transform: translateY(120%);
 
-  div:nth-child(5) div {
-    font-family: $font-editorial-new;
+    div {
+      font-family: $font-editorial-new;
+    }
   }
 
   > div:nth-child(6) {
-    margin-bottom: 1rem;
-    margin-top: -2rem;
     transform: translateX(0);
+
+    div {
+      font-style: italic;
+      transform: translateX(-120%);
+    }
   }
 
-  div:nth-child(6) div {
-    font-style: italic;
-    padding-right: 1rem;
-    transform: translateX(-100%);
-  }
-
-  &--active {
+  .hero--active & {
     div,
     div div {
       transform: none !important;
@@ -151,28 +133,17 @@
 
     div:nth-child(2),
     div:nth-child(5) {
-      transition-delay: 0.2s;
+      transition-delay: 0.2s !important;
     }
   }
 
   @include media('>=desktop') {
-    div div {
-      font-size: 80px;
-    }
-
-    div:nth-child(1) div {
-      padding-right: 10px;
-    }
-
-    div:nth-child(6) div {
-      padding-right: 10px;
-    }
+    font-size: 80px;
   }
 
   @include media('<phone') {
-    div div {
-      font-size: 6rem;
-    }
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    font-size: 6rem;
 
     > div:nth-child(1) {
       transform: translateY(-100%);
@@ -183,13 +154,11 @@
     }
 
     > div:nth-child(2) {
-      margin-bottom: 0;
       margin-top: -2rem;
       transform: translateX(-50vw);
     }
 
     > div:nth-child(3) {
-      margin-bottom: 0;
       margin-top: -2rem;
       transform: translateX(50vw);
     }
@@ -199,7 +168,6 @@
     }
 
     > div:nth-child(4) {
-      margin-bottom: 0;
       margin-top: -2rem;
       transform: translateX(-50vw);
     }
@@ -209,7 +177,6 @@
     }
 
     > div:nth-child(5) {
-      margin-bottom: 0;
       margin-top: -2rem;
       transform: translateX(50vw);
     }
@@ -243,29 +210,21 @@
   --background: var(--color-white);
 
   color: var(--color-black);
-  left: 50%;
-  margin-top: 8rem;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, 100%);
+  display: flex;
+  justify-content: center;
+  margin: 5rem auto 0;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out-expo);
 
-  &.button--active {
-    transform: translate(-50%, 0);
-  }
-
-  &:hover {
-    transform: scale(1.05) translate(-50%, 0);
-  }
-
-  &::after {
-    background: var(--color-black);
+  .hero--active & {
+    opacity: 1;
   }
 
   @include media('>=desktop') {
-    margin-top: 80px;
+    margin-top: 50px;
   }
 
   @include media('<phone') {
-    margin-top: 12rem;
+    margin-top: 2.5rem;
   }
 }

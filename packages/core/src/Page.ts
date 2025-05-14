@@ -9,9 +9,9 @@ export interface PageParameters {
   application: ApplicationManager
   classes?: ComponentClasses
   datasets: Array<{ component: typeof Component; selector: string }>
-  element: HTMLElement | string
-  elements: ComponentSelectors
-  scrollEnabled: boolean
+  element?: HTMLElement | string
+  elements?: ComponentSelectors
+  scrollEnabled?: boolean
   scrollOptions?: LenisOptions
 }
 

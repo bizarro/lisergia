@@ -45,8 +45,8 @@ export default class extends Animation {
     super.animateIn()
 
     this.elements.lines.forEach((element, lineIndex) => {
-      element.style.transition = `transform 1.5s ${0.1 + lineIndex * 0.1}s var(--ease-out-expo)`
       element.style.transform = 'translateY(0) rotate(0)'
+      element.style.transition = `transform 1.5s ${0.1 + lineIndex * 0.1}s var(--ease-out-expo)`
     })
   }
 
@@ -58,7 +58,8 @@ export default class extends Animation {
     this.elements.lines.forEach((element, lineIndex) => {
       rotation += 0.15
 
-      element.style.transform = `translateY(120%) rotate(${rotation}deg)`
+      element.style.transform = `translateY(150%) rotate(${rotation}deg)`
+      element.style.transition = ''
     })
   }
 }

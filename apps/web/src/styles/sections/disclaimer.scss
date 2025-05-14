@@ -4,6 +4,7 @@
   width: calc(100% - 8rem);
 
   @include media('<phone') {
+    padding-bottom: 2rem;
     width: calc(100% - 4rem);
   }
 }
@@ -30,11 +31,21 @@
   font: 1.4rem/1.25 $font-anonymous;
   text-wrap: balance;
   width: 20rem;
+
+  @include media('>=desktop') {
+    font-size: 14px;
+    width: 200px;
+  }
 }
 
 .disclaimer__poem__author {
   font: 1.8rem $font-editorial-new;
   margin-top: 3.2rem;
+
+  @include media('>=desktop') {
+    font-size: 18px;
+    margin-top: 32px;
+  }
 
   @include media('<phone') {
     font-size: 1.6rem;
@@ -50,6 +61,14 @@
 
   p:not(:first-child) {
     margin-top: 2.5rem;
+  }
+
+  @include media('>=desktop') {
+    width: 460px;
+
+    p:not(:first-child) {
+      margin-top: 25px;
+    }
   }
 
   @include media('<phone') {

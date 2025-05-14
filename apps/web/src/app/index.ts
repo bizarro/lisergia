@@ -30,6 +30,7 @@ import Title from './datasets/Title'
 import Translate from './datasets/Translate'
 
 import Categories from './datasets/sections/Categories'
+import Details from './datasets/sections/Details'
 import Footer from './datasets/sections/Footer'
 import Hero from './datasets/sections/Hero'
 import List from './datasets/sections/List'
@@ -83,6 +84,10 @@ const datasets: Array<ApplicationComponentDatasetData> = [
   {
     component: Categories as new (params?: ComponentParameters) => Component,
     selector: '.categories',
+  },
+  {
+    component: Details as new (params?: ComponentParameters) => Component,
+    selector: '.details',
   },
   {
     component: Footer as new (params?: ComponentParameters) => Component,

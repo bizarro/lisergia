@@ -37,20 +37,14 @@
   width: 60rem;
 
   @include media('>=desktop') {
+    font-size: 108px;
     margin-top: 15px;
     width: 600px;
-
-    span {
-      font-size: 108px;
-    }
   }
 
   @include media('<phone') {
+    font-size: 5.7rem;
     width: 31rem;
-
-    span {
-      font-size: 5.7rem;
-    }
   }
 }
 
@@ -68,6 +62,7 @@
 }
 
 .categories__gallery__media {
+  background: var(--color-black);
   border-radius: 1rem;
   display: inline-block;
   font-size: 0;

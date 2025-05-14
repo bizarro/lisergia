@@ -1,7 +1,7 @@
-import { autorun, computed, IArrayDidChange, makeObservable, observable, observe } from 'mobx'
+import { autorun, computed, IArrayDidChange, IValueDidChange, makeObservable, observable, observe } from 'mobx'
 
-import { AppLinks } from './AppLinks'
 import { Component, ComponentParameters } from './Component'
+import { Links } from './Links'
 import { Page, PageParameters } from './Page'
 
 export interface ApplicationComponentData {
@@ -20,7 +20,6 @@ export interface ApplicationRoute {
 export class ApplicationManager extends Component {
   declare element: HTMLElement
 
-  id: string = document.documentElement.id ?? 'not-found'
   template: string = document.documentElement.dataset.template ?? '404'
 
   constructor() {
@@ -30,52 +29,60 @@ export class ApplicationManager extends Component {
     })
 
     makeObservable(this, {
+      // Application DOM Element.
+      element: observable,
+
+      // Components.
       canvas: observable,
       components: observable,
-      element: observable,
-      nextPage: observable,
-      id: observable,
-      page: observable,
-      route: observable,
-      template: observable,
       transition: observable,
 
+      // Page Information.
+      currentPage: observable,
+      nextPage: observable,
+
+      // Route Information.
+      route: observable,
+
+      // Template Information.
+      template: observable,
+
+      // Page Scroll.
       scroll: computed,
     })
 
     observe(this.components, this.onComponentChange)
+    observe(this, 'route', this.onRouteChange)
 
-    autorun(() => {
-      const title = this.nextPage?.title
-
-      if (title) {
-        document.title = title
-      }
-    })
-
-    autorun(() => {
-      document.documentElement.id = this.id
-    })
-
-    autorun(() => {
-      const template = this.nextPage?.template
-
-      if (template) {
-        document.documentElement.dataset.template = template
-
-        this.template = template
-      }
-    })
+    autorun(this.onTitleUpdate)
+    autorun(this.onTemplateUpdate)
 
     this.addEventListeners()
+  }
+
+  onTitleUpdate() {
+    const title = this.nextPage?.title
+
+    if (title) {
+      document.title = title
+    }
+  }
+
+  onTemplateUpdate() {
+    const template = this.nextPage?.template
+
+    if (template) {
+      document.documentElement.dataset.template = template
+
+      this.template = template
+    }
   }
 
   //
   // Components.
   //
-  components: Array<Component> = []
-
   canvas?: Component
+  components: Array<Component> = []
   transition?: Component & { onTransition?: (args: any) => Promise<void> }
 
   initComponents(components: Array<ApplicationComponentData>) {
@@ -156,25 +163,24 @@ export class ApplicationManager extends Component {
   //
   // Initialization.
   //
+  declare links: Links
+
   initPage() {
-    this.createLinks()
     this.createPage()
+    this.createLinks()
   }
 
   //
   // Links.
   //
-  declare links: AppLinks
-
   createLinks() {
-    this.links = new AppLinks()
-    this.links.on('navigate', this.onNavigate)
+    this.links = new Links(this)
   }
 
   //
   // Page.
   //
-  page?: Page = undefined
+  currentPage?: Page = undefined
 
   createPage(template = this.template) {
     const PageClass = this.pages.get(template)!
@@ -184,15 +190,13 @@ export class ApplicationManager extends Component {
       datasets: this.datasets,
     })
 
-    this.page = page
-    this.page.create()
-
-    this.links.refresh()
+    this.currentPage = page
+    this.currentPage.create()
   }
 
   destroyPage() {
-    if (this.page) {
-      this.page.destroy()
+    if (this.currentPage) {
+      this.currentPage.destroy()
     }
   }
 
@@ -201,11 +205,14 @@ export class ApplicationManager extends Component {
   //
   route: string = window.location.pathname
 
-  async onNavigate({ href, pushState = true }: { href: string; pushState: boolean }) {
-    href = href.replace(window.location.origin, '')
+  onRouteChange({ oldValue, newValue }: IValueDidChange<string>) {
+    this.onRouteChangeRequest({
+      href: newValue,
+      pushState: true,
+    })
+  }
 
-    this.route = href
-
+  async onRouteChangeRequest({ href, pushState = true }: { href: string; pushState: boolean }) {
     const request = await window.fetch(href)
     const response = await request.text()
 
@@ -221,7 +228,6 @@ export class ApplicationManager extends Component {
   //
   nextPage: {
     element?: Element
-    id?: string
     template?: string
     title?: string
   } = {}
@@ -235,7 +241,6 @@ export class ApplicationManager extends Component {
 
     this.nextPage = {
       element: app,
-      id: html.id,
       template: html.dataset.template ?? this.template,
       title: dom.title ?? document.title,
     }
@@ -243,15 +248,12 @@ export class ApplicationManager extends Component {
     if (this.transition) {
       await this.transition.onTransition?.(this)
     } else {
-      this.element.removeChild(this.element.firstElementChild!)
-
-      this.page!.destroy()
+      this.currentPage!.element.remove()
+      this.currentPage!.destroy()
 
       this.element.appendChild(this.nextPage.element!.firstElementChild!)
 
       this.createPage(this.nextPage.template)
-
-      this.id = this.nextPage.id!
     }
 
     if (pushState) {
@@ -262,17 +264,9 @@ export class ApplicationManager extends Component {
   //
   // Pop State.
   //
-  pathname: string = document.location.pathname
-
   onPopState() {
-    if (document.location.pathname === this.pathname) {
-      return
-    }
-
-    this.pathname = document.location.pathname
-
-    this.onNavigate({
-      href: window.location.href,
+    this.onRouteChangeRequest({
+      href: document.location.pathname,
       pushState: false,
     })
   }
@@ -281,7 +275,7 @@ export class ApplicationManager extends Component {
   // Scroll.
   //
   get scroll() {
-    return this.page?.scroll ?? 0
+    return this.currentPage?.scroll ?? 0
   }
 
   //

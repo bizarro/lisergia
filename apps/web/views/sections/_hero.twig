@@ -13,13 +13,15 @@
         </figure>
 
         <div class="hero__content">
-            <h1 class="hero__title" data-reveal="hero__title--active" data-title="twice">{{ section.title }}</h1>
+            <h1 class="hero__title">{{ section.title }}</h1>
+
+            <div class="hero__button">
+                {% include '../components/button.twig' with {
+                    class: 'hero__button__element',
+                    text: section.button.text,
+                    url: section.button.url
+                } %}
+            </div>
         </div>
     </div>
-
-    {% include '../components/button.twig' with {
-        class: 'hero__button',
-        text: section.button.text,
-        url: section.button.url
-    } %}
 </header>

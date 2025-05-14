@@ -15,6 +15,7 @@
 }
 
 .lookbook-1__media {
+  background: var(--color-black);
   border-right: 1px solid var(--color-black);
   height: 100%;
   overflow: hidden;
@@ -106,6 +107,7 @@
 }
 
 .lookbook-2__media {
+  background: var(--color-black);
   border-top: 1px solid var(--color-black);
   height: 75rem;
   overflow: hidden;
@@ -167,6 +169,7 @@
 }
 
 .lookbook-3__media {
+  background: var(--color-black);
   border-left: 1px solid var(--color-black);
   border-right: 1px solid var(--color-black);
   height: 100%;
@@ -206,6 +209,7 @@
 
 .lookbook-4__media {
   align-items: flex-end;
+  background: var(--color-black);
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -277,8 +281,15 @@
 .lookbook-5__media {
   @extend %cover;
 
+  background: var(--color-black);
   object-fit: cover;
   overflow: hidden;
+}
+
+.lookbook-5__media__image {
+  @extend %cover;
+
+  object-fit: cover;
 }
 
 .lookbook-6 {
@@ -303,6 +314,7 @@
 }
 
 .lookbook-6__media {
+  background: var(--color-black);
   border-right: 1px solid var(--color-black);
   float: left;
   height: 109rem;

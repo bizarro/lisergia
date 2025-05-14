@@ -12,8 +12,13 @@
   }
 
   @include media('<phone') {
-    flex-direction: column-reverse;
     margin-top: 7.5rem;
+    padding: 0 2rem 2rem;
+
+    &--left,
+    &--right {
+      flex-direction: column;
+    }
   }
 }
 
@@ -30,8 +35,10 @@
   }
 
   @include media('>=desktop') {
-    font-size: 46px;
-    margin-top: 25px;
+    p {
+      font-size: 46px;
+      margin-top: 25px;
+    }
   }
 
   @include media('<phone') {
@@ -53,11 +60,29 @@
   &--active {
     @extend %animation-letter-spacing--active;
   }
+
+  @include media('<phone') {
+    .information--right & {
+      margin-bottom: auto;
+      position: sticky;
+      top: 7rem;
+    }
+  }
 }
 
 .information__content__wrapper {
   max-width: 55rem;
   width: 100%;
+
+  @include media('>=desktop') {
+    max-width: 550px;
+  }
+
+  @include media('<phone') {
+    .information--right & {
+      display: flex;
+    }
+  }
 }
 
 .information__media {
@@ -93,21 +118,30 @@
 }
 
 .information__content__list {
+  font-size: 1.3rem;
   line-height: 1;
   margin-top: 2.5rem;
 
   @include media('>=desktop') {
+    font-size: 13px;
     margin-top: 25px;
+  }
+
+  @include media('<phone') {
+    margin-left: auto;
+    margin-top: 0;
   }
 }
 
 .information__content__item {
+  overflow: hidden;
   padding: 0.7rem 0;
   position: relative;
   white-space: nowrap;
 
   div {
     display: flex;
+    transform: translateY(120%);
   }
 
   span:nth-child(1) {
@@ -134,8 +168,15 @@
     content: '';
   }
 
-  &--active:after {
-    @extend %dash--active;
+  &--active {
+    &:after {
+      @extend %dash--active;
+    }
+
+    div {
+      transform: translateY(0);
+      transition: transform 1.5s 0.1s var(--ease-out-expo);
+    }
   }
 
   @include media('<phone') {
@@ -143,6 +184,10 @@
 
     &:not(:first-child) {
       margin-top: 1rem;
+    }
+
+    div {
+      flex-direction: column;
     }
 
     span:nth-child(1) {

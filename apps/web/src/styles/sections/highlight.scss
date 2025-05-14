@@ -24,8 +24,7 @@
   }
 
   @include media('<phone') {
-    letter-spacing: 0.3rem;
-    width: 16rem;
+    width: 14rem;
   }
 }
 
@@ -42,7 +41,7 @@
   }
 
   @include media('<phone') {
-    width: 31rem;
+    width: 29rem;
   }
 }
 
@@ -135,6 +134,7 @@
 }
 
 .highlight__media__box {
+  background: var(--color-black);
   border-radius: 1rem;
   height: 100%;
   left: 0;

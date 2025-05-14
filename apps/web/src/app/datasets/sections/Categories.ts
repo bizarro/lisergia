@@ -34,7 +34,7 @@ export default class Categories extends Component {
     const { scroll } = this.application!
     const { height, top } = this.bounds
 
-    const x = MathUtils.map(scroll, top, top + height - Viewport.height, 0, -43.875, true)
+    const x = MathUtils.map(scroll, top, top + height - Viewport.height, 0, -49, true)
 
     this.elements.gallery.style.setProperty('--x', `${x}%`)
   }

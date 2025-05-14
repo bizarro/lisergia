@@ -1,6 +1,7 @@
 <div class="list">
     <div class="list__wrapper">
-        <div class="list__medias">
+        {# TODO: Implement medias. #}
+        {# <div class="list__medias">
             {% for item in section.list %}
                 <div class="list__medias__media">
                     {% set asset = getAsset(item.image.asset) %}
@@ -14,7 +15,7 @@
                     />
                 </div>
             {% endfor %}
-        </div>
+        </div> #}
 
         <p class="list__label">
             {{ section.label }}
@@ -28,10 +29,12 @@
             {% endfor %}
         </ul>
 
-        {% include '../components/button.twig' with {
-            class: 'list__button',
-            text: section.button.text,
-            url: section.button.url
-        } %}
+        <div class="list__button">
+            {% include '../components/button.twig' with {
+                class: 'list__button__element',
+                text: section.button.text,
+                url: section.button.url
+            } %}
+        </div>
     </div>
 </div>

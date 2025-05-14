@@ -44,7 +44,8 @@
                 parseHTML(section.description)|replace({
                     '<p>': '<p data-paragraph>',
                     '<ul>': '<ul class="details__information__description__list">',
-                    '<li>': '<li class="details__information__description__item" data-paragraph data-reveal="details__information__description__item--active">'
+                    '<li>': '<li class="details__information__description__item" data-reveal="details__information__description__item--active"><div>',
+                    '</li>': '</div></li>'
                 })
             }}
         </div>

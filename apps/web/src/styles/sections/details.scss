@@ -2,8 +2,13 @@
   display: flex;
   padding: 8.5rem 4rem 4rem;
 
+  @include media('>=desktop') {
+    padding: 85px 40px 40px;
+  }
+
   @include media('<phone') {
     flex-direction: column;
+    padding: 7rem 2rem 4rem;
   }
 }
 
@@ -122,13 +127,14 @@
 .details__information__title {
   font: 4.4rem/1 $font-editorial-new;
   margin-top: 2rem;
+  max-width: 37rem;
   overflow: hidden;
   padding-bottom: 0.6rem;
-  width: 37rem;
+  width: 100%;
 
   @include media('>=desktop') {
     font-size: 44px;
-    width: 370px;
+    max-width: 370px;
   }
 
   @include media('<phone') {
@@ -200,6 +206,7 @@
   align-items: center;
   display: flex;
   font: 1.2rem $font-anonymous;
+  overflow: hidden;
   padding: 1.2rem 0;
   position: relative;
   white-space: nowrap;
@@ -210,9 +217,19 @@
     content: '';
   }
 
+  div {
+    display: flex;
+    transform: translateY(2.5rem);
+  }
+
   &--active {
     &:after {
       @extend %dash--active;
+    }
+
+    div {
+      transform: translateY(0);
+      transition: transform 1.5s 0.1s var(--ease-out-expo);
     }
   }
 

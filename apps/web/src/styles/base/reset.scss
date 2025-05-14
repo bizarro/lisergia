@@ -1,5 +1,5 @@
 html {
-  background: #141414;
+  background: var(--color-black);
   font-size: calc(100vw / 1440 * 10);
 
   @include media('<phone') {
@@ -51,5 +51,14 @@ body {
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
+  }
+}
+
+img {
+  opacity: 0;
+  transition: opacity 1s ease;
+
+  &.loaded {
+    opacity: 1;
   }
 }

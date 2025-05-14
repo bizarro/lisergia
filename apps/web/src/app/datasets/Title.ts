@@ -14,12 +14,6 @@ export default class extends Animation {
       type: 'words',
     })
 
-    if (element.dataset.title == 'twice') {
-      SplitText.create(element, {
-        type: 'words',
-      })
-    }
-
     super({
       element,
       elements: {
@@ -60,6 +54,8 @@ export default class extends Animation {
       } else if (direction === 'right') {
         word.style.transform = 'translateX(120%)'
       }
+
+      word.style.transition = ''
     })
   }
 }

@@ -20,6 +20,7 @@
     "@portabletext/to-html": "^2.0.14",
     "@sanity/asset-utils": "^2.2.1",
     "@sanity/client": "^6.29.1",
+    "animejs": "^4.0.2",
     "dotenv": "^16.5.0",
     "eslint": "^9.9.0",
     "express": "^5.1.0",

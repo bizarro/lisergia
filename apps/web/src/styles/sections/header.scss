@@ -9,6 +9,7 @@
   @include media('<phone') {
     align-items: flex-start;
     height: 63rem;
+    padding-left: 1rem;
   }
 }
 
@@ -73,13 +74,10 @@
   }
 
   @include media('<phone') {
+    font-size: 3.7rem;
     margin: 14rem auto 0;
+    text-align: center;
     transform: translateX(0.5rem);
     width: 30rem;
-
-    div {
-      font-size: 3.7rem;
-      text-align: center;
-    }
   }
 }

@@ -8,11 +8,12 @@
 
   @include media('<phone') {
     color: var(--color-white);
-    padding: 0 2rem 2rem;
+    padding: 2rem;
   }
 }
 
 .ingredients__box {
+  background: #685240;
   border-radius: 1rem;
   overflow: hidden;
   position: relative;
@@ -38,9 +39,7 @@
   padding-bottom: 1.4rem;
 
   @include media('<phone') {
-    span {
-      font-size: 3rem !important;
-    }
+    font-size: 3rem !important;
   }
 }
 
@@ -91,6 +90,7 @@
 }
 
 .ingredients__item {
+  line-height: 1;
   padding: 0.9rem 3rem;
   position: relative;
 

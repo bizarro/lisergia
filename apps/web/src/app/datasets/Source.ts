@@ -29,6 +29,10 @@ export default class Source extends Component {
   }
 
   animateIn() {
+    this.element.onload = () => {
+      this.element.classList.add('loaded')
+    }
+
     this.element.setAttribute('src', this.element.dataset.src!)
 
     this.removeEventListeners()

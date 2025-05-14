@@ -1,14 +1,10 @@
 import { Component } from './Component'
 
-export class AppLink extends Component {
-  declare element: HTMLLinkElement & { redirect: Function }
+export class Link extends Component {
+  declare element: HTMLLinkElement
 
   constructor({ element }: { element: HTMLAnchorElement }) {
-    super({
-      element,
-    })
-
-    this.element.redirect = this.onClick
+    super({ element })
   }
 
   onClick(event: MouseEvent) {
@@ -42,7 +38,7 @@ export class AppLink extends Component {
       this.element.onclick = this.onClick
     } else if (isNotEmail && isNotPhone) {
       this.element.rel = 'noopener'
-      this.element.target = '_blank'
+      this.element.setAttribute('target', '_blank')
     }
   }
 

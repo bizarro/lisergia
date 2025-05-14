@@ -13,6 +13,10 @@
   max-width: 104rem;
   position: relative;
 
+  @include media('>=desktop') {
+    max-width: 1040px;
+  }
+
   @include media('<phone') {
     width: 89%;
   }
@@ -57,11 +61,11 @@
         transform: translateX(52px);
       }
 
-      span:nth-of-type(3) {
+      span:nth-of-type(5) {
         transform: translateX(-52px);
       }
 
-      span:nth-of-type(4) {
+      span:nth-of-type(6) {
         transform: translateX(52px);
       }
     }
@@ -130,17 +134,17 @@
     width: 80px;
 
     &:nth-of-type(1) {
-      left: 155px;
+      left: 165px;
       top: -8px;
     }
 
     &:nth-of-type(2) {
-      left: 1008px;
+      left: 1018px;
       top: 52px;
     }
 
     &:nth-of-type(3) {
-      left: 580px;
+      left: 590px;
       top: 175px;
     }
   }

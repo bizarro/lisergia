@@ -42,8 +42,6 @@ export default class Parallax extends Component {
     const scale = MathUtils.map(top - scroll, -height, Viewport.height, 1, 1.2, true)
     const translateY = MathUtils.map(top - scroll, -height, Viewport.height, this.amount, -this.amount, true)
 
-    console.log(top - scroll, -height, Viewport.height, -this.amount, this.amount)
-
     this.elements.media.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`
   }
 }

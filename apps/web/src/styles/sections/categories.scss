@@ -1,13 +1,13 @@
 .categories {
   color: var(--color-white);
-  height: calc(3 * var(--100vh));
+  height: calc(3 * var(--100vh, 100vh));
   position: relative;
   text-align: center;
   transform: translate(var(--x, 0), var(--y, 0));
 }
 
 .categories__wrapper {
-  height: var(--100vh);
+  height: var(--100vh, 100vh);
   position: sticky;
   top: 0;
 }

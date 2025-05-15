@@ -16,6 +16,7 @@ import { columns } from './modules/columns'
 import { details } from './modules/details'
 import { contact } from './modules/contact'
 import { disclaimer } from './modules/disclaimer'
+import { error } from './modules/error'
 import { gallery } from './modules/gallery'
 import { header } from './modules/header'
 import { hero } from './modules/hero'
@@ -48,6 +49,7 @@ export const schemaTypes = [
   contact,
   details,
   disclaimer,
+  error,
   gallery,
   header,
   hero,

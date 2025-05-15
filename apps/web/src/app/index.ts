@@ -131,11 +131,9 @@ const routes: Array<ApplicationRoute> = [
 Application.initRoutes(routes)
 Application.initSprites()
 
-document.fonts.ready.then(() => {
-  document.documentElement.classList.add('loaded')
+Application.initDatasets(datasets)
+Application.initPage()
 
-  Application.initDatasets(datasets)
-  Application.initPage()
+Application.initComponents(components)
 
-  Application.initComponents(components)
-})
+document.documentElement.classList.add('loaded')

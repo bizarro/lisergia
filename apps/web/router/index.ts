@@ -18,7 +18,7 @@ router.use((request, response) => {
 
   response.status(404)
 
-  response.render('pages/not-found', { ...data })
+  response.render('pages/page', { ...data })
 })
 
 export { router }

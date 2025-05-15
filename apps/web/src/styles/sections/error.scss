@@ -1,22 +1,19 @@
-.not-found {
-  @extend %page;
-
+.error {
   align-items: center;
   background: var(--color-pampas);
   display: flex;
-  height: 100vh;
+  height: var(--100vh, 100vh);
   justify-content: center;
-  position: relative;
   width: 100vw;
 }
 
-.not-found__wrapper {
+.error__wrapper {
   position: relative;
   text-align: center;
   z-index: 1;
 }
 
-.not-found__media {
+.error__media {
   border-radius: 10rem;
   height: 62.6rem;
   left: 50%;
@@ -31,7 +28,7 @@
   }
 }
 
-.not-found__media__image {
+.error__media__image {
   height: 126.5rem;
   left: 50%;
   margin-left: -72rem * 0.5;
@@ -43,7 +40,7 @@
   width: 72rem;
 }
 
-.not-found__title {
+.error__title {
   font: 29rem/1 $font-editorial-new;
 
   @include media('<phone') {
@@ -51,7 +48,7 @@
   }
 }
 
-.not-found__description {
+.error__description {
   font: 3rem $font-editorial-new;
   margin-top: -1.5rem;
 
@@ -60,8 +57,9 @@
   }
 }
 
-.not-found__button {
+.error__button {
   margin: 5rem auto 0;
+  width: fit-content;
 
   @include media('<phone') {
     margin-top: 3.5rem;

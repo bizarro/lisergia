@@ -11,6 +11,8 @@
         {% include './_details.twig' with section %}
     {% elseif layout == 'disclaimer' %}
         {% include './_disclaimer.twig' with section %}
+    {% elseif layout == 'error' %}
+        {% include './_error.twig' with section %}
     {% elseif layout == 'gallery' %}
         {% include './_gallery.twig' with section %}
     {% elseif layout == 'header' %}

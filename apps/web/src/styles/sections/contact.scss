@@ -1,7 +1,7 @@
 .contact {
   align-items: center;
   display: flex;
-  height: var(--100vh);
+  height: var(--100vh, 100vh);
   padding-top: 8rem;
   width: 100%;
 

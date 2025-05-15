@@ -24,6 +24,10 @@ export const content = defineType({
       type: 'disclaimer',
     }),
     defineArrayMember({
+      name: 'error',
+      type: 'error',
+    }),
+    defineArrayMember({
       name: 'gallery',
       type: 'gallery',
     }),

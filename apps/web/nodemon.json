@@ -1,5 +1,5 @@
 {
-  "watch": ["src", "views"],
+  "watch": ["**/*"],
   "ext": "js,json,scss,ts,tsx,twig",
   "ignore": ["node_modules"],
   "exec": "tsx index.ts"

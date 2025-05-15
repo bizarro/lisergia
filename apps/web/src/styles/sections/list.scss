@@ -1,7 +1,7 @@
 .list {
   color: var(--color-black);
   height: 200vw;
-  margin-top: calc(-1 * var(--100vh));
+  margin-top: calc(-1 * var(--100vh, 100vh));
   position: relative;
   text-align: center;
 }
@@ -10,7 +10,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: var(--100vh);
+  height: var(--100vh, 100vh);
   justify-content: center;
   position: sticky;
   top: 0;

@@ -1,5 +1,5 @@
 .hero {
-  height: var(--100vh);
+  height: var(--100vh, 100vh);
   position: relative;
   width: 100%;
 }
@@ -17,7 +17,7 @@
 }
 
 .hero__wrapper {
-  height: var(--100vh);
+  height: var(--100vh, 100vh);
   position: relative;
   width: 100%;
 }
@@ -29,7 +29,7 @@
   color: var(--color-white);
   display: flex;
   flex-direction: column;
-  inset: calc(8rem * var(--inset)) calc(4rem * var(--inset)) calc(4rem * var(--inset));
+  inset: calc(8rem * var(--inset, 0)) calc(4rem * var(--inset, 0)) calc(4rem * var(--inset, 0));
   justify-content: center;
   overflow: hidden;
   position: absolute;
@@ -37,11 +37,11 @@
   transform: translateZ(0);
 
   @include media('>=desktop') {
-    inset: calc(80px * var(--inset)) calc(40px * var(--inset)) calc(40px * var(--inset));
+    inset: calc(80px * var(--inset, 0)) calc(40px * var(--inset, 0)) calc(40px * var(--inset, 0));
   }
 
   @include media('<phone') {
-    inset: calc(6rem * var(--inset)) calc(2rem * var(--inset)) calc(2rem * var(--inset));
+    inset: calc(6rem * var(--inset, 0)) calc(2rem * var(--inset, 0)) calc(2rem * var(--inset, 0));
   }
 }
 

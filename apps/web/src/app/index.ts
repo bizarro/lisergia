@@ -35,6 +35,8 @@ import Footer from './datasets/sections/Footer'
 import Hero from './datasets/sections/Hero'
 import List from './datasets/sections/List'
 import Media from './datasets/sections/Media'
+import Marquee from './datasets/sections/Marquee'
+import Seasons from './datasets/sections/Seasons'
 import Shop from './datasets/sections/Shop'
 
 import Standard from './templates/Standard'
@@ -102,8 +104,16 @@ const datasets: Array<ApplicationComponentDatasetData> = [
     selector: '.list',
   },
   {
+    component: Marquee as new (params?: ComponentParameters) => Component,
+    selector: '.marquee',
+  },
+  {
     component: Media as new (params?: ComponentParameters) => Component,
     selector: '.media',
+  },
+  {
+    component: Seasons as new (params?: ComponentParameters) => Component,
+    selector: '.seasons',
   },
   {
     component: Shop as new (params?: ComponentParameters) => Component,

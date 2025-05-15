@@ -6,6 +6,10 @@
   position: relative;
   text-align: center;
 
+  @include media('>=desktop') {
+    padding-top: 80px;
+  }
+
   @include media('<phone') {
     flex-direction: column;
     height: auto;

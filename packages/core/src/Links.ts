@@ -1,6 +1,6 @@
 import { reaction } from 'mobx'
-import { Application, ApplicationManager } from './App'
 
+import { ApplicationManager } from './App'
 import { Link } from './Link'
 import { EventEmitter } from './EventEmitter'
 
@@ -14,10 +14,8 @@ export class Links extends EventEmitter {
     this.application = application
 
     reaction(
-      () => Application.currentPage,
-      () => {
-        this.refresh()
-      },
+      () => application.currentPage,
+      () => this.refresh(),
       { fireImmediately: true },
     )
   }

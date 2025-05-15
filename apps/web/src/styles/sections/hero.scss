@@ -29,7 +29,7 @@
   color: var(--color-white);
   display: flex;
   flex-direction: column;
-  inset: calc(7.5rem * var(--inset)) calc(4rem * var(--inset)) calc(4rem * var(--inset));
+  inset: calc(8rem * var(--inset)) calc(4rem * var(--inset)) calc(4rem * var(--inset));
   justify-content: center;
   overflow: hidden;
   position: absolute;
@@ -37,7 +37,7 @@
   transform: translateZ(0);
 
   @include media('>=desktop') {
-    inset: calc(75px * var(--inset)) calc(40px * var(--inset)) calc(40px * var(--inset));
+    inset: calc(80px * var(--inset)) calc(40px * var(--inset)) calc(40px * var(--inset));
   }
 
   @include media('<phone') {

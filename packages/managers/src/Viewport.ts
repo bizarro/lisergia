@@ -4,6 +4,10 @@ import { Unsubscribe } from 'nanoevents'
 import { EventEmitter } from '@lisergia/core'
 
 export class ViewportManager extends EventEmitter {
+  static PHONE = 768
+  static TABLET = 1024
+  static DESKTOP = 1280
+
   height: number = window.innerHeight
   width: number = window.innerWidth
 
@@ -38,28 +42,30 @@ export class ViewportManager extends EventEmitter {
   }
 
   get isPhone() {
-    return this.width < 768
+    return this.width < ViewportManager.PHONE
   }
 
   get isTablet() {
-    return this.width >= 768 && this.width < 1024
+    return this.width >= ViewportManager.PHONE && this.width < ViewportManager.TABLET
   }
 
   get isDesktop() {
-    return this.width >= 1024
+    return this.width >= ViewportManager.TABLET
   }
 
-  on(event: string, callback: (...args) => void) {
+  on(event: string, callback: (...args: any[]) => void) {
     const unsubscribe = super.on(event, callback)
 
-    this.entries.set(callback, unsubscribe)
+    if (unsubscribe) {
+      this.entries.set(callback, unsubscribe)
+    }
 
     callback(this)
 
     return unsubscribe
   }
 
-  off(event: string, callback: (...args) => void) {
+  off(event: string, callback: (...args: any[]) => void) {
     super.off(event, callback)
   }
 

@@ -1,9 +1,9 @@
 .details {
   display: flex;
-  padding: 8.5rem 4rem 4rem;
+  padding: 8rem 4rem 4rem;
 
   @include media('>=desktop') {
-    padding: 85px 40px 40px;
+    padding: 80px 40px 40px;
   }
 
   @include media('<phone') {

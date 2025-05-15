@@ -83,7 +83,8 @@ const config = {
         lib: ['DOM', 'ESNext'],
         target: 'ESNext',
       },
-      include: [`**/*.ts`],
+      include: ['**/*.ts'],
+      exclude: ['utilities/**/*.ts', 'router/**/*.ts', '*.ts'],
       tsconfig: false,
     }),
 

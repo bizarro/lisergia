@@ -1,8 +1,6 @@
-# Sanity
+# Setup
 
-## Setup
-
-Create the `.env` file with project information:
+Create a `.env` file with your project configuration:
 
 ```
 SANITY_PROJECT=xxxxxxxx
@@ -14,7 +12,3 @@ SANITY_PROJECT=xxxxxxxx
 - `start`: Preview static build.
 - `build`: Build into `dist` folder.
 - `deploy`: Deploy to `project.sanity.studio`.
-
-## Architecture
-
-TODO: Write details about Sanity structure.

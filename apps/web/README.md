@@ -1,8 +1,8 @@
-## Setup
+# Setup
 
-Create `.env` file with project information:
+Create a `.env` file with your project configuration:
 
-```
+```env
 GOOGLE_ANALYTICS=ABC
 
 SANITY_API=2023-05-03
@@ -11,19 +11,31 @@ SANITY_PROJECT=xxxxxxxx
 
 BROWSERSYNC_PORT=3000
 BROWSERSYNC_PROXY=localhost:3000
+
+TYPEKIT=xxxxxxx
+
+KLAVIYO_API_KEY=xx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+KLAVIYO_COMPANY_ID=xxxxxx
+KLAVIYO_LIST_ID=xxxxxx
 ```
 
-- `GOOGLE_ANALITYCS`: automatically injects Google Analytics data in the website when declared.
-- `SANITY_API`: declares Sanity API version.
-- `SANITY_DATABASE`: declares Sanity database.
-- `SANITY_PROJECT`: declare Sanity project ID.
-- `BROWSERSYNC_PORT`: allows override of Browsersync port.
-- `BROWSERSYNC_PROXY`: allows override of Browsersync proxy.
+## Environment Variables
+
+- `GOOGLE_ANALYTICS`: Injects Google Analytics tracking when set.
+- `SANITY_API`: Defines the Sanity API version.
+- `SANITY_DATABASE`: Specifies the Sanity dataset to use.
+- `SANITY_PROJECT`: Sets the Sanity project ID.
+- `BROWSERSYNC_PORT`: Overrides the default Browsersync port.
+- `BROWSERSYNC_PROXY`: Overrides the default Browsersync proxy target.
+- `TYPEKIT`: Injects Adobe Typekit fonts into the site.
+- `KLAVIYO_API_KEY`: API key used to connect with Klaviyo services.
+- `KLAVIYO_COMPANY_ID`: Identifier for your Klaviyo company account.
+- `KLAVIYO_LIST_ID`: Identifier for the Klaviyo mailing list used in forms or signups.
 
 ## Commands
 
-- `content`: generate `content.json` file with CMS data.
-- `dev`: start the Lisergia with Rollup and Express with Nodemon.
-- `build`: generate Express `index.js` application and static assets.
-- `lint`: lint application.
-- `start`: simulate production build.
+- `content`: Generates the content.json file from the CMS data.
+- `dev`: Starts the development server with Rollup, Express, and Nodemon.
+- `build`: Compiles the Express index.js application and static assets.
+- `lint`: Lints the codebase using ESLint.
+- `start`: Serves the production build locally for testing.

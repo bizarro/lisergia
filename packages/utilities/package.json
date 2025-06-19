@@ -1,14 +1,16 @@
 {
   "name": "@lisergia/utilities",
-  "version": "0.0.0",
-  "exports": {
-    "./*": "./src/*.ts"
+  "version": "3.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
   },
-  "main": "./src/index.ts",
-  "files": [
-    "src"
-  ],
   "dependencies": {
+    "@lisergia/config-tsconfig": "3.0.0",
     "gsap": "^3.13.0"
   }
 }

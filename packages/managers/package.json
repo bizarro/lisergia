@@ -1,15 +1,17 @@
 {
   "name": "@lisergia/managers",
-  "version": "0.0.0",
-  "exports": {
-    "./*": "./src/*.ts"
+  "version": "3.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
   },
-  "main": "./src/index.ts",
-  "files": [
-    "src"
-  ],
   "dependencies": {
-    "@lisergia/core": "*",
+    "@lisergia/config-tsconfig": "3.0.0",
+    "@lisergia/core": "3.0.0",
     "mobx": "^6.13.7",
     "nanoevents": "^9.1.0"
   }

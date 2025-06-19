@@ -4,3 +4,7 @@ export * from './Links'
 export * from './Component'
 export * from './EventEmitter'
 export * from './Page'
+
+import Tempus from 'tempus'
+
+export { Tempus }

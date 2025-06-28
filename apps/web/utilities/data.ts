@@ -1,7 +1,10 @@
 import { Request } from 'express'
+import * as fs from 'fs'
 import { UAParser } from 'ua-parser-js'
 
-import content from '../content.json'
+const contentURL = process.env.NODE_ENV === 'production' ? './content.json' : '../content.json'
+const contentFile = fs.readFileSync(new URL(contentURL, import.meta.url), 'utf-8')
+const content = JSON.parse(contentFile)
 
 export function getData(request: Request) {
   const analytics = process.env.GOOGLE_ANALYTICS

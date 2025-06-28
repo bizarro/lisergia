@@ -1,4 +1,4 @@
-import { SplitText } from '@lisergia/utilities'
+import { SplitText } from 'gsap/src/SplitText'
 
 import Animation from '../classes/Animation'
 

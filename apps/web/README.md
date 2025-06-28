@@ -9,14 +9,16 @@ SANITY_API=2023-05-03
 SANITY_DATABASE=production
 SANITY_PROJECT=xxxxxxxx
 
-BROWSERSYNC_PORT=3000
-BROWSERSYNC_PROXY=localhost:3000
+BROWSERSYNC_PORT=3002
+BROWSERSYNC_PROXY=localhost:3001
 
 TYPEKIT=xxxxxxx
 
 KLAVIYO_API_KEY=xx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 KLAVIYO_COMPANY_ID=xxxxxx
 KLAVIYO_LIST_ID=xxxxxx
+
+PORT=3001
 ```
 
 ## Environment Variables
@@ -31,6 +33,7 @@ KLAVIYO_LIST_ID=xxxxxx
 - `KLAVIYO_API_KEY`: API key used to connect with Klaviyo services.
 - `KLAVIYO_COMPANY_ID`: Identifier for your Klaviyo company account.
 - `KLAVIYO_LIST_ID`: Identifier for the Klaviyo mailing list used in forms or signups.
+- `PORT`: Express application port.
 
 ## Commands
 

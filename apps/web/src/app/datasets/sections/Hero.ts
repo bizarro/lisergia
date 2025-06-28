@@ -1,7 +1,8 @@
 import { ApplicationManager, Component } from '@lisergia/core'
-import { DOMUtils, MathUtils, SplitText } from '@lisergia/utilities'
+import { DOMUtils, MathUtils } from '@lisergia/utilities'
 
 import { createTimeline } from 'animejs'
+import { SplitText } from 'gsap/src/SplitText'
 
 import { autorun, computed, makeObservable } from 'mobx'
 

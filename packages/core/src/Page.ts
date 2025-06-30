@@ -58,6 +58,8 @@ export class Page extends Component {
     this.scrollOptions = scrollOptions
 
     makeObservable(this, {
+      element: observable,
+      elements: observable,
       components: observable,
       scroll: observable,
     })

@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 4.0.0
+
+### Major Changes
+
+- Update build.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@4.0.0
+
 ## 3.0.0
 
 ### Major Changes

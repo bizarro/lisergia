@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 4.0.0
+
+### Major Changes
+
+- Update build.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@4.0.0
+  - @lisergia/config-tsconfig@4.0.0
+
 ## 3.0.0
 
 ### Major Changes

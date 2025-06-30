@@ -1,7 +1,7 @@
 {
   "name": "web",
-  "version": "1.0.0",
   "private": true,
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "content": "tsx download.ts",
@@ -34,14 +34,14 @@
     "ua-parser-js": "^2.0.3"
   },
   "devDependencies": {
-    "@lisergia/cli": "3.0.0",
-    "@lisergia/config-eslint": "3.0.0",
-    "@lisergia/config-stylelint": "3.0.0",
-    "@lisergia/config-tsconfig": "3.0.0",
-    "@lisergia/core": "3.0.0",
-    "@lisergia/managers": "3.0.0",
-    "@lisergia/styles": "3.0.0",
-    "@lisergia/utilities": "3.0.0",
+    "@lisergia/cli": "4.0.0",
+    "@lisergia/config-eslint": "4.0.0",
+    "@lisergia/config-stylelint": "4.0.0",
+    "@lisergia/config-tsconfig": "4.0.0",
+    "@lisergia/core": "4.0.0",
+    "@lisergia/managers": "4.0.0",
+    "@lisergia/styles": "4.0.0",
+    "@lisergia/utilities": "4.0.0",
     "@types/express": "^5.0.1",
     "@types/express-serve-static-core": "^5.0.6",
     "@types/node": "^22.15.3",

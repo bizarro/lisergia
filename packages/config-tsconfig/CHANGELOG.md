@@ -1,5 +1,11 @@
 # @lisergia/config-tsconfig
 
+## 6.0.0
+
+### Major Changes
+
+- Fix Prettier dependency.
+
 ## 5.0.0
 
 ### Major Changes

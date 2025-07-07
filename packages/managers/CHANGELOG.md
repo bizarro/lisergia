@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 6.0.0
+
+### Major Changes
+
+- Fix Prettier dependency.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-tsconfig@6.0.0
+  - @lisergia/core@6.0.0
+
 ## 5.0.0
 
 ### Major Changes

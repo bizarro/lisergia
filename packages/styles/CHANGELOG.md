@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 6.0.0
+
+### Major Changes
+
+- Fix Prettier dependency.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@6.0.0
+
 ## 5.0.0
 
 ### Major Changes

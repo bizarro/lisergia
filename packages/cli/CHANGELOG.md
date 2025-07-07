@@ -1,5 +1,20 @@
 # @lisergia/cli
 
+## 5.0.0
+
+### Major Changes
+
+- - Add Tempus utilities.
+  - Remove module type from packages.
+  - Add Prettier configuration as dependency.
+  - Move Front End and Back End packages to separate repositories.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@5.0.0
+  - @lisergia/config-tsconfig@5.0.0
+
 ## 4.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # @lisergia/config-eslint
 
+## 7.0.0
+
+### Major Changes
+
+- Fix hash querySelector.
+
 ## 6.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/managers",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -9,8 +9,8 @@
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
   },
   "dependencies": {
-    "@lisergia/config-tsconfig": "6.0.0",
-    "@lisergia/core": "6.0.0",
+    "@lisergia/config-tsconfig": "7.0.0",
+    "@lisergia/core": "7.0.0",
     "mobx": "^6.13.7",
     "nanoevents": "^9.1.0",
     "tsup": "^8.5.0"

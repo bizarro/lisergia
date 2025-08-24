@@ -1,5 +1,16 @@
 # @lisergia/core
 
+## 7.0.0
+
+### Major Changes
+
+- Fix hash querySelector.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-tsconfig@7.0.0
+
 ## 6.0.0
 
 ### Major Changes

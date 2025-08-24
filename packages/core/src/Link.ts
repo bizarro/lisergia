@@ -23,10 +23,13 @@ export class Link extends Component {
 
     if (isAnchor) {
       const hash = this.element.href.split('#')[1]
-      const element = document.querySelector(`#${hash}`)
 
-      if (element) {
-        return
+      if (hash) {
+        const element = document.querySelector(`#${hash}`)
+
+        if (element) {
+          return
+        }
       }
     }
 

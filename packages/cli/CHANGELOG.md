@@ -1,5 +1,17 @@
 # @lisergia/cli
 
+## 8.0.0
+
+### Major Changes
+
+- Fix styles reference to include-media.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@8.0.0
+  - @lisergia/config-tsconfig@8.0.0
+
 ## 7.0.0
 
 ### Major Changes

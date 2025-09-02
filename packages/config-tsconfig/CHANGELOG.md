@@ -1,5 +1,11 @@
 # @lisergia/config-tsconfig
 
+## 8.0.0
+
+### Major Changes
+
+- Fix styles reference to include-media.
+
 ## 7.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/styles",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "files": [
     "scss"
   ],
@@ -8,7 +8,7 @@
     "lint": "stylelint \"**/*.scss\""
   },
   "dependencies": {
-    "@lisergia/config-stylelint": "7.0.0",
+    "@lisergia/config-stylelint": "8.0.0",
     "include-media": "^2.0.0",
     "stylelint": "^16.19.1"
   }

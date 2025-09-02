@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/config-prettier",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "main": "index.js",
   "peerDependencies": {
     "@zackad/prettier-plugin-twig": "0.16.0"

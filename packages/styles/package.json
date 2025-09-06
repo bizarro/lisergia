@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@lisergia/config-stylelint": "10.0.0",
-    "include-media": "^2.0.0",
     "stylelint": "^16.19.1"
   }
 }

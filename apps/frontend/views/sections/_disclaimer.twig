@@ -1,0 +1,33 @@
+<section class="disclaimer">
+    <div class="disclaimer__wrapper">
+        <article class="disclaimer__poem">
+            <svg
+                class="disclaimer__poem__quotes"
+                data-animation="y"
+                viewBox="0 0 24 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M20.094 9.27675C18.5595 9.27675 18.0712 10.1835 17.4435 10.1835C16.9552 10.1835 16.746 9.765 16.746 8.928C16.746 6.138 19.9545 3.27825 23.2327 1.674V0C16.9552 2.99925 14.1652 7.32375 14.1652 11.718C14.1652 15.2752 16.3275 17.4375 19.0477 17.4375C21.6285 17.4375 23.5117 15.7635 23.5117 13.1828C23.5117 11.0902 22.2562 9.27675 20.094 9.27675ZM6.70197 9.27675C5.16747 9.27675 4.67922 10.1835 4.05147 10.1835C3.56322 10.1835 3.35397 9.765 3.35397 8.928C3.35397 6.138 6.56247 3.27825 9.84072 1.674V0C3.56322 2.99925 0.703468 7.32375 0.703468 11.718C0.703468 15.2752 2.93546 17.4375 5.65572 17.4375C8.23647 17.4375 10.1197 15.7635 10.1197 13.1828C10.1197 11.0902 8.86422 9.27675 6.70197 9.27675Z"
+                />
+            </svg>
+
+            <p class="disclaimer__poem__title" data-paragraph>
+                {{ section.title }}
+            </p>
+
+            <p class="disclaimer__poem__author" data-paragraph>
+                {{ section.author }}
+            </p>
+        </article>
+
+        <div class="disclaimer__description">
+            {{
+                parseHTML(section.description)|replace({
+                    '<p>': '<p data-paragraph>'
+                })
+            }}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,371 @@
+.lookbook-1 {
+  align-items: center;
+  display: flex;
+  font-size: 2.9rem;
+  height: 77.5rem;
+  position: relative;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
+
+  @include media('<phone') {
+    flex-direction: column-reverse;
+  }
+}
+
+.lookbook-1__media {
+  background: var(--color-black);
+  border-right: 1px solid var(--color-black);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 72rem;
+
+  @include media('<phone') {
+    border-right: none;
+    height: 40.7rem;
+    width: 100%;
+  }
+}
+
+.lookbook-1__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.lookbook-1__content {
+  font-family: $font-editorial-new;
+  height: 100%;
+  padding: 2rem;
+  position: relative;
+  width: calc(100% - 72rem);
+
+  div {
+    &:nth-of-type(2) {
+      font-family: $font-neue-montreal;
+      font-style: italic;
+    }
+
+    &:nth-of-type(6) {
+      font-family: $font-neue-montreal;
+      font-style: italic;
+    }
+  }
+
+  @include media('<phone') {
+    height: 37.5rem;
+    width: 100%;
+  }
+}
+
+.lookbook-2 {
+  border-top: 1px solid var(--color-black);
+  font-size: 2.9rem;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
+}
+
+.lookbook-2__content {
+  align-items: flex-end;
+  background: var(--color-bison-hide);
+  color: var(--color-white);
+  display: flex;
+  height: 51.8rem;
+  justify-content: flex-start;
+  padding: 3.1rem 2.7rem;
+
+  @include media('<phone') {
+    height: 37.5rem;
+  }
+}
+
+.lookbook-2__content__text {
+  strong {
+    font-family: $font-editorial-new;
+    line-height: 0;
+  }
+
+  span {
+    &:nth-of-type(12) {
+      strong {
+        font-family: $font-neue-montreal;
+        font-style: italic;
+      }
+    }
+
+    &:nth-of-type(14) {
+      strong {
+        font-family: $font-neue-montreal;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.lookbook-2__media {
+  background: var(--color-black);
+  border-top: 1px solid var(--color-black);
+  height: 75rem;
+  overflow: hidden;
+  position: relative;
+
+  @include media('<phone') {
+    height: 33.5rem;
+  }
+}
+
+.lookbook-2__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.lookbook-3 {
+  align-items: center;
+  border-top: 1px solid var(--color-black);
+  display: flex;
+  font-size: 2.9rem;
+  height: 66.2rem;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
+
+  @include media('<phone') {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+.lookbook-3__content {
+  align-items: flex-end;
+  display: flex;
+  font-family: $font-neue-montreal;
+  font-style: italic;
+  height: 100%;
+  padding: 2rem;
+  width: 85rem * 0.5;
+
+  &:last-child {
+    background: var(--color-black);
+    color: var(--color-white);
+    justify-content: flex-end;
+  }
+
+  strong {
+    font-family: $font-editorial-new;
+    font-style: normal;
+  }
+
+  @include media('<phone') {
+    align-items: flex-start;
+    height: 37.5rem;
+    width: 100%;
+  }
+}
+
+.lookbook-3__media {
+  background: var(--color-black);
+  border-left: 1px solid var(--color-black);
+  border-right: 1px solid var(--color-black);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 59rem;
+
+  @include media('<phone') {
+    border-left: none;
+    border-right: none;
+    height: 50rem;
+  }
+}
+
+.lookbook-3__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.lookbook-4 {
+  align-items: center;
+  border-top: 1px solid var(--color-black);
+  display: flex;
+  font-size: 2.9rem;
+  height: 66.2rem;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
+
+  @include media('<phone') {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+.lookbook-4__media {
+  align-items: flex-end;
+  background: var(--color-black);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 85rem * 0.5;
+
+  &:first-child {
+    border-right: 1px solid var(--color-black);
+  }
+
+  &:last-child {
+    border-left: 1px solid var(--color-black);
+  }
+
+  @include media('<phone') {
+    height: 50rem;
+
+    &:first-child {
+      border-right: none;
+    }
+
+    &:last-child {
+      border-left: none;
+    }
+  }
+}
+
+.lookbook-4__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.lookbook-4__content {
+  align-items: flex-end;
+  display: flex;
+  font-family: $font-neue-montreal;
+  font-style: italic;
+  height: 100%;
+  padding: 2rem;
+  width: 59rem;
+
+  strong {
+    font-family: $font-editorial-new;
+    font-style: normal;
+  }
+
+  @include media('<phone') {
+    align-items: flex-start;
+    height: 37.5rem;
+    width: 100%;
+  }
+}
+
+.lookbook-5 {
+  border-top: 1px solid var(--color-black);
+  font-size: 2.9rem;
+  height: 58.6rem;
+  position: relative;
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
+
+  @include media('<phone') {
+    height: 37.5rem;
+  }
+}
+
+.lookbook-5__media {
+  @extend %cover;
+
+  background: var(--color-black);
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.lookbook-5__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.lookbook-6 {
+  border-top: 1px solid var(--color-black);
+  font-size: 2.9rem;
+
+  &::after {
+    clear: both;
+    content: '';
+    display: block;
+    width: 100%;
+  }
+
+  @include media('>=desktop') {
+    font-size: 29px;
+  }
+
+  @include media('<phone') {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.lookbook-6__media {
+  background: var(--color-black);
+  border-right: 1px solid var(--color-black);
+  float: left;
+  height: 109rem;
+  overflow: hidden;
+  position: relative;
+  width: 94rem;
+
+  @include media('<phone') {
+    border-right: none;
+    float: none;
+    height: 50rem;
+    width: 100%;
+  }
+}
+
+.lookbook-6__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.lookbook-6__content {
+  float: left;
+  font-family: $font-editorial-new;
+  height: 109rem * 0.5;
+  padding: 2rem;
+  width: calc(100% - 94rem);
+
+  strong {
+    font-family: $font-neue-montreal;
+    font-style: italic;
+    line-height: 0;
+  }
+
+  &:first-of-type {
+    background: var(--color-bison-hide);
+    border-bottom: 1px solid var(--color-black);
+    color: var(--color-white);
+  }
+
+  @include media('<phone') {
+    float: none;
+    height: 37.5rem;
+    width: 100%;
+
+    &:last-of-type {
+      order: 1;
+    }
+
+    &:first-of-type {
+      order: 2;
+    }
+  }
+}

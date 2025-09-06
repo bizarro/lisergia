@@ -1,0 +1,21 @@
+<header class="header">
+    <div class="header__box">
+        <figure class="header__media">
+            {% set asset = getAsset(section.image) %}
+
+            <img
+                alt="{{ asset.alt }}"
+                class="header__media__image"
+                data-src="{{ asset.url }}"
+                height="100%"
+                width="100%"
+            />
+        </figure>
+
+        <div class="header__content">
+            <h1 class="header__title" data-reveal="header__title--active" data-title="left,top,left,bottom,right">
+                {{ section.title }}
+            </h1>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,40 @@
+<div class="list">
+    <div class="list__wrapper">
+        {# TODO: Implement medias. #}
+        {# <div class="list__medias">
+            {% for item in section.list %}
+                <div class="list__medias__media">
+                    {% set asset = getAsset(item.image.asset) %}
+
+                    <img
+                        alt="{{ asset.alt }}"
+                        class="list__medias__media__image"
+                        data-src="{{ asset.url }}"
+                        height="100%"
+                        width="100%"
+                    />
+                </div>
+            {% endfor %}
+        </div> #}
+
+        <p class="list__label">
+            {{ section.label }}
+        </p>
+
+        <ul class="list__list">
+            {% for item in section.list %}
+                <li class="list__item">
+                    <a class="list__link" data-text="{{ item.text }}" href="{{ item.url }}">{{ item.text }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="list__button">
+            {% include '../components/button.twig' with {
+                class: 'list__button__element',
+                text: section.button.text,
+                url: section.button.url
+            } %}
+        </div>
+    </div>
+</div>

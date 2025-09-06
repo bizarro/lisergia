@@ -1,0 +1,21 @@
+<section class="gallery">
+    <h2 class="gallery__title" data-title="top,bottom">{{ section.title }}</h2>
+
+    {% set speeds = ['-1', '-0.25', '-1.5', '-1', '-1', '-0.25', '-0.5', '-0.35'] %}
+
+    {% for item in section.list %}
+        {% set asset = getAsset(item.asset) %}
+
+        <div class="gallery__media gallery__media--{{ loop.index }}" data-translate="{{ speeds[loop.index0] }}">
+            <figure class="gallery__media__box">
+                <img
+                    alt="{{ asset.alt }}"
+                    class="gallery__media__image"
+                    data-src="{{ asset.url }}"
+                    height="100%"
+                    width="100%"
+                />
+            </figure>
+        </div>
+    {% endfor %}
+</section>

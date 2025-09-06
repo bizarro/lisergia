@@ -1,0 +1,49 @@
+<section class="categories">
+    <div class="categories__wrapper">
+        <div class="categories__content">
+            <p class="categories__label" data-reveal="categories__label--active">
+                {{ section.label }}
+            </p>
+
+            <h2 class="categories__title" data-title="top,bottom">{{ section.title }}</h2>
+        </div>
+
+        <div class="categories__gallery">
+            {% set item = section.list|last %}
+
+            <div class="categories__gallery__media categories__gallery__media--effect">
+                {{ item.link.title }}
+
+                <figure>
+                    {% set asset = getAsset(item.image) %}
+
+                    <img
+                        alt="{{ asset.alt }}"
+                        class="categories__gallery__image"
+                        data-src="{{ asset.url }}"
+                        height="100%"
+                        width="100%"
+                    />
+                </figure>
+            </div>
+
+            {% for item in section.list %}
+                <div class="categories__gallery__media">
+                    {{ item.link.title }}
+
+                    <figure>
+                        {% set asset = getAsset(item.image) %}
+
+                        <img
+                            alt="{{ asset.alt }}"
+                            class="categories__gallery__image"
+                            data-src="{{ asset.url }}"
+                            height="100%"
+                            width="100%"
+                        />
+                    </figure>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+<section class="columns columns--{{ section.type }}">
+    <div class="columns__media">
+        {% for item in section.list %}
+            {% set asset = getAsset(item.asset) %}
+
+            <figure class="columns__media__image columns__media__image--{{ loop.index }}" data-parallax>
+                <img
+                    alt="{{ asset.alt }}"
+                    class="columns__media__image"
+                    data-src="{{ asset.url }}"
+                    height="100%"
+                    width="100%"
+                />
+            </figure>
+        {% endfor %}
+    </div>
+
+    <div class="columns__content">
+        <div class="columns__content__wrapper">
+            <p class="columns__content__label" data-reveal="columns__content__label--active">
+                {{ section.label }}
+            </p>
+
+            <h2
+                class="columns__content__title"
+                data-title="{{ loop.index == 3 ? 'left,top,left,bottom,right' : 'top,bottom' }}"
+            >
+                {{ section.title }}
+            </h2>
+
+            <p class="columns__content__description" data-paragraph>
+                {{ section.description }}
+            </p>
+        </div>
+    </div>
+</section>

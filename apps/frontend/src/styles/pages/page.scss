@@ -1,0 +1,28 @@
+.page {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+.page__wrapper {
+  transform-origin: bottom;
+  z-index: 1;
+}
+
+.page__content {
+  background: var(--color-pampas);
+  border-radius: 0 0 1rem 1rem;
+  overflow: clip;
+  pointer-events: none;
+  position: relative;
+  transform-origin: bottom center;
+  z-index: z('content');
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.page__footer {
+  height: var(--height, 0);
+}

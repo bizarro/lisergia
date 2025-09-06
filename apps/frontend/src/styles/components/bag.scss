@@ -1,0 +1,165 @@
+.bag {
+  background: var(--color-cod-gray);
+  border-radius: 1rem;
+  color: var(--color-white);
+  max-width: calc(100vw - 3rem);
+  opacity: 0;
+  position: absolute;
+  right: 1.6rem;
+  top: 1.6rem;
+  transform: translateY(50px);
+  transition:
+    opacity 1s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo),
+    visibility 1s var(--ease-out-expo);
+  visibility: hidden;
+  width: 40rem;
+  z-index: z('bag');
+
+  .bag--active & {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  @include media('<phone') {
+    left: 0.6rem;
+    max-height: calc(100vh - 3rem);
+    max-width: calc(100% - 1.2rem);
+    overflow: auto;
+    right: 0.6rem;
+    top: 0.6rem;
+  }
+}
+
+.bag__wrapper {
+  padding: 7.3rem 2.2rem 2.2rem;
+}
+
+// .bag__empty {
+// }
+
+.bag__item {
+  align-items: center;
+  display: flex;
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.bag__item__media {
+  border-radius: 1rem;
+  height: 10.5rem;
+  margin-right: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  width: 7rem;
+}
+
+.bag__item__media__image {
+  @extend %cover;
+}
+
+.bag__item__content {
+  width: calc(100% - 8.5rem);
+}
+
+.bag__item__title {
+  font-size: 1.6rem;
+  transition: opacity 0.4s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.bag__item__quantity {
+  align-items: center;
+  display: flex;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.bag__item__quantity__input {
+  appearance: none;
+  background: var(--color-cod-gray);
+  border: 1px solid var(--color-white);
+  border-radius: 1rem;
+  color: var(--color-white);
+  height: 2.1rem;
+  margin-left: 1rem;
+  text-align: center;
+  width: 4rem;
+}
+
+.bag__item__price {
+  font-size: 1.4rem;
+  margin-top: 1.2rem;
+}
+
+.bag__item__remove {
+  font-size: 0;
+  height: 1.2rem;
+  position: absolute;
+  right: 0;
+  top: 1.6rem;
+  transition: opacity 0.4s ease;
+  width: 1.2rem;
+
+  &::after,
+  &::before {
+    background: var(--color-white);
+    content: '';
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 1.5rem;
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.bag__footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 7.5rem 0 3.5rem;
+}
+
+.bag__button {
+  border: 1px solid var(--color-white);
+  margin-left: auto;
+  margin-top: 5rem;
+  width: 100%;
+
+  @include media('<phone') {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    width: 27.2rem;
+
+    &::after {
+      height: 27.2rem;
+      width: 27.2rem;
+    }
+  }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}

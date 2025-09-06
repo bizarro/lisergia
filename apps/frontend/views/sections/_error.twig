@@ -1,0 +1,25 @@
+<header class="error">
+    <figure class="error__media">
+        {% set asset = getAsset(section.image) %}
+
+        <img alt="{{ asset.alt }}" class="error__media__image" data-src="{{ asset.url }}" height="100%" width="100%" />
+    </figure>
+
+    <div class="error__wrapper">
+        <div class="error__content">
+            <h1 class="error__title">{{ section.title }}</h1>
+
+            <p class="error__description">
+                {{ section.description }}
+            </p>
+
+            <div class="error__button">
+                {% include '../components/button.twig' with {
+                    class: 'error__button__element',
+                    text: section.button.text,
+                    url: section.button.url
+                } %}
+            </div>
+        </div>
+    </div>
+</header>

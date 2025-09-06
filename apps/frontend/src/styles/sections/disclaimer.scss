@@ -1,0 +1,83 @@
+.disclaimer {
+  margin: auto;
+  padding-bottom: 10rem;
+  width: calc(100% - 8rem);
+
+  @include media('<phone') {
+    padding-bottom: 2rem;
+    width: calc(100% - 4rem);
+  }
+}
+
+.disclaimer__wrapper {
+  display: flex;
+
+  @include media('<phone') {
+    flex-direction: column;
+  }
+}
+
+.disclaimer__poem {
+  width: 69rem;
+}
+
+.disclaimer__poem__quotes {
+  fill: var(--color-black);
+  margin-bottom: 2rem;
+  width: 2.4rem;
+}
+
+.disclaimer__poem__title {
+  font: 1.4rem/1.25 $font-anonymous;
+  text-wrap: balance;
+  width: 20rem;
+
+  @include media('>=desktop') {
+    font-size: 14px;
+    width: 200px;
+  }
+}
+
+.disclaimer__poem__author {
+  font: 1.8rem $font-editorial-new;
+  margin-top: 3.2rem;
+
+  @include media('>=desktop') {
+    font-size: 18px;
+    margin-top: 32px;
+  }
+
+  @include media('<phone') {
+    font-size: 1.6rem;
+    margin-top: 3.4rem;
+  }
+}
+
+.disclaimer__description {
+  @extend %description-18;
+
+  line-height: 1.25;
+  width: 46rem;
+
+  p:not(:first-child) {
+    margin-top: 2.5rem;
+  }
+
+  @include media('>=desktop') {
+    width: 460px;
+
+    p:not(:first-child) {
+      margin-top: 25px;
+    }
+  }
+
+  @include media('<phone') {
+    line-height: 1.2;
+    margin-top: 3rem;
+    width: 100%;
+
+    p:not(:first-child) {
+      margin-top: 2rem;
+    }
+  }
+}

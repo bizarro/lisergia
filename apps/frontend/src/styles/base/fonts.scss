@@ -1,0 +1,19 @@
+@font-face {
+  font-display: swap;
+  font-family: $font-neue-montreal;
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url('/fonts/neue-montreal.woff2') format('woff2'),
+    url('/fonts/neue-montreal.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: $font-editorial-new;
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url('/fonts/editorial-new.woff2') format('woff2'),
+    url('/fonts/editorial-new.woff') format('woff');
+}

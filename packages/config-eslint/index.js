@@ -19,7 +19,7 @@ module.exports = {
       'asc',
       {
         caseSensitive: true,
-        natural: false,
+        natural: true,
         minKeys: 2,
       },
     ],

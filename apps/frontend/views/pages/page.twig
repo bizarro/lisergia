@@ -1,0 +1,17 @@
+{% extends '../base.twig' %}
+
+{% set template = 'page' %}
+
+{% block content %}
+    <div class="page">
+        <div class="page__wrapper">
+            <div class="page__content">
+                {% include '../sections/index.twig' %}
+            </div>
+
+            <div class="page__footer"></div>
+
+            {% include '../layout/footer.twig' %}
+        </div>
+    </div>
+{% endblock %}

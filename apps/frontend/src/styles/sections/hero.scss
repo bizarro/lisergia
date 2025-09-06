@@ -1,0 +1,230 @@
+.hero {
+  height: var(--100vh, 100vh);
+  position: relative;
+  width: 100%;
+}
+
+.hero__media {
+  @extend %cover;
+
+  transform: scale(1.2);
+}
+
+.hero__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
+
+.hero__wrapper {
+  height: var(--100vh, 100vh);
+  position: relative;
+  width: 100%;
+}
+
+.hero__box {
+  align-items: center;
+  background: var(--color-black);
+  border-radius: calc(1rem * var(--border));
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  inset: calc(8rem * var(--inset, 0)) calc(4rem * var(--inset, 0)) calc(4rem * var(--inset, 0));
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  transform: translateZ(0);
+
+  @include media('>=desktop') {
+    inset: calc(80px * var(--inset, 0)) calc(40px * var(--inset, 0)) calc(40px * var(--inset, 0));
+  }
+
+  @include media('<phone') {
+    inset: calc(6rem * var(--inset, 0)) calc(2rem * var(--inset, 0)) calc(2rem * var(--inset, 0));
+  }
+}
+
+.hero__content {
+  position: relative;
+  width: 55rem;
+  z-index: 1;
+
+  @include media('>=desktop') {
+    width: 550px;
+  }
+
+  @include media('<phone') {
+    width: 25rem;
+  }
+}
+
+.hero__title {
+  clip-path: polygon(0 0, 110% 0, 110% 110%, 0 110%);
+  font-size: 8rem;
+  line-height: 0.9;
+
+  div {
+    clip-path: polygon(0 0, 110% 0, 110% 130%, 0 130%);
+    transition: transform 1.5s var(--ease-out-expo) !important;
+  }
+
+  div div {
+    transition: transform 1.5s var(--ease-out-expo) !important;
+  }
+
+  > div:nth-child(1) {
+    transform: translateX(5rem);
+
+    div {
+      font-style: italic;
+      transform: translateX(120%);
+    }
+  }
+
+  > div:nth-child(2) {
+    transform: translateY(-120%);
+
+    div {
+      font-family: $font-editorial-new;
+    }
+  }
+
+  > div:nth-child(3) {
+    transform: translateX(-11.5rem);
+
+    div {
+      font-family: $font-editorial-new;
+      transform: translateX(-120%);
+    }
+  }
+
+  > div:nth-child(4) {
+    transform: translateX(18.5rem);
+
+    div {
+      font-family: $font-editorial-new;
+      transform: translateX(120%);
+    }
+  }
+
+  > div:nth-child(5) {
+    transform: translateY(120%);
+
+    div {
+      font-family: $font-editorial-new;
+    }
+  }
+
+  > div:nth-child(6) {
+    transform: translateX(0);
+
+    div {
+      font-style: italic;
+      transform: translateX(-120%);
+    }
+  }
+
+  .hero--active & {
+    div,
+    div div {
+      transform: none !important;
+    }
+
+    div:nth-child(2),
+    div:nth-child(5) {
+      transition-delay: 0.2s !important;
+    }
+  }
+
+  @include media('>=desktop') {
+    font-size: 80px;
+  }
+
+  @include media('<phone') {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    font-size: 6rem;
+
+    > div:nth-child(1) {
+      transform: translateY(-100%);
+    }
+
+    div:nth-child(1) div {
+      transform: translateX(0);
+    }
+
+    > div:nth-child(2) {
+      margin-top: -2rem;
+      transform: translateX(-50vw);
+    }
+
+    > div:nth-child(3) {
+      margin-top: -2rem;
+      transform: translateX(50vw);
+    }
+
+    div:nth-child(3) div {
+      transform: translateX(0);
+    }
+
+    > div:nth-child(4) {
+      margin-top: -2rem;
+      transform: translateX(-50vw);
+    }
+
+    div:nth-child(4) div {
+      transform: translateX(0);
+    }
+
+    > div:nth-child(5) {
+      margin-top: -2rem;
+      transform: translateX(50vw);
+    }
+
+    > div:nth-child(6) {
+      margin-bottom: 1rem;
+      margin-top: -2rem;
+      transform: translateY(100%);
+    }
+
+    div:nth-child(6) div {
+      transform: translateX(0);
+    }
+
+    &--active {
+      div,
+      div div {
+        transform: none;
+      }
+
+      div:nth-child(2),
+      div:nth-child(5) {
+        transition-delay: 0;
+      }
+    }
+  }
+}
+
+.hero__button {
+  --color: var(--color-black);
+  --background: var(--color-white);
+
+  color: var(--color-black);
+  display: flex;
+  justify-content: center;
+  margin: 5rem auto 0;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out-expo);
+
+  .hero--active & {
+    opacity: 1;
+  }
+
+  @include media('>=desktop') {
+    margin-top: 50px;
+  }
+
+  @include media('<phone') {
+    margin-top: 2.5rem;
+  }
+}

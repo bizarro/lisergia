@@ -1,0 +1,15 @@
+<section class="contact">
+    <div class="contact__wrapper">
+        <div class="contact__box">
+            {% for item in section.list %}
+                <article class="contact__section">
+                    <h2 class="contact__section__title">{{ item.title }}</h2>
+
+                    <div class="contact__section__description">
+                        {{ parseHTML(item.description) }}
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>

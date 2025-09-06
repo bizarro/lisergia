@@ -1,0 +1,5 @@
+<figure class="media">
+    {% set asset = getFile(section.media) %}
+
+    <video autoplay class="media__video" loop muted playsinline data-src="{{ asset.url }}"></video>
+</figure>

@@ -1,0 +1,39 @@
+<section class="seasons">
+    <div class="seasons__wrapper">
+        <div class="seasons__box">
+            <h2 class="seasons__title" data-title="left,right">
+                <span>
+                    {{
+                        section.title|replace({
+                            '-': '-</span><span>'
+                        })
+                    }}
+                </span>
+            </h2>
+
+            <p class="seasons__description" data-paragraph>
+                {{ section.description }}
+            </p>
+
+            <p class="seasons__highlight">
+                {{ section.label }}
+            </p>
+
+            <div class="seasons__gallery">
+                {% for item in section.list %}
+                    <figure class="seasons__gallery__media seasons__gallery__media--{{ loop.index }}">
+                        {% set asset = getAsset(item.asset) %}
+
+                        <img
+                            alt="{{ asset.alt }}"
+                            class="seasons__gallery__media__image"
+                            data-src="{{ asset.url }}"
+                            height="100%"
+                            width="100%"
+                        />
+                    </figure>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

@@ -14,6 +14,15 @@ module.exports = {
   rules: {
     'simple-import-sort/exports': 'error',
     semi: ['error', 'never'],
+    'sort-keys': [
+      'error',
+      'asc',
+      {
+        caseSensitive: true,
+        natural: false,
+        minKeys: 2,
+      },
+    ],
     quotes: ['error', 'single', { avoidEscape: true }],
     'prettier/prettier': [
       'error',

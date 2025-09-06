@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 10.0.0
+
+### Major Changes
+
+- Update ESLint configuration with sort.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@10.0.0
+
 ## 9.0.0
 
 ### Major Changes

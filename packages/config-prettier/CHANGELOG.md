@@ -1,5 +1,11 @@
 # @lisergia/config-prettier
 
+## 10.0.0
+
+### Major Changes
+
+- Update ESLint configuration with sort.
+
 ## 9.0.0
 
 ### Major Changes

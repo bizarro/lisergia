@@ -1,5 +1,16 @@
 # @lisergia/core
 
+## 9.0.0
+
+### Major Changes
+
+- Update Prettier configuration.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-tsconfig@9.0.0
+
 ## 8.0.0
 
 ### Major Changes

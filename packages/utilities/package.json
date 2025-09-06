@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/utilities",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -9,7 +9,7 @@
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
   },
   "dependencies": {
-    "@lisergia/config-tsconfig": "8.0.0",
+    "@lisergia/config-tsconfig": "9.0.0",
     "gsap": "^3.13.0",
     "tsup": "^8.5.0"
   }

@@ -5,17 +5,5 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'all',
   useTabs: false,
-  overrides: [
-    {
-      files: ['*.twig'],
-      options: {
-        parser: 'twig',
-        printWidth: 120,
-        singleQuote: false,
-        tabWidth: 4,
-        useTabs: false,
-      },
-    },
-  ],
-  plugins: ['@zackad/prettier-plugin-twig'],
+  plugins: ['prettier-plugin-sort-json'],
 }

@@ -1,5 +1,17 @@
 # @lisergia/cli
 
+## 9.0.0
+
+### Major Changes
+
+- Update Prettier configuration.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@9.0.0
+  - @lisergia/config-tsconfig@9.0.0
+
 ## 8.0.0
 
 ### Major Changes

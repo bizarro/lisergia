@@ -1,5 +1,11 @@
 # @lisergia/config-tsconfig
 
+## 9.0.0
+
+### Major Changes
+
+- Update Prettier configuration.
+
 ## 8.0.0
 
 ### Major Changes

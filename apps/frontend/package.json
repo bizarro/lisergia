@@ -2,7 +2,6 @@
   "name": "lisergia-frontend",
   "private": true,
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "content": "tsx download.ts",
     "dev": "concurrently --kill-others \"npm run dev:client\" \"npm run dev:server\"",

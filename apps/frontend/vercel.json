@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "index.js",
@@ -10,11 +9,12 @@
       "use": "@vercel/static"
     }
   ],
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "index.js"
     }
   ],
-  "outputDirectory": "."
+  "version": 2
 }

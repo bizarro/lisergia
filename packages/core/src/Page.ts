@@ -1,5 +1,6 @@
 import Lenis, { LenisOptions } from 'lenis'
 import { makeObservable, observable } from 'mobx'
+import GSAP from 'gsap'
 import Tempus from 'tempus'
 
 import { ApplicationManager } from './App'
@@ -144,7 +145,15 @@ export class Page extends Component {
       ...this.scrollOptions,
     })
 
+    GSAP.ticker.add((time) => {
+      this.lenis.raf(time * 1000)
+    })
+
+    GSAP.ticker.lagSmoothing(0)
+
     this.lenis.on('scroll', (event) => {
+      ScrollTrigger.update()
+
       this.onScroll(event.scroll)
 
       this.emitter.emit('scroll', event)

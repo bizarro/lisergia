@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 11.0.0
+
+### Major Changes
+
+- Add GSAP with lagSmoothing fix.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@11.0.0
+  - @lisergia/config-tsconfig@11.0.0
+
 ## 10.0.0
 
 ### Major Changes

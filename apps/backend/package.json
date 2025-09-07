@@ -1,7 +1,7 @@
 {
   "name": "lisergia-backend",
   "private": true,
-  "version": "10.0.0",
+  "version": "11.0.0",
   "scripts": {
     "dev": "sanity dev --port=3000",
     "start": "sanity start",
@@ -10,9 +10,9 @@
     "deploy-graphql": "sanity graphql deploy"
   },
   "dependencies": {
-    "@lisergia/config-eslint": "10.0.0",
-    "@lisergia/config-stylelint": "10.0.0",
-    "@lisergia/config-tsconfig": "10.0.0",
+    "@lisergia/config-eslint": "11.0.0",
+    "@lisergia/config-stylelint": "11.0.0",
+    "@lisergia/config-tsconfig": "11.0.0",
     "@sanity/icons": "^3.7.0",
     "@sanity/vision": "^4.6.1",
     "react": "^18.2.0",

@@ -1,5 +1,11 @@
 # @lisergia/config-prettier
 
+## 11.0.0
+
+### Major Changes
+
+- Add GSAP with lagSmoothing fix.
+
 ## 10.0.0
 
 ### Major Changes

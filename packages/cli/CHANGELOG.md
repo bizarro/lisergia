@@ -1,5 +1,17 @@
 # @lisergia/cli
 
+## 11.0.0
+
+### Major Changes
+
+- Add GSAP with lagSmoothing fix.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@11.0.0
+  - @lisergia/config-tsconfig@11.0.0
+
 ## 10.0.0
 
 ### Major Changes

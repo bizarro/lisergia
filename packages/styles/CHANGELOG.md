@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 11.0.0
+
+### Major Changes
+
+- Add GSAP with lagSmoothing fix.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@11.0.0
+
 ## 10.0.0
 
 ### Major Changes

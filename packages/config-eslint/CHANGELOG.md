@@ -1,5 +1,11 @@
 # @lisergia/config-eslint
 
+## 13.0.0
+
+### Major Changes
+
+- Add missing ScrollTrigger dependency.
+
 ## 12.0.0
 
 ### Major Changes

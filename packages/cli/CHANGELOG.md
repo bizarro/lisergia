@@ -1,5 +1,17 @@
 # @lisergia/cli
 
+## 13.0.0
+
+### Major Changes
+
+- Add missing ScrollTrigger dependency.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@13.0.0
+  - @lisergia/config-tsconfig@13.0.0
+
 ## 12.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # lisergia-frontend
 
+## 4.0.0
+
+### Major Changes
+
+- Add missing ScrollTrigger dependency.
+
 ## 3.0.0
 
 ### Major Changes

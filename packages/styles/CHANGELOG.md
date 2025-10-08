@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 13.0.0
+
+### Major Changes
+
+- Add missing ScrollTrigger dependency.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@13.0.0
+
 ## 12.0.0
 
 ### Major Changes

@@ -1,6 +1,7 @@
 import Lenis, { LenisOptions } from 'lenis'
 import { makeObservable, observable } from 'mobx'
 import GSAP from 'gsap'
+import ScrollTrigger from 'gsap/src/ScrollTrigger'
 import Tempus from 'tempus'
 
 import { ApplicationManager } from './App'

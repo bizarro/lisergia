@@ -1,5 +1,11 @@
 # @lisergia/config-tsconfig
 
+## 15.0.0
+
+### Major Changes
+
+- Fix Link class URL redirect and build from Changesets.
+
 ## 14.0.0
 
 ### Major Changes

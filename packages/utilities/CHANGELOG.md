@@ -1,5 +1,16 @@
 # @lisergia/utilities
 
+## 15.0.0
+
+### Major Changes
+
+- Fix Link class URL redirect and build from Changesets.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-tsconfig@15.0.0
+
 ## 14.0.0
 
 ### Major Changes

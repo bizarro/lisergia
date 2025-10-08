@@ -37,7 +37,7 @@ export class Links extends EventEmitter {
   }
 
   onLinkClick(href: string) {
-    this.application.route = href
+    this.application.route = href.replace(window.location.origin, '')
   }
 
   refresh() {

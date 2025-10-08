@@ -1,5 +1,11 @@
 # lisergia-frontend
 
+## 6.0.0
+
+### Major Changes
+
+- Fix Link class URL redirect and build from Changesets.
+
 ## 5.0.0
 
 ### Major Changes

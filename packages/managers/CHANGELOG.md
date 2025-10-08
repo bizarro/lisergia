@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 15.0.0
+
+### Major Changes
+
+- Fix Link class URL redirect and build from Changesets.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@15.0.0
+  - @lisergia/config-tsconfig@15.0.0
+
 ## 14.0.0
 
 ### Major Changes

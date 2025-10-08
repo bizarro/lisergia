@@ -1,5 +1,11 @@
 # @lisergia/config-stylelint
 
+## 12.0.0
+
+### Major Changes
+
+- Fix hashchange and popstate conflict.
+
 ## 11.0.0
 
 ### Major Changes

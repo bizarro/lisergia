@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 12.0.0
+
+### Major Changes
+
+- Fix hashchange and popstate conflict.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@12.0.0
+  - @lisergia/config-tsconfig@12.0.0
+
 ## 11.0.0
 
 ### Major Changes

@@ -264,7 +264,11 @@ export class ApplicationManager extends Component {
   //
   // Pop State.
   //
-  onPopState() {
+  onPopState(event: PopStateEvent) {
+    if (event.state === null) {
+      return event.preventDefault()
+    }
+
     this.onRouteChangeRequest({
       href: document.location.pathname,
       pushState: false,

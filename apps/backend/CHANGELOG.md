@@ -1,5 +1,18 @@
 # cms
 
+## 12.0.0
+
+### Major Changes
+
+- Fix hashchange and popstate conflict.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@12.0.0
+  - @lisergia/config-stylelint@12.0.0
+  - @lisergia/config-tsconfig@12.0.0
+
 ## 11.0.0
 
 ### Major Changes

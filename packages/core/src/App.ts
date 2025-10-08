@@ -206,8 +206,10 @@ export class ApplicationManager extends Component {
   route: string = window.location.pathname
 
   onRouteChange({ oldValue, newValue }: IValueDidChange<string>) {
+    const href = newValue.replace(window.location.origin, '')
+
     this.onRouteChangeRequest({
-      href: newValue,
+      href,
       pushState: true,
     })
   }

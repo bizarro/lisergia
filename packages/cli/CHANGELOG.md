@@ -1,5 +1,17 @@
 # @lisergia/cli
 
+## 14.0.0
+
+### Major Changes
+
+- Avoid route to contain pathname.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@14.0.0
+  - @lisergia/config-tsconfig@14.0.0
+
 ## 13.0.0
 
 ### Major Changes

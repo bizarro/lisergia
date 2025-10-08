@@ -1,5 +1,11 @@
 # @lisergia/config-stylelint
 
+## 14.0.0
+
+### Major Changes
+
+- Avoid route to contain pathname.
+
 ## 13.0.0
 
 ### Major Changes

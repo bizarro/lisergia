@@ -1,5 +1,11 @@
 # lisergia-frontend
 
+## 5.0.0
+
+### Major Changes
+
+- Avoid route to contain pathname.
+
 ## 4.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/config-prettier",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "main": "index.js",
   "dependencies": {
     "prettier-plugin-sort-json": "^4.1.1"

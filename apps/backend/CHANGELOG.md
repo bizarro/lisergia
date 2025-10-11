@@ -1,5 +1,18 @@
 # cms
 
+## 17.0.0
+
+### Major Changes
+
+- Fix bug with pushState.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@17.0.0
+  - @lisergia/config-stylelint@17.0.0
+  - @lisergia/config-tsconfig@17.0.0
+
 ## 16.0.0
 
 ### Major Changes

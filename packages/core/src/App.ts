@@ -278,7 +278,7 @@ export class ApplicationManager extends Component {
 
     this.routePushState = false
     this.route = document.location.pathname
-    this.routePushState = false
+    this.routePushState = true
   }
 
   //

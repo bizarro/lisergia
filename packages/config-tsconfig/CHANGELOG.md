@@ -1,5 +1,11 @@
 # @lisergia/config-tsconfig
 
+## 17.0.0
+
+### Major Changes
+
+- Fix bug with pushState.
+
 ## 16.0.0
 
 ### Major Changes

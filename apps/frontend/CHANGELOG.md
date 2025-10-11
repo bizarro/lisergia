@@ -1,5 +1,11 @@
 # lisergia-frontend
 
+## 7.0.0
+
+### Major Changes
+
+- Update routing popState logic.
+
 ## 6.0.0
 
 ### Major Changes

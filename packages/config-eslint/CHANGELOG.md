@@ -1,5 +1,11 @@
 # @lisergia/config-eslint
 
+## 16.0.0
+
+### Major Changes
+
+- Update routing popState logic.
+
 ## 15.0.0
 
 ### Major Changes

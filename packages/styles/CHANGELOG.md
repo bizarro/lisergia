@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 16.0.0
+
+### Major Changes
+
+- Update routing popState logic.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@16.0.0
+
 ## 15.0.0
 
 ### Major Changes

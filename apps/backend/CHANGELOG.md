@@ -1,5 +1,18 @@
 # cms
 
+## 16.0.0
+
+### Major Changes
+
+- Update routing popState logic.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@16.0.0
+  - @lisergia/config-stylelint@16.0.0
+  - @lisergia/config-tsconfig@16.0.0
+
 ## 15.0.0
 
 ### Major Changes

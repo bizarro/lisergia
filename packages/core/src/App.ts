@@ -43,6 +43,7 @@ export class ApplicationManager extends Component {
 
       // Route Information.
       route: observable,
+      routeHistory: observable,
 
       // Template Information.
       template: observable,
@@ -204,13 +205,15 @@ export class ApplicationManager extends Component {
   // Navigate.
   //
   route: string = window.location.pathname
+  routeHistory: Array<string> = [this.route]
+  routePushState: boolean = true
 
   onRouteChange({ oldValue, newValue }: IValueDidChange<string>) {
     const href = newValue.replace(window.location.origin, '')
 
     this.onRouteChangeRequest({
       href,
-      pushState: true,
+      pushState: this.routePushState,
     })
   }
 
@@ -261,6 +264,8 @@ export class ApplicationManager extends Component {
     if (pushState) {
       window.history.pushState({}, this.nextPage.title!, href)
     }
+
+    this.routeHistory.push(href)
   }
 
   //
@@ -271,17 +276,16 @@ export class ApplicationManager extends Component {
       return event.preventDefault()
     }
 
-    this.onRouteChangeRequest({
-      href: document.location.pathname,
-      pushState: false,
-    })
+    this.routePushState = false
+    this.route = document.location.pathname
+    this.routePushState = false
   }
 
   //
   // Scroll.
   //
   get scroll() {
-    return this.currentPage?.scroll ?? 0
+    return this.currentPage!.scroll ?? 0
   }
 
   //

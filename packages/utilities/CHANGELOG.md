@@ -1,5 +1,16 @@
 # @lisergia/utilities
 
+## 20.0.0
+
+### Major Changes
+
+- Delete Map entries.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-tsconfig@20.0.0
+
 ## 19.0.0
 
 ### Major Changes

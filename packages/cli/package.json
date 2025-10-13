@@ -1,12 +1,12 @@
 {
   "name": "@lisergia/cli",
-  "version": "19.0.0",
+  "version": "20.0.0",
   "bin": {
     "lisergia": "index.js"
   },
   "dependencies": {
-    "@lisergia/config-eslint": "19.0.0",
-    "@lisergia/config-tsconfig": "19.0.0",
+    "@lisergia/config-eslint": "20.0.0",
+    "@lisergia/config-tsconfig": "20.0.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.3.0",

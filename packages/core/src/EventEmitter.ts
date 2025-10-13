@@ -29,6 +29,8 @@ export class EventEmitter {
     if (unsubscribe) {
       unsubscribe()
     }
+
+    this.entries.delete(callback)
   }
 
   fire(event: string, ...args: any[]) {
@@ -37,5 +39,6 @@ export class EventEmitter {
 
   destroy() {
     this.entries.forEach((unsubscribe) => unsubscribe())
+    this.entries.clear()
   }
 }

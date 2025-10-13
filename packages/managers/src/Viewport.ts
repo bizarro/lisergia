@@ -67,6 +67,8 @@ export class ViewportManager extends EventEmitter {
 
   off(event: string, callback: (...args: any[]) => void) {
     super.off(event, callback)
+
+    this.entries.delete(callback)
   }
 
   onResize() {
@@ -76,6 +78,15 @@ export class ViewportManager extends EventEmitter {
     document.documentElement.style.setProperty('--100vh', `${this.height}px`)
 
     this.fire('resize', this)
+  }
+
+  destroy() {
+    super.destroy()
+
+    this.entries.forEach((unsubscribe) => unsubscribe())
+    this.entries.clear()
+
+    window.removeEventListener('resize', this.onResize)
   }
 }
 

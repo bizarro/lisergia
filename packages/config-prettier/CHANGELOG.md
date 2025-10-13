@@ -1,5 +1,11 @@
 # @lisergia/config-prettier
 
+## 20.0.0
+
+### Major Changes
+
+- Delete Map entries.
+
 ## 19.0.0
 
 ### Major Changes

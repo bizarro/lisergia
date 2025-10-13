@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 21.0.0
+
+### Major Changes
+
+- Cleanup GSAP and Lenis events.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@21.0.0
+
 ## 20.0.0
 
 ### Major Changes

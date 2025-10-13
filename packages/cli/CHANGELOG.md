@@ -1,5 +1,17 @@
 # @lisergia/cli
 
+## 21.0.0
+
+### Major Changes
+
+- Cleanup GSAP and Lenis events.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@21.0.0
+  - @lisergia/config-tsconfig@21.0.0
+
 ## 20.0.0
 
 ### Major Changes

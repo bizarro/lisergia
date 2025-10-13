@@ -1,7 +1,7 @@
 {
   "name": "lisergia-frontend",
   "private": true,
-  "version": "20.0.0",
+  "version": "21.0.0",
   "scripts": {
     "content": "tsx download.ts",
     "dev": "concurrently --kill-others \"npm run dev:client\" \"npm run dev:server\"",
@@ -31,14 +31,14 @@
     "ua-parser-js": "^2.0.3"
   },
   "devDependencies": {
-    "@lisergia/cli": "20.0.0",
-    "@lisergia/config-eslint": "20.0.0",
-    "@lisergia/config-stylelint": "20.0.0",
-    "@lisergia/config-tsconfig": "20.0.0",
-    "@lisergia/core": "20.0.0",
-    "@lisergia/managers": "20.0.0",
-    "@lisergia/styles": "20.0.0",
-    "@lisergia/utilities": "20.0.0",
+    "@lisergia/cli": "21.0.0",
+    "@lisergia/config-eslint": "21.0.0",
+    "@lisergia/config-stylelint": "21.0.0",
+    "@lisergia/config-tsconfig": "21.0.0",
+    "@lisergia/core": "21.0.0",
+    "@lisergia/managers": "21.0.0",
+    "@lisergia/styles": "21.0.0",
+    "@lisergia/utilities": "21.0.0",
     "@types/express": "^5.0.1",
     "@types/express-serve-static-core": "^5.0.6",
     "@types/node": "^22.15.3",

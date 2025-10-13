@@ -146,19 +146,22 @@ export class Page extends Component {
       ...this.scrollOptions,
     })
 
-    GSAP.ticker.add((time) => {
-      this.lenis.raf(time * 1000)
-    })
-
+    GSAP.ticker.add(this.onGSAPTicker)
     GSAP.ticker.lagSmoothing(0)
 
-    this.lenis.on('scroll', (event) => {
-      ScrollTrigger.update()
+    this.lenis.on('scroll', this.onLenisScroll)
+  }
 
-      this.onScroll(event.scroll)
+  onGSAPTicker(time: number) {
+    this.lenis.raf(time * 1000)
+  }
 
-      this.emitter.emit('scroll', event)
-    })
+  onLenisScroll(event: { scroll: number }) {
+    ScrollTrigger.update()
+
+    this.onScroll(event.scroll)
+
+    this.emitter.emit('scroll', event)
   }
 
   destroyScroll() {
@@ -168,7 +171,11 @@ export class Page extends Component {
       return
     }
 
+    GSAP.ticker.remove(this.onGSAPTicker)
+
+    this.lenis.off('scroll', this.onLenisScroll)
     this.lenis?.destroy()
+    this.lenis = undefined!
   }
 
   //

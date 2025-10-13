@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 21.0.0
+
+### Major Changes
+
+- Cleanup GSAP and Lenis events.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@21.0.0
+  - @lisergia/config-tsconfig@21.0.0
+
 ## 20.0.0
 
 ### Major Changes

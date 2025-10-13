@@ -1,5 +1,11 @@
 # @lisergia/config-prettier
 
+## 21.0.0
+
+### Major Changes
+
+- Cleanup GSAP and Lenis events.
+
 ## 20.0.0
 
 ### Major Changes

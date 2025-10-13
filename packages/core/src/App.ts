@@ -238,16 +238,16 @@ export class ApplicationManager extends Component {
   } = {}
 
   async onRequest({ href, response, pushState }: { href: string; response: string; pushState: boolean }) {
-    const domParser = new DOMParser()
-    const dom = domParser.parseFromString(response, 'text/html')
+    let domParser: DOMParser | null = new DOMParser()
+    let dom: Document | null = domParser.parseFromString(response, 'text/html')
 
-    const html = dom.querySelector('html')!
-    const app = dom.querySelector('.app')!
+    const html = dom!.querySelector('html')!
+    const app = dom!.querySelector('.app')!
 
     this.nextPage = {
       element: app,
       template: html.dataset.template ?? this.template,
-      title: dom.title ?? document.title,
+      title: dom!.title ?? document.title,
     }
 
     if (this.transition) {
@@ -266,6 +266,9 @@ export class ApplicationManager extends Component {
     }
 
     this.routeHistory.push(href)
+
+    domParser = null
+    dom = null
   }
 
   //

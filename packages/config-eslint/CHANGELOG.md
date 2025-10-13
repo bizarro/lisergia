@@ -1,5 +1,11 @@
 # @lisergia/config-eslint
 
+## 18.0.0
+
+### Major Changes
+
+- Fix memory leak from DOMParser.
+
 ## 17.0.0
 
 ### Major Changes

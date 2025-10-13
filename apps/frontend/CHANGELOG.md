@@ -1,5 +1,11 @@
 # lisergia-frontend
 
+## 18.0.0
+
+### Major Changes
+
+- Fix memory leak from DOMParser.
+
 ## 8.0.0
 
 ### Major Changes

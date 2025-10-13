@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 18.0.0
+
+### Major Changes
+
+- Fix memory leak from DOMParser.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@18.0.0
+  - @lisergia/config-tsconfig@18.0.0
+
 ## 17.0.0
 
 ### Major Changes

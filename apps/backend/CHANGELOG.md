@@ -1,5 +1,18 @@
 # cms
 
+## 22.0.0
+
+### Major Changes
+
+- Make sure Viewport unsubscribes events.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@22.0.0
+  - @lisergia/config-stylelint@22.0.0
+  - @lisergia/config-tsconfig@22.0.0
+
 ## 21.0.0
 
 ### Major Changes

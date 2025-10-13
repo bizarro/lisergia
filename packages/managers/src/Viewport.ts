@@ -68,6 +68,12 @@ export class ViewportManager extends EventEmitter {
   off(event: string, callback: (...args: any[]) => void) {
     super.off(event, callback)
 
+    const unsubscribe = this.entries.get(callback)
+
+    if (unsubscribe) {
+      unsubscribe()
+    }
+
     this.entries.delete(callback)
   }
 

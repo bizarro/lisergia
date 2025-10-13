@@ -1,5 +1,11 @@
 # @lisergia/config-stylelint
 
+## 22.0.0
+
+### Major Changes
+
+- Make sure Viewport unsubscribes events.
+
 ## 21.0.0
 
 ### Major Changes

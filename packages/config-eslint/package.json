@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/config-eslint",
-  "version": "21.0.0",
+  "version": "22.0.0",
   "main": "index.js",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.48.1",

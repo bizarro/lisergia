@@ -87,6 +87,10 @@ export class Component extends EventEmitter {
     }
   }
 
+  destroyElement() {
+    this.element = undefined
+  }
+
   initElements(selectors?: ComponentSelectors) {
     for (const key in selectors) {
       const selector = selectors[key]
@@ -121,6 +125,10 @@ export class Component extends EventEmitter {
     }
   }
 
+  destroyElements() {
+    this.elements = {}
+  }
+
   addEventListeners() {}
 
   removeEventListeners() {}
@@ -129,5 +137,8 @@ export class Component extends EventEmitter {
     super.destroy()
 
     this.removeEventListeners()
+
+    this.destroyElements()
+    this.destroyElement()
   }
 }

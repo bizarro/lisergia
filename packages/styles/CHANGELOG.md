@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 19.0.0
+
+### Major Changes
+
+- Cleanup elements from Component on destroy.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@19.0.0
+
 ## 18.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # lisergia-frontend
 
+## 19.0.0
+
+### Major Changes
+
+- Cleanup elements from Component on destroy.
+
 ## 18.0.0
 
 ### Major Changes

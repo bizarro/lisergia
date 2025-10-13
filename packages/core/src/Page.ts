@@ -212,10 +212,10 @@ export class Page extends Component {
   // Destroy.
   //
   destroy() {
-    super.destroy()
-
     this.destroyResizeObserver()
     this.destroyComponents()
     this.destroyScroll()
+
+    super.destroy()
   }
 }

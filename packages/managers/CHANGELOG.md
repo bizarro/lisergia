@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 19.0.0
+
+### Major Changes
+
+- Cleanup elements from Component on destroy.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@19.0.0
+  - @lisergia/config-tsconfig@19.0.0
+
 ## 18.0.0
 
 ### Major Changes

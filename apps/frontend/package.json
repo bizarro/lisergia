@@ -3,14 +3,14 @@
   "private": true,
   "version": "21.0.0",
   "scripts": {
-    "content": "tsx download.ts",
-    "dev": "concurrently --kill-others \"npm run dev:client\" \"npm run dev:server\"",
-    "dev:server": "nodemon",
+    "content": "bun download.ts",
+    "dev": "concurrently --kill-others \"bun run dev:client\" \"bun run dev:server\"",
+    "dev:server": "bun --watch index.ts",
     "dev:client": "lisergia dev",
-    "build": "npm run build:server && npm run build:client",
-    "build:server": "tsup index.ts",
-    "build:client": "npm run content && lisergia build",
-    "postinstall": "npm run build"
+    "build": "bun run build:server && bun run build:client",
+    "build:server": "bun build ./index.ts --outfile index.js --target=node",
+    "build:client": "bun run content && lisergia build",
+    "postinstall": "bun run build"
   },
   "type": "module",
   "dependencies": {
@@ -22,11 +22,8 @@
     "eslint": "^9.9.0",
     "express": "^5.1.0",
     "gsap": "^3.13.0",
-    "nodemon": "^3.1.10",
     "staticify": "^5.0.0",
     "stylelint": "^16.19.1",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
     "twig": "^1.17.1",
     "ua-parser-js": "^2.0.3"
   },
@@ -41,7 +38,6 @@
     "@lisergia/utilities": "21.0.0",
     "@types/express": "^5.0.1",
     "@types/express-serve-static-core": "^5.0.6",
-    "@types/node": "^22.15.3",
     "concurrently": "^9.1.2",
     "eslint-config-prettier": "^8.6.0",
     "mobx": "^6.13.7",

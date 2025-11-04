@@ -9,7 +9,7 @@
     "jsx": "preserve",
     "incremental": true,
     "resolveJsonModule": true,
-    "types": ["node"]
+    "types": ["bun-types"]
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

@@ -14,6 +14,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@elysiajs/html": "^1.4.0",
     "@portabletext/to-html": "^2.0.14",
     "@sanity/asset-utils": "^2.2.1",
     "@sanity/client": "^6.29.1",

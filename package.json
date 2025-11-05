@@ -23,6 +23,8 @@
     "packages/*"
   ],
   "dependencies": {
+    "@elysiajs/static": "^1.4.6",
+    "elysia": "^1.4.15",
     "vite": "^7.1.4"
   }
 }

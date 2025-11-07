@@ -1,10 +1,7 @@
-import * as fs from 'fs'
 import { UAParser } from 'ua-parser-js'
 import { getAsset, getFile, lowercase, parseHTML } from '../src/helpers'
 
-const contentURL = process.env.NODE_ENV === 'production' ? './content.json' : '../content.json'
-const contentFile = fs.readFileSync(new URL(contentURL, import.meta.url), 'utf-8')
-const content = JSON.parse(contentFile)
+import content from '../content.json'
 
 export function getData(context: any) {
   const analytics = process.env.GOOGLE_ANALYTICS

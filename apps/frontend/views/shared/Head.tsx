@@ -1,11 +1,12 @@
 import { Html } from "@elysiajs/html"
+import { PageData } from "@utilities/data"
 
 interface HeadProps {
   social: {
     title: string
     description: string
   },
-  typekit?: string
+  typekit?: PageData['typekit']
 }
 
 const Head = ({ social, typekit }: HeadProps) => {

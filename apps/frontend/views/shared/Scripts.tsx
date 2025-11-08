@@ -1,7 +1,8 @@
 import { Html } from "@elysiajs/html"
+import { PageData } from "@utilities/data"
 
 interface ScriptsProps {
-  analytics?: string
+  analytics: PageData['analytics']
 }
 
 const Scripts = ({ analytics }: ScriptsProps) => {

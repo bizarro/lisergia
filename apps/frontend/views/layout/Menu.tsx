@@ -6,7 +6,7 @@ interface MenuProps {
   settings: PageData['settings']
 }
 
-export const Menu = ({ menu, settings }: MenuProps) => {
+const Menu = ({ menu, settings }: MenuProps) => {
   return (
     <nav class="menu">
       <div class="menu__box">
@@ -43,3 +43,5 @@ export const Menu = ({ menu, settings }: MenuProps) => {
   </nav>
   )
 }
+
+export default Menu;

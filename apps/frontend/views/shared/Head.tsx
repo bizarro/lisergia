@@ -8,7 +8,7 @@ interface HeadProps {
   typekit?: string
 }
 
-export const Head = ({ social, typekit }: HeadProps) => {
+const Head = ({ social, typekit }: HeadProps) => {
   const dev = import.meta.env.DEV
 
   return (
@@ -64,3 +64,5 @@ export const Head = ({ social, typekit }: HeadProps) => {
     </head>
   )
 }
+
+export default Head;

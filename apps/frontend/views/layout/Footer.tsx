@@ -9,7 +9,7 @@ interface FooterProps {
   lowercase: PageData['lowercase']
 }
 
-export const Footer = ({ social, footer, settings, parseHTML, lowercase }: FooterProps) => {
+const Footer = ({ social, footer, settings, parseHTML, lowercase }: FooterProps) => {
   return (
     <footer class="footer">
       <div class="footer__column">
@@ -117,3 +117,5 @@ export const Footer = ({ social, footer, settings, parseHTML, lowercase }: Foote
     </footer>
   )
 }
+
+export default Footer

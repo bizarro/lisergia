@@ -1,10 +1,8 @@
 import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
-import { Footer } from './layout/Footer'
-import { Menu } from './layout/Menu'
-import { Navigation } from './layout/Navigation'
-import { Head } from './shared/Head'
-import { Scripts } from './shared/Scripts'
+
+import { Footer, Menu, Navigation } from './layout/index'
+import { Head, Scripts } from './shared'
 
 interface LayoutProps {
   page: PageData

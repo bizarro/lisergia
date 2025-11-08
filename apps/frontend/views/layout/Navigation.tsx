@@ -1,6 +1,6 @@
 import { Html } from "@elysiajs/html";
 
-export const Navigation = () => {
+const Navigation = () => {
   return (
     <nav class="navigation">
       <button class="navigation__button">
@@ -48,3 +48,5 @@ export const Navigation = () => {
     </nav>
   )
 }
+
+export default Navigation;

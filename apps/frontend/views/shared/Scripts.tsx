@@ -4,7 +4,7 @@ interface ScriptsProps {
   analytics?: string
 }
 
-export const Scripts = ({ analytics }: ScriptsProps) => {
+const Scripts = ({ analytics }: ScriptsProps) => {
   const dev = import.meta.env.DEV
 
   return (
@@ -25,3 +25,5 @@ export const Scripts = ({ analytics }: ScriptsProps) => {
     </>
   )
 }
+
+export default Scripts

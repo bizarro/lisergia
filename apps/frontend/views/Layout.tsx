@@ -1,5 +1,6 @@
 import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
+import { Footer } from './layout/Footer'
 import { Menu } from './layout/Menu'
 import { Navigation } from './layout/Navigation'
 import { Head } from './shared/Head'
@@ -27,9 +28,23 @@ export const Layout = ({ page }: LayoutProps) => {
         <Navigation />
 
         <div class="app">
-            {/* {% block content %}
+          <div class="page">
+            <div class="page__wrapper">
+              <div class="page__content">
+                {/* {% include '../sections/index.twig' %} */}
+              </div>
 
-            {% endblock %} */}
+              <div class="page__footer"></div>
+
+              <Footer
+                social={page.data.social}
+                footer={page.footer}
+                settings={page.settings}
+                parseHTML={page.parseHTML}
+                lowercase={page.lowercase}
+              />
+            </div>
+        </div>
         </div>
 
         <Scripts analytics={page.analytics} />

@@ -16,9 +16,9 @@ export function getData(context: any) {
   const isTablet = ua.device.type === 'tablet'
 
   const { categories, footer, menu, settings } = content
-  const pages = [...content.pages, ...content.products]
+  const pages = [...(content.pages as any[]), ...(content.products as any[])]
 
-  let data = pages.find((page: any) => page.slug.current === slug)
+  let data: any = pages.find((page: any) => page.slug.current === slug)
 
   if (!data) {
     data = pages.find((page: any) => page.slug.current === 'not-found')
@@ -33,7 +33,7 @@ export function getData(context: any) {
     menu,
     settings,
 
-    ...data,
+    data: { ...data },
 
     isDesktop,
     isPhone,
@@ -45,3 +45,5 @@ export function getData(context: any) {
     lowercase,
   }
 }
+
+export type PageData = ReturnType<typeof getData>

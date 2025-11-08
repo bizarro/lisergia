@@ -1,5 +1,7 @@
 import { Html } from '@elysiajs/html'
-import type { PageData } from '../utilities/data'
+import type { PageData } from '@utilities/data'
+import { Head } from './shared/Head'
+import { Scripts } from './shared/Scripts'
 
 interface LayoutProps {
   page: PageData
@@ -17,11 +19,8 @@ export const Layout = ({ page }: LayoutProps) => {
       id={slug}
       lang="en"
     >
-      <head>
-        {/* {% include 'shared/header.twig' %} */}
-      </head>
+      <Head social={page.data.social} typekit={page.typekit} />
       <body>
-        <h1>hello world</h1>
         {/* {% include 'layout/menu.twig' %}
         {% include 'layout/navigation.twig' %} */}
 
@@ -31,7 +30,7 @@ export const Layout = ({ page }: LayoutProps) => {
             {% endblock %} */}
         </div>
 
-        {/* {% include 'shared/scripts.twig' %} */}
+        <Scripts analytics={page.analytics} />
       </body>
     </html>
   )

@@ -1,9 +1,15 @@
 import { cloudflare } from '@cloudflare/vite-plugin'
+import path from 'path'
 import { defineConfig } from 'vite'
 import glsl from 'vite-plugin-glsl'
 import { iconsSpritesheet } from 'vite-plugin-icons-spritesheet'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@utilities': path.resolve(__dirname, './utilities'),
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {

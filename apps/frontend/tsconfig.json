@@ -11,7 +11,11 @@
     "jsxFragmentFactory": "Html.Fragment",
     "incremental": true,
     "resolveJsonModule": true,
-    "types": ["bun-types"]
+    "types": ["bun-types", "vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@utilities/*": ["utilities/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

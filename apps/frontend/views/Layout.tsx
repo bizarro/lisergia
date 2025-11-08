@@ -1,5 +1,7 @@
 import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
+import { Menu } from './layout/Menu'
+import { Navigation } from './layout/Navigation'
 import { Head } from './shared/Head'
 import { Scripts } from './shared/Scripts'
 
@@ -21,8 +23,8 @@ export const Layout = ({ page }: LayoutProps) => {
     >
       <Head social={page.data.social} typekit={page.typekit} />
       <body>
-        {/* {% include 'layout/menu.twig' %}
-        {% include 'layout/navigation.twig' %} */}
+        <Menu menu={page.menu} settings={page.settings} />
+        <Navigation />
 
         <div class="app">
             {/* {% block content %}

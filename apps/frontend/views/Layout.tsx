@@ -2,10 +2,15 @@ import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
 
 import { Footer, Menu, Navigation } from './layout/index'
+import { Hero } from './sections/Hero'
 import { Head, Scripts } from './shared'
 
 interface LayoutProps {
   page: PageData
+}
+
+const sectionsMap = {
+  hero: Hero,
 }
 
 export const Layout = ({ page }: LayoutProps) => {
@@ -29,7 +34,16 @@ export const Layout = ({ page }: LayoutProps) => {
           <div class="page">
             <div class="page__wrapper">
               <div class="page__content">
-                {/* {% include '../sections/index.twig' %} */}
+                {page.data.content?.map((section: any) => {
+                  const SectionComponent = sectionsMap[section._type as keyof typeof sectionsMap]
+
+                  if (!SectionComponent) {
+                    console.warn(`Missing section component: ${section._type}`)
+                    return null
+                  }
+
+                  return <SectionComponent key={section._key} {...section} {...page} />
+                })}
               </div>
 
               <div class="page__footer"></div>

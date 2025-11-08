@@ -42,7 +42,13 @@ export const Layout = ({ page }: LayoutProps) => {
                     return null
                   }
 
-                  return <SectionComponent key={section._key} {...section} {...page} />
+                  return (
+                    <SectionComponent
+                      key={section._key}
+                      {...section}
+                      getAsset={page.getAsset}
+                    />
+                  )
                 })}
               </div>
 

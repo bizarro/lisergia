@@ -1,14 +1,19 @@
 import { Html } from "@elysiajs/html"
 import { SanityImageSource } from "@sanity/asset-utils"
 import { PageData } from "@utilities/data"
+import { Button } from "../components/Button"
 
 interface HeroProps {
   image: SanityImageSource
   title: string
+  button: {
+    text: string
+    url: string
+  }
   getAsset: PageData['getAsset']
 }
 
-export const Hero = ({ image, title, getAsset }: HeroProps) => {
+export const Hero = ({ image, title, button, getAsset }: HeroProps) => {
   const asset = getAsset(image)
 
   return (
@@ -29,11 +34,7 @@ export const Hero = ({ image, title, getAsset }: HeroProps) => {
               <h1 class="hero__title">{title}</h1>
 
               <div class="hero__button">
-                  {/* {% include '../components/button.twig' with {
-                      class: 'hero__button__element',
-                      text: section.button.text,
-                      url: section.button.url
-                  } %} */}
+                  <Button class="hero__button__element" text={button.text} url={button.url} />
               </div>
           </div>
       </div>

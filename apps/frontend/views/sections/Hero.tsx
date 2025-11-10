@@ -13,7 +13,7 @@ interface HeroProps {
   getAsset: PageData['getAsset']
 }
 
-export const Hero = ({ image, title, button, getAsset }: HeroProps) => {
+const Hero = ({ image, title, button, getAsset }: HeroProps) => {
   const asset = getAsset(image)
 
   return (
@@ -41,3 +41,5 @@ export const Hero = ({ image, title, button, getAsset }: HeroProps) => {
   </header>
   )
 }
+
+export default Hero

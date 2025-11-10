@@ -2,7 +2,7 @@ import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
 
 import { Footer, Menu, Navigation } from './layout/index'
-import { Hero, Highlight, Quote } from './sections'
+import { Hero, Highlight, Media, Quote } from './sections'
 import { Head, Scripts } from './shared'
 
 interface LayoutProps {
@@ -13,6 +13,7 @@ const sectionsMap = {
   hero: Hero,
   highlight: Highlight,
   quote: Quote,
+  media: Media,
 }
 
 export const Layout = ({ page }: LayoutProps) => {
@@ -49,6 +50,7 @@ export const Layout = ({ page }: LayoutProps) => {
                       key={section._key}
                       {...section}
                       getAsset={page.getAsset}
+                      getFile={page.getFile}
                     />
                   )
                 })}

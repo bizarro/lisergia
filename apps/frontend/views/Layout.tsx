@@ -2,7 +2,7 @@ import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
 
 import { Footer, Menu, Navigation } from './layout/index'
-import { Categories, Hero, Highlight, Media, Quote } from './sections'
+import { Categories, Hero, Highlight, List, Media, Quote } from './sections'
 import { Head, Scripts } from './shared'
 
 interface LayoutProps {
@@ -15,6 +15,7 @@ const sectionsMap = {
   quote: Quote,
   media: Media,
   categories: Categories,
+  list: List,
 }
 
 export const Layout = ({ page }: LayoutProps) => {

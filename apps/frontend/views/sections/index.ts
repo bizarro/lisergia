@@ -5,4 +5,5 @@ export { default as Ingredients } from './Ingredients'
 export { default as List } from './List'
 export { default as Media } from './Media'
 export { default as Quote } from './Quote'
+export { default as Shop } from './Shop'
 

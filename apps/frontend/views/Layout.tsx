@@ -2,7 +2,7 @@ import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
 
 import { Footer, Menu, Navigation } from './layout/index'
-import { Categories, Hero, Highlight, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Shop } from './sections'
+import { Categories, Columns, Disclaimer, Gallery, Header, Hero, Highlight, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Seasons, Shop } from './sections'
 import { Head, Scripts } from './shared'
 
 interface LayoutProps {
@@ -10,17 +10,22 @@ interface LayoutProps {
 }
 
 const sectionsMap = {
+  header: Header,
   hero: Hero,
   highlight: Highlight,
   quote: Quote,
   media: Media,
   categories: Categories,
+  columns: Columns,
+  disclaimer: Disclaimer,
+  gallery: Gallery,
   list: List,
   ingredients: Ingredients,
   shop: Shop,
   intro: Intro,
   marquee: Marquee,
   lookbook: Lookbook,
+  seasons: Seasons,
 }
 
 export const Layout = ({ page }: LayoutProps) => {
@@ -44,7 +49,7 @@ export const Layout = ({ page }: LayoutProps) => {
           <div class="page">
             <div class="page__wrapper">
               <div class="page__content">
-                {page.data.content?.map((section: any) => {
+                {page.data.content?.map((section: any, index: number) => {
                   const SectionComponent = sectionsMap[section._type as keyof typeof sectionsMap]
 
                   if (!SectionComponent) {
@@ -55,6 +60,7 @@ export const Layout = ({ page }: LayoutProps) => {
                   return (
                     <SectionComponent
                       key={section._key}
+                      index={index}
                       {...section}
                       categories={page.categories}
                       getAsset={page.getAsset}

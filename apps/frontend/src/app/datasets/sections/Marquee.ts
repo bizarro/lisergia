@@ -1,8 +1,6 @@
 import { ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { DOMUtils, MathUtils } from '@lisergia/utilities'
-
-import Tempus from 'tempus'
+import { DOMUtils, MathUtils, TempusUtils } from '@lisergia/utilities'
 
 export default class extends Component {
   declare element: HTMLElement
@@ -34,8 +32,6 @@ export default class extends Component {
     target: 0,
   }
 
-  declare unsubscribeRaf: (() => void) | undefined
-
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
       application,
@@ -52,7 +48,7 @@ export default class extends Component {
 
     Viewport.on('resize', this.onResize)
 
-    this.unsubscribeRaf = Tempus.add(this.onUpdate)
+    TempusUtils.add(this.onUpdate)
   }
 
   transform(element: HTMLElement, x: number) {
@@ -137,7 +133,6 @@ export default class extends Component {
 
     Viewport.off('resize', this.onResize)
 
-    this.unsubscribeRaf?.()
-    this.unsubscribeRaf = undefined
+    TempusUtils.remove(this.onUpdate)
   }
 }

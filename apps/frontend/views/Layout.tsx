@@ -1,0 +1,108 @@
+import { Html } from '@elysiajs/html'
+import type { PageData } from '@utilities/data'
+
+import { Footer, Menu, Navigation } from './layout/index'
+import { Categories, Columns, Contact, Details, Disclaimer, Error, Gallery, Header, Hero, Highlight, Information, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Seasons, Shop } from './sections'
+import { Head, Scripts } from './shared'
+
+interface LayoutProps {
+  page: PageData
+}
+
+const sectionsMap = {
+  header: Header,
+  hero: Hero,
+  highlight: Highlight,
+  quote: Quote,
+  media: Media,
+  categories: Categories,
+  columns: Columns,
+  contact: Contact,
+  details: Details,
+  disclaimer: Disclaimer,
+  error: Error,
+  gallery: Gallery,
+  information: Information,
+  list: List,
+  ingredients: Ingredients,
+  shop: Shop,
+  intro: Intro,
+  marquee: Marquee,
+  lookbook: Lookbook,
+  seasons: Seasons,
+}
+
+export const Layout = ({ page }: LayoutProps) => {
+  const { isPhone, isTablet } = page
+  const template = page.data?.template || 'page'
+  const slug = page.data?.slug?.current || 'home'
+
+  return (
+    <html
+      class={isPhone ? 'phone' : isTablet ? 'tablet' : 'desktop'}
+      data-template={template || 'page'}
+      id={slug}
+      lang="en"
+    >
+      <Head social={page.data.social} typekit={page.typekit} />
+      <body>
+        <Menu menu={page.menu} settings={page.settings} />
+        <Navigation />
+
+        <div class="app">
+          <div class="page">
+            <div class="page__wrapper">
+              <div class="page__content">
+                {page.data.content?.map((section: any, index: number) => {
+                  const SectionComponent = sectionsMap[section._type as keyof typeof sectionsMap]
+
+                  if (!SectionComponent) {
+                    console.warn(`Missing section component: ${section._type}`)
+                    return null
+                  }
+
+                  const props = {
+                    ...section,
+                    categories: page.categories,
+                    getAsset: page.getAsset,
+                    getFile: page.getFile,
+                    parseHTML: page.parseHTML,
+                  }
+
+                  if (section._type === 'details' && page.data._type === 'product') {
+                    Object.assign(props, {
+                      label: page.data.label,
+                      title: page.data.title,
+                      price: page.data.price,
+                      slug: page.data.slug,
+                    })
+                  }
+
+                  return (
+                    <SectionComponent
+                      key={section._key}
+                      index={index}
+                      {...props}
+                    />
+                  )
+                })}
+              </div>
+
+              <div class="page__footer"></div>
+
+              <Footer
+                social={page.data.social}
+                footer={page.footer}
+                settings={page.settings}
+                parseHTML={page.parseHTML}
+                lowercase={page.lowercase}
+              />
+            </div>
+        </div>
+        </div>
+
+        <Scripts analytics={page.analytics} />
+      </body>
+    </html>
+  )
+}

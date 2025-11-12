@@ -1,0 +1,12 @@
+{
+  "compatibility_date": "2025-08-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "name": "lisergia",
+  "main": "src/worker.ts",
+  "tsconfig": "tsconfig.json",
+  "vars": {
+    "SANITY_API": "2023-05-03",
+    "SANITY_DATABASE": "production",
+    "SANITY_PROJECT": "lqn1inyo"
+  }
+}

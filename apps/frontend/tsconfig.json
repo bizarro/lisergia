@@ -6,10 +6,16 @@
     "lib": ["dom", "esnext"],
     "module": "preserve",
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "jsx": "react",
+    "jsxFactory": "Html.createElement",
+    "jsxFragmentFactory": "Html.Fragment",
     "incremental": true,
     "resolveJsonModule": true,
-    "types": ["node"]
+    "types": ["bun-types", "vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@utilities/*": ["utilities/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

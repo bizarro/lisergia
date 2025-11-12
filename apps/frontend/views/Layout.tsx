@@ -2,7 +2,7 @@ import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
 
 import { Footer, Menu, Navigation } from './layout/index'
-import { Categories, Columns, Disclaimer, Gallery, Header, Hero, Highlight, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Seasons, Shop } from './sections'
+import { Categories, Columns, Details, Disclaimer, Gallery, Header, Hero, Highlight, Information, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Seasons, Shop } from './sections'
 import { Head, Scripts } from './shared'
 
 interface LayoutProps {
@@ -17,8 +17,10 @@ const sectionsMap = {
   media: Media,
   categories: Categories,
   columns: Columns,
+  details: Details,
   disclaimer: Disclaimer,
   gallery: Gallery,
+  information: Information,
   list: List,
   ingredients: Ingredients,
   shop: Shop,
@@ -57,15 +59,28 @@ export const Layout = ({ page }: LayoutProps) => {
                     return null
                   }
 
+                  const props = {
+                    ...section,
+                    categories: page.categories,
+                    getAsset: page.getAsset,
+                    getFile: page.getFile,
+                    parseHTML: page.parseHTML,
+                  }
+
+                  if (section._type === 'details' && page.data._type === 'product') {
+                    Object.assign(props, {
+                      label: page.data.label,
+                      title: page.data.title,
+                      price: page.data.price,
+                      slug: page.data.slug,
+                    })
+                  }
+
                   return (
                     <SectionComponent
                       key={section._key}
                       index={index}
-                      {...section}
-                      categories={page.categories}
-                      getAsset={page.getAsset}
-                      getFile={page.getFile}
-                      parseHTML={page.parseHTML}
+                      {...props}
                     />
                   )
                 })}

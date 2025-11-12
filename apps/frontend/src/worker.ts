@@ -16,7 +16,7 @@ app
   .use(html())
   .get('/', page)
   .get('/:slug', page)
-  // .get('/product/:slug', page)
+  .get('/product/:slug', page)
   // .post('/signup', newsletter)
   // .get('*', notFound)
 

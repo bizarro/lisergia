@@ -4,7 +4,6 @@ import { Elysia } from 'elysia'
 
 import html from '@elysiajs/html'
 import newsletter from '../controllers/newsletter'
-import notFound from '../controllers/notFound'
 import page from '../controllers/page'
 
 const app = new Elysia({
@@ -17,8 +16,8 @@ app
   .get('/', page)
   .get('/:slug', page)
   .get('/product/:slug', page)
-  // .post('/signup', newsletter)
-  // .get('*', notFound)
+  .post('/signup', newsletter)
+  .get('*', page) // Use page controller for 404s
 
 export interface Env {
   SANITY_API?: string

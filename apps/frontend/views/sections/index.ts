@@ -1,5 +1,6 @@
 export { default as Categories } from './Categories'
 export { default as Columns } from './Columns'
+export { default as Contact } from './Contact'
 export { default as Details } from './Details'
 export { default as Disclaimer } from './Disclaimer'
 export { default as Error } from './Error'

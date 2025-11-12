@@ -2,7 +2,7 @@ import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
 
 import { Footer, Menu, Navigation } from './layout/index'
-import { Categories, Columns, Details, Disclaimer, Error, Gallery, Header, Hero, Highlight, Information, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Seasons, Shop } from './sections'
+import { Categories, Columns, Contact, Details, Disclaimer, Error, Gallery, Header, Hero, Highlight, Information, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Seasons, Shop } from './sections'
 import { Head, Scripts } from './shared'
 
 interface LayoutProps {
@@ -17,6 +17,7 @@ const sectionsMap = {
   media: Media,
   categories: Categories,
   columns: Columns,
+  contact: Contact,
   details: Details,
   disclaimer: Disclaimer,
   error: Error,

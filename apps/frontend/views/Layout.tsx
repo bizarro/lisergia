@@ -2,7 +2,7 @@ import { Html } from '@elysiajs/html'
 import type { PageData } from '@utilities/data'
 
 import { Footer, Menu, Navigation } from './layout/index'
-import { Categories, Hero, Highlight, Ingredients, List, Media, Quote, Shop } from './sections'
+import { Categories, Hero, Highlight, Ingredients, Intro, List, Lookbook, Marquee, Media, Quote, Shop } from './sections'
 import { Head, Scripts } from './shared'
 
 interface LayoutProps {
@@ -18,6 +18,9 @@ const sectionsMap = {
   list: List,
   ingredients: Ingredients,
   shop: Shop,
+  intro: Intro,
+  marquee: Marquee,
+  lookbook: Lookbook,
 }
 
 export const Layout = ({ page }: LayoutProps) => {

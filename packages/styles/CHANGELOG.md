@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 23.0.0
+
+### Major Changes
+
+- Add IS_LINKS_ENABLED flag.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@23.0.0
+
 ## 22.0.0
 
 ### Major Changes

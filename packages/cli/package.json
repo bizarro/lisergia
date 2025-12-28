@@ -1,12 +1,12 @@
 {
   "name": "@lisergia/cli",
-  "version": "22.0.0",
+  "version": "23.0.0",
   "bin": {
     "lisergia": "index.js"
   },
   "dependencies": {
-    "@lisergia/config-eslint": "22.0.0",
-    "@lisergia/config-tsconfig": "22.0.0",
+    "@lisergia/config-eslint": "23.0.0",
+    "@lisergia/config-tsconfig": "23.0.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.3.0",

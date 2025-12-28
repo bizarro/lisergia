@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/config-tsconfig",
-  "version": "22.0.0",
+  "version": "23.0.0",
   "files": [
     "base.json"
   ]

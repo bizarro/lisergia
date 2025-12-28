@@ -164,6 +164,8 @@ export class ApplicationManager extends Component {
   //
   // Initialization.
   //
+  IS_LINKS_ENABLED = true
+
   declare links: Links
 
   initPage() {
@@ -175,6 +177,10 @@ export class ApplicationManager extends Component {
   // Links.
   //
   createLinks() {
+    if (!this.IS_LINKS_ENABLED) {
+      return
+    }
+
     this.links = new Links(this)
   }
 

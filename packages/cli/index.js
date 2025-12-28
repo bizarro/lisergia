@@ -69,7 +69,7 @@ const config = {
       fileName: 'bundle.css',
       outputStyle: 'compressed',
       processor: () => postcss([autoprefixer()]),
-      silenceDeprecations: ['color-functions', 'global-builtin', 'import', 'legacy-js-api', 'slash-div'],
+      silenceDeprecations: ['color-functions', 'global-builtin', 'if-function', 'import', 'legacy-js-api', 'slash-div'],
       watch: path.join(configuration.src, 'styles'),
     }),
 

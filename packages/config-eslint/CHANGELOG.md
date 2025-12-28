@@ -1,5 +1,11 @@
 # @lisergia/config-eslint
 
+## 23.0.0
+
+### Major Changes
+
+- Add IS_LINKS_ENABLED flag.
+
 ## 22.0.0
 
 ### Major Changes

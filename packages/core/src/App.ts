@@ -281,10 +281,6 @@ export class ApplicationManager extends Component {
   // Pop State.
   //
   onPopState(event: PopStateEvent) {
-    if (event.state === null) {
-      return event.preventDefault()
-    }
-
     this.routePushState = false
     this.route = document.location.pathname
     this.routePushState = true

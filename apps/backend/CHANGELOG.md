@@ -1,5 +1,18 @@
 # cms
 
+## 24.0.0
+
+### Major Changes
+
+- Remove onPopState prevent default.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-eslint@24.0.0
+  - @lisergia/config-stylelint@24.0.0
+  - @lisergia/config-tsconfig@24.0.0
+
 ## 23.0.0
 
 ### Major Changes

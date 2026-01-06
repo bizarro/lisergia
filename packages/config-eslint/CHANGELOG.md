@@ -1,5 +1,11 @@
 # @lisergia/config-eslint
 
+## 24.0.0
+
+### Major Changes
+
+- Remove onPopState prevent default.
+
 ## 23.0.0
 
 ### Major Changes

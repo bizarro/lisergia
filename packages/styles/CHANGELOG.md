@@ -1,5 +1,16 @@
 # @lisergia/styles
 
+## 24.0.0
+
+### Major Changes
+
+- Remove onPopState prevent default.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-stylelint@24.0.0
+
 ## 23.0.0
 
 ### Major Changes

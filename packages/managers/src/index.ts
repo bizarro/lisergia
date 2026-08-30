@@ -1,2 +1,2 @@
-export * from './Pointer'
-export * from './Viewport'
+export * from './Pointer.js'
+export * from './Viewport.js'

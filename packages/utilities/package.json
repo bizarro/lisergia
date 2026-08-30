@@ -1,16 +1,15 @@
 {
   "name": "@lisergia/utilities",
   "version": "24.0.0",
+  "files": ["dist"],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
+    "build": "tsc --build --clean && tsc --build",
+    "dev": "tsc --build --watch"
   },
   "dependencies": {
-    "@lisergia/config-tsconfig": "24.0.0",
-    "gsap": "^3.13.0",
-    "tsup": "^8.5.0"
+    "@lisergia/config-tsconfig": "24.0.0"
   }
 }

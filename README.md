@@ -6,9 +6,12 @@
 
 ```sh
 git clone git@github.com:bizarro/lisergia.git
-npm i
-npm run dev
+bun install
+cp .env.example .env
+bun run dev
 ```
+
+All workspaces use the single root `.env`. Add local secrets there and run workspace commands through the root scripts so Bun passes the environment to Turbo and each app.
 
 ## Why this does exist?
 
@@ -22,7 +25,7 @@ Marketing landing pages typically align with the creative vision of art director
 
 ## Front End Architecture
 
-The Front End architecture is primarily composed of [Twig](https://twig.symfony.com/) for HTML markup, [SCSS](https://sass-lang.com/) for styling and [TypeScript](https://www.typescriptlang.org/) for JavaScript transpilation. Lisergia also includes several libraries by default to streamline development and improve the developer experience:
+The Front End architecture is Lisergia itself: server-rendered TSX views, SCSS, and a TypeScript client runtime that enhances the generated pages with transitions, datasets, and animations. Preact only turns the view tree into static HTML; it does not hydrate the page or replace Lisergia's runtime. Lisergia also includes several libraries by default to streamline development and improve the developer experience:
 
 - [Lenis](https://lenis.darkroom.engineering/): improves scroll behavior to feel smooth and natural by default.
 - [MobX](https://mobx.js.org/): simplifies and streamlines application state management.
@@ -32,20 +35,20 @@ The Front End architecture is primarily composed of [Twig](https://twig.symfony.
 
 ## Back End Architecture
 
-The Back End uses [Sanity](https://www.sanity.io/) as the Content Management System, with [Express](https://expressjs.com/) serving a JSON file generated from its structured content. Express offers the simplicity and flexibility needed to create custom endpoints and integrate with third-party services such as [Resend](https://resend.com/). For rendering views, we use a Node.js port of [Twig](https://twig.symfony.com/) as the template engine.
+The Back End uses [Sanity](https://www.sanity.io/) as the Content Management System. [Elysia](https://elysiajs.com/) is a deliberately thin HTTP layer running on [Cloudflare Workers](https://developers.cloudflare.com/workers/): it validates endpoints and passes content into the Lisergia view renderer, while Workers Static Assets serves the compiled frontend.
 
 ## Deployment
 
-Just plug this on [Vercel](https://vercel.com/) and your application is going to be available automatically through [Vercel Functions](https://vercel.com/docs/functions).
+Run `bun run deploy:web` from the repository root to build and deploy the Elysia Worker and its static assets with Wrangler. Run `bun run deploy:studio` to deploy Sanity Studio.
 
 ## Apps
 
-- `cms`: A local Sanity CMS instance, running at `https://localhost:3333/` by default.
-- `web`: A local Express server, running at `https://localhost:3000/` by default.
+- `backend`: The local Sanity Studio, running at `http://localhost:3000/`.
+- `frontend`: The local Elysia Worker and static frontend, running through Wrangler at `http://localhost:8787/`.
 
 ## Packages
 
-- `@lisergia/config-eslint`: Shared `eslint` configuration used across the monorepo.
+- Linting is handled by [Biome](https://biomejs.dev) via the root `biome.json`.
 - `@lisergia/config-typescript`: Shared `tsconfig.json` configurations used throughout the monorepo.
 - `@lisergia/cli`: Command-line interface used by the `web` application to generate the Front End bundle.
 - `@lisergia/core`: Core components that power the Lisergia framework.

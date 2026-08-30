@@ -1,8 +1,8 @@
-import { ApplicationManager, Component } from '@lisergia/core'
+import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
+import { type DOMRectBounds, DOMUtils, } from '@lisergia/utilities'
 
-import { autorun, computed, makeObservable } from 'mobx'
+import { autorun, } from 'mobx'
 
 export default class Shop extends Component {
   declare element: HTMLElement
@@ -21,9 +21,13 @@ export default class Shop extends Component {
       },
     })
 
-    Viewport.on('resize', this.onResize)
+    const disposeResize = Viewport.on('resize', this.onResize)
 
-    autorun(this.onUpdate)
+    if (disposeResize) {
+      this.addDisposer(disposeResize)
+    }
+
+    this.addDisposer(autorun(this.onUpdate))
   }
 
   onResize() {

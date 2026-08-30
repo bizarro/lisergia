@@ -1,8 +1,8 @@
 import { reaction } from 'mobx'
 
-import { ApplicationManager } from './App'
-import { Link } from './Link'
-import { EventEmitter } from './EventEmitter'
+import type { ApplicationManager } from './App.js'
+import { EventEmitter } from './EventEmitter.js'
+import { Link } from './Link.js'
 
 export class Links extends EventEmitter {
   declare application: ApplicationManager
@@ -21,7 +21,9 @@ export class Links extends EventEmitter {
   }
 
   addEventListeners() {
-    this.links?.forEach((link) => link.destroy())
+    this.links?.forEach((link) => {
+      link.destroy()
+    })
 
     const links = document.querySelectorAll('a')
 
@@ -37,7 +39,9 @@ export class Links extends EventEmitter {
   }
 
   onLinkClick(href: string) {
-    this.application.route = href.replace(window.location.origin, '')
+    const url = new URL(href, window.location.href)
+
+    this.application.route = `${url.pathname}${url.search}${url.hash}`
   }
 
   refresh() {

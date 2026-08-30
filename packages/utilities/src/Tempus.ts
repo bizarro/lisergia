@@ -1,4 +1,4 @@
-import Tempus, { TempusCallback, TempusOptions } from 'tempus'
+import Tempus, { type TempusCallback, type TempusOptions } from 'tempus'
 
 export class TempusUtilsManager {
   cache = new Map()

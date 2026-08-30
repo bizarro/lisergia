@@ -6,5 +6,7 @@ export default defineCliConfig({
     dataset: 'production',
   },
 
-  deployment: { autoUpdates: true },
+  deployment: {
+    autoUpdates: true,
+  },
 })

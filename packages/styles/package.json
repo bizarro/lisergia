@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@lisergia/config-stylelint": "24.0.0",
-    "stylelint": "^16.19.1"
+    "stylelint": "^17.14.1"
   }
 }

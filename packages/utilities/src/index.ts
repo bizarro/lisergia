@@ -1,7 +1,7 @@
-import './Polyfill'
+import './Polyfill.js'
 
-export * from './Canvas'
-export * from './Detection'
-export * from './DOM'
-export * from './Math'
-export * from './Tempus'
+export * from './Canvas.js'
+export * from './Detection.js'
+export * from './DOM.js'
+export * from './Math.js'
+export * from './Tempus.js'

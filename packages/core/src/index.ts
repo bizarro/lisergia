@@ -1,9 +1,9 @@
-export * from './App'
-export * from './Link'
-export * from './Links'
-export * from './Component'
-export * from './EventEmitter'
-export * from './Page'
+export * from './App.js'
+export * from './Component.js'
+export * from './EventEmitter.js'
+export * from './Link.js'
+export * from './Links.js'
+export * from './Page.js'
 
 import Tempus from 'tempus'
 

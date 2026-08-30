@@ -1,3 +1,12 @@
 {
-  "extends": "@lisergia/config-tsconfig/base.json"
+  "extends": "@lisergia/config-tsconfig/base.json",
+  "compilerOptions": {
+    "declarationMap": false,
+    "noEmitOnError": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "target": "es2022",
+    "tsBuildInfoFile": ".turbo/tsconfig.tsbuildinfo"
+  },
+  "include": ["src/**/*.ts"]
 }

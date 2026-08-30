@@ -1,4 +1,4 @@
-import { Component, ComponentSelector, ComponentSelectors } from '@lisergia/core'
+import { Component, type ComponentSelector, type ComponentSelectors } from '@lisergia/core'
 
 export default class extends Component {
   declare delay: number
@@ -21,7 +21,7 @@ export default class extends Component {
       },
     })
 
-    this.delay = parseInt(animationDelay ?? '0')
+    this.delay = parseInt(animationDelay ?? '0', 10)
   }
 
   declare observer: IntersectionObserver
@@ -54,5 +54,9 @@ export default class extends Component {
 
   removeEventListeners() {
     this.observer.unobserve(this.elements.target)
+  }
+
+  destroy() {
+    super.destroy()
   }
 }

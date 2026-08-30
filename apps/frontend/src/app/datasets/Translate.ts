@@ -1,4 +1,4 @@
-import { ApplicationManager, Component } from '@lisergia/core'
+import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
 import { DOMUtils, MathUtils } from '@lisergia/utilities'
 
@@ -24,7 +24,7 @@ export default class Translate extends Component {
       bounds: computed,
     })
 
-    autorun(this.onUpdate)
+    this.addDisposer(autorun(this.onUpdate))
   }
 
   get amount() {

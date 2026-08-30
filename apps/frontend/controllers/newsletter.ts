@@ -1,8 +1,4 @@
-import { Request, Response } from 'express'
-
-export default async (request: Request, response: Response) => {
-  const { email } = request.body
-
+export default async function subscribe(email: string) {
   try {
     const body = JSON.stringify({
       data: {
@@ -53,13 +49,13 @@ export default async (request: Request, response: Response) => {
     const fetchResponse = await fetch(url, options)
 
     if (fetchResponse.status === 202) {
-      response.status(202).send('Successfully subscribed!')
-    } else {
-      response.status(fetchResponse.status).send('Subscription failed.')
+      return new Response('Successfully subscribed!', { status: 202 })
     }
+
+    return new Response('Subscription failed.', { status: fetchResponse.status })
   } catch (error) {
     console.error('Error Subscribing:', error)
 
-    response.status(500).send('An error occurred.')
+    return new Response('An error occurred.', { status: 500 })
   }
 }

@@ -1,9 +1,9 @@
 import AutoBind from 'auto-bind'
-import { Emitter, Unsubscribe, createNanoEvents } from 'nanoevents'
+import { createNanoEvents, type Emitter, type Unsubscribe } from 'nanoevents'
 
 export class EventEmitter {
   emitter: Emitter
-  entries: Map<Function, Unsubscribe> = new Map()
+  entries: Map<unknown, Unsubscribe> = new Map()
 
   constructor() {
     AutoBind(this)
@@ -11,7 +11,7 @@ export class EventEmitter {
     this.emitter = createNanoEvents()
   }
 
-  on(event: string, callback: (...args: any) => void) {
+  on<Arguments extends unknown[]>(event: string, callback: (...args: Arguments) => void) {
     if (!callback) {
       return console.trace('No callback provided')
     }
@@ -23,7 +23,7 @@ export class EventEmitter {
     return emitter
   }
 
-  off(event: string, callback: (...args: any) => void) {
+  off<Arguments extends unknown[]>(_event: string, callback: (...args: Arguments) => void) {
     const unsubscribe = this.entries.get(callback)
 
     if (unsubscribe) {
@@ -33,12 +33,15 @@ export class EventEmitter {
     this.entries.delete(callback)
   }
 
-  fire(event: string, ...args: any[]) {
+  fire(event: string, ...args: unknown[]) {
     this.emitter.emit(event, ...args)
   }
 
   destroy() {
-    this.entries.forEach((unsubscribe) => unsubscribe())
+    this.entries.forEach((unsubscribe) => {
+      unsubscribe()
+    })
+
     this.entries.clear()
   }
 }

@@ -1,8 +1,9 @@
+import { CogIcon } from '@sanity/icons/Cog'
+import { DocumentsIcon } from '@sanity/icons/Documents'
+import { TiersIcon } from '@sanity/icons/Tiers'
 import type { StructureResolver } from 'sanity/structure'
 
-import { CogIcon, DocumentsIcon, TiersIcon } from '@sanity/icons'
-
-export const structure: StructureResolver = (S, context) =>
+export const structure: StructureResolver = (S) =>
   S.list()
     .id('root')
     .title('Lisergia')

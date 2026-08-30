@@ -1,4 +1,4 @@
-import { Page, PageParameters } from '@lisergia/core'
+import { Page, type PageParameters } from '@lisergia/core'
 
 export default class extends Page {
   declare element: HTMLElement

@@ -8,13 +8,13 @@ configure({
 
 import {
   Application,
-  ApplicationComponentData,
-  ApplicationComponentDatasetData,
-  ApplicationRoute,
-  Component,
-  ComponentParameters,
-  Page,
-  PageParameters,
+  type ApplicationComponentData,
+  type ApplicationComponentDatasetData,
+  type ApplicationRoute,
+  type Component,
+  type ComponentParameters,
+  type Page,
+  type PageParameters,
 } from '@lisergia/core'
 
 import Menu from './components/Menu'
@@ -26,18 +26,17 @@ import Paragraph from './datasets/Paragraph'
 import Parallax from './datasets/Parallax'
 import Reveal from './datasets/Reveal'
 import Source from './datasets/Source'
-import Title from './datasets/Title'
-import Translate from './datasets/Translate'
-
 import Categories from './datasets/sections/Categories'
 import Details from './datasets/sections/Details'
 import Footer from './datasets/sections/Footer'
 import Hero from './datasets/sections/Hero'
 import List from './datasets/sections/List'
-import Media from './datasets/sections/Media'
 import Marquee from './datasets/sections/Marquee'
+import Media from './datasets/sections/Media'
 import Seasons from './datasets/sections/Seasons'
 import Shop from './datasets/sections/Shop'
+import Title from './datasets/Title'
+import Translate from './datasets/Translate'
 
 import Standard from './templates/Standard'
 
@@ -137,3 +136,7 @@ Application.initPage()
 Application.initComponents(components)
 
 document.documentElement.classList.add('loaded')
+
+if (document.documentElement.dataset.sanityPreview === 'true') {
+  void import('./preview')
+}

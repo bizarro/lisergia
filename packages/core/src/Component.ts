@@ -1,12 +1,12 @@
-import { ApplicationManager } from './App'
-import { EventEmitter } from './EventEmitter'
+import type { ApplicationManager } from './App.js'
+import { EventEmitter } from './EventEmitter.js'
 
 export interface ComponentClasses {
   [key: string]: string
 }
 
 export interface ComponentElements {
-  [key: string]: Array<any> | Element | Array<Element> | HTMLElement | Array<HTMLElement> | NodeList | Window | null
+  [key: string]: unknown[] | Element | Array<Element> | HTMLElement | Array<HTMLElement> | NodeList | Window | null
 }
 
 export type ComponentSelector = string | HTMLElement
@@ -30,6 +30,7 @@ export class Component extends EventEmitter {
   autoListeners: boolean
   autoMount: boolean
   classes?: ComponentClasses
+  disposers: Set<() => void> = new Set()
   selector?: ComponentSelector
   selectors?: ComponentSelectors
 
@@ -129,11 +130,27 @@ export class Component extends EventEmitter {
     this.elements = {}
   }
 
+  addDisposer(disposer: () => void) {
+    this.disposers.add(disposer)
+
+    return disposer
+  }
+
+  destroyDisposers() {
+    this.disposers.forEach((dispose) => {
+      dispose()
+    })
+
+    this.disposers.clear()
+  }
+
   addEventListeners() {}
 
   removeEventListeners() {}
 
   destroy() {
+    this.destroyDisposers()
+
     super.destroy()
 
     this.removeEventListeners()

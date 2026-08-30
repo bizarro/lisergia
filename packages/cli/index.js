@@ -1,132 +1,104 @@
 #!/usr/bin/env node
 
-require('dotenv').config()
+import 'dotenv/config'
 
-const autoprefixer = require('autoprefixer')
-const browsersync = require('rollup-plugin-browsersync')
-const commonjs = require('@rollup/plugin-commonjs')
-const copy = require('rollup-plugin-copy')
-const glslify = require('rollup-plugin-glslify')
-const { nodeResolve } = require('@rollup/plugin-node-resolve')
-const postcss = require('postcss')
-const replace = require('@rollup/plugin-replace')
-const scss = require('rollup-plugin-scss')
-const svg = require('rollup-plugin-svg-icons')
-const terser = require('@rollup/plugin-terser')
-const typescript = require('@rollup/plugin-typescript')
-const { visualizer } = require('rollup-plugin-visualizer')
+import * as fs from 'node:fs'
+import * as path from 'node:path'
 
-const path = require('path')
-const rollup = require('rollup')
+import autoprefixer from 'autoprefixer'
+import { build, createServer } from 'vite'
+import glsl from 'vite-plugin-glsl'
 
 const [type] = process.argv.slice(2)
 
 const root = path.resolve()
 
-const configuration = {
-  root: path.join(root),
-  src: path.join(root, 'src'),
-  build: path.join(root, 'build'),
+const silenceDeprecations = [
+  'color-functions',
+  'global-builtin',
+  'if-function',
+  'import',
+  'legacy-js-api',
+  'slash-div',
+]
+
+function svgSpritePlugin(spritesDir, outputName = 'bundle.svg') {
+  return {
+    name: 'svg-sprite',
+    apply: 'build',
+    generateBundle() {
+      if (!fs.existsSync(spritesDir)) return
+
+      const files = fs.readdirSync(spritesDir).filter((f) => f.endsWith('.svg'))
+      const symbols = files.map((file) => {
+        const content = fs.readFileSync(path.join(spritesDir, file), 'utf-8')
+        const id = file.replace('.svg', '')
+        const viewBoxMatch = content.match(/viewBox="([^"]*)"/)
+        const innerMatch = content.match(/<svg[^>]*>([\s\S]*?)<\/svg>/i)
+        const viewBox = viewBoxMatch ? ` viewBox="${viewBoxMatch[1]}"` : ''
+        const inner = innerMatch ? innerMatch[1] : ''
+        return `<symbol id="${id}"${viewBox}>${inner}</symbol>`
+      })
+
+      const sprite = `<svg xmlns="http://www.w3.org/2000/svg" style="display:none">${symbols.join('')}</svg>`
+
+      this.emitFile({ type: 'asset', fileName: outputName, source: sprite })
+    },
+  }
 }
 
-const production = type == 'build'
-
-const config = {
-  input: path.join(configuration.src, 'app/index.ts'),
-  output: {
-    file: path.join(configuration.build, 'bundle.js'),
-    format: 'cjs',
-    sourcemap: !production,
-  },
-  plugins: [
-    replace({
-      preventAssignment: true,
-
-      'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
-    }),
-
-    commonjs(),
-
-    copy({
-      flatten: true,
-      targets: [
-        {
-          dest: configuration.build,
-          rename: (name, extension, fullPath) => fullPath.replace(path.join(configuration.src, 'shared'), ''),
-          src: `${path.join(configuration.src, 'shared')}/**`,
-        },
-      ],
-      verbose: true,
-    }),
-
-    glslify({
-      compress: production,
-    }),
-
-    nodeResolve(),
-
-    scss({
-      fileName: 'bundle.css',
-      outputStyle: 'compressed',
-      processor: () => postcss([autoprefixer()]),
-      silenceDeprecations: ['color-functions', 'global-builtin', 'if-function', 'import', 'legacy-js-api', 'slash-div'],
-      watch: path.join(configuration.src, 'styles'),
-    }),
-
-    svg({
-      inputFolder: path.join(configuration.src, 'sprites'),
-      output: path.join(configuration.build, 'bundle.svg'),
-    }),
-
-    typescript({
-      compilerOptions: {
-        lib: ['DOM', 'ESNext'],
-        target: 'ESNext',
-      },
-      include: ['**/*.ts'],
-      exclude: ['utilities/**/*.ts', 'router/**/*.ts', '*.ts'],
-      tsconfig: false,
-    }),
-
-    !production &&
-      browsersync({
-        port: process.env.BROWSERSYNC_PORT ?? 3030,
-        proxy: process.env.BROWSERSYNC_PROXY ?? 'localhost:3000',
-        files: [
-          {
-            match: [`${path.join(configuration.root, 'views')}/**`],
-            fn: function (event, file) {
-              this.reload()
-            },
+function createViteConfig(production = false) {
+  return {
+    root: path.join(root, 'src'),
+    publicDir: path.join(root, 'src', 'shared'),
+    build: {
+      outDir: path.join(root, 'build'),
+      emptyOutDir: true,
+      sourcemap: !production,
+      rollupOptions: {
+        input: path.join(root, 'src', 'app', 'index.ts'),
+        output: {
+          entryFileNames: 'bundle.js',
+          chunkFileNames: 'bundle-[hash].js',
+          assetFileNames: (assetInfo) => {
+            if (/\.css$/i.test(assetInfo.name ?? '')) return 'bundle.css'
+            return '[name][extname]'
           },
-        ],
-      }),
-
-    production && terser(),
-
-    visualizer(),
-  ],
-  preserveSymlinks: true,
+        },
+      },
+    },
+    css: {
+      postcss: {
+        plugins: [autoprefixer()],
+      },
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations,
+        },
+      },
+    },
+    plugins: [
+      glsl({ compress: production }),
+      svgSpritePlugin(path.join(root, 'src', 'sprites')),
+    ],
+    resolve: {
+      preserveSymlinks: true,
+    },
+    server: {
+      port: Number(process.env.VITE_PORT ?? process.env.BROWSERSYNC_PORT ?? 5173),
+      cors: true,
+      strictPort: true,
+    },
+  }
 }
 
-if (production) {
-  ;(async () => {
-    const bundle = await rollup.rollup(config)
-
-    await bundle.write({
-      file: config.output.file,
-    })
-  })()
+if (type === 'build') {
+  await build(createViteConfig(true))
 } else {
-  const watcher = rollup.watch(config)
+  const config = createViteConfig(false)
 
-  watcher.on('event', ({ result }) => {
-    if (result) {
-      result.close()
-    }
-  })
+  const server = await createServer(config)
+  await server.listen()
 
-  watcher.on('change', (id) => {
-    console.log('File refreshed', id)
-  })
+  server.printUrls()
 }

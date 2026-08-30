@@ -1,4 +1,4 @@
-import { ApplicationManager, Component } from '@lisergia/core'
+import { type ApplicationManager, Component } from '@lisergia/core'
 import { autorun } from 'mobx'
 
 export default class Navigation extends Component {
@@ -38,8 +38,12 @@ export default class Navigation extends Component {
   onToggle() {
     if (document.documentElement.classList.contains(this.classes.open)) {
       document.documentElement.classList.remove(this.classes.open)
+
+      window.posthog?.capture('navigation_menu_closed')
     } else {
       document.documentElement.classList.add(this.classes.open)
+
+      window.posthog?.capture('navigation_menu_opened')
     }
   }
 

@@ -1,4 +1,4 @@
-import { ApplicationManager, Component } from '@lisergia/core'
+import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
 import { DOMUtils, MathUtils } from '@lisergia/utilities'
 
@@ -73,7 +73,7 @@ export default class extends Component {
       this.direction = 'up'
     }
 
-    this.elements.items.forEach((element, index) => {
+    this.elements.items.forEach((element) => {
       element.position = -this.scroll.current - element.extra
 
       const bounds = element.position + element.offset + element.width

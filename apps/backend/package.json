@@ -3,26 +3,29 @@
   "private": true,
   "version": "24.0.0",
   "scripts": {
-    "development": "sanity dev --port=3000",
+    "build": "sanity build",
+    "build:cloudflare": "SANITY_STUDIO_PREVIEW_URL=https://lisergia.dev sanity build",
+    "dev": "sanity dev --port=3000",
     "start": "sanity start",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "deploy:cloudflare": "bun run build:cloudflare && wrangler deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "lint": "biome check ."
   },
   "dependencies": {
-    "@lisergia/config-eslint": "24.0.0",
     "@lisergia/config-stylelint": "24.0.0",
     "@lisergia/config-tsconfig": "24.0.0",
-    "@sanity/icons": "^3.7.0",
-    "@sanity/vision": "^4.6.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sanity": "^4.6.1",
-    "styled-components": "^6.1.15"
+    "@sanity/icons": "^5.2.1",
+    "@sanity/vision": "^6.11.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sanity": "^6.11.0",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
-    "eslint": "^9.9.0",
-    "prettier": "^3.0.2",
-    "typescript": "^5.1.6"
+    "@types/react": "^19.2.18",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.127.1"
   }
 }

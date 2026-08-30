@@ -1,4 +1,4 @@
-import { ApplicationManager, Component } from '@lisergia/core'
+import { type ApplicationManager, Component } from '@lisergia/core'
 
 export default class Newsletter extends Component {
   declare classes: {
@@ -31,22 +31,43 @@ export default class Newsletter extends Component {
     const formData = new FormData(this.elements.form)
     const email = formData.get('email')
 
-    const response = await window.fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-      }),
-    })
+    window.posthog?.capture('newsletter_signup_submitted')
+
+    let response: Response
+
+    try {
+      response = await window.fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      })
+    } catch (error) {
+      window.posthog?.captureException(error)
+
+      this.element.classList.add(this.classes.error)
+      return
+    }
 
     this.elements.form.setAttribute('disabled', 'disabled')
 
     if (response.ok) {
       this.element.classList.add(this.classes.success)
+
+      window.posthog?.capture('newsletter_signup_succeeded')
+
+      if (typeof email === 'string' && email) {
+        window.posthog?.identify(email, { email })
+      }
     } else {
       this.element.classList.add(this.classes.error)
+
+      window.posthog?.capture('newsletter_signup_failed', {
+        status_code: response.status,
+      })
     }
   }
 

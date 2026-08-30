@@ -1,11 +1,9 @@
-import Lenis, { LenisOptions } from 'lenis'
+import Lenis, { type LenisOptions } from 'lenis'
 import { makeObservable, observable } from 'mobx'
-import GSAP from 'gsap'
-import ScrollTrigger from 'gsap/src/ScrollTrigger'
-import Tempus from 'tempus'
+import Tempus, { type TempusState } from 'tempus'
 
-import { ApplicationManager } from './App'
-import { Component, ComponentClasses, ComponentSelectors } from './Component'
+import type { ApplicationManager } from './App.js'
+import { Component, type ComponentClasses, type ComponentSelectors } from './Component.js'
 
 export interface PageParameters {
   application: ApplicationManager
@@ -100,7 +98,7 @@ export class Page extends Component {
   components: Set<Component> = new Set()
 
   createComponents() {
-    this.datasets.map(({ component: Component, selector }) => {
+    this.datasets.forEach(({ component: Component, selector }) => {
       const elements = this.element.querySelectorAll(selector)
 
       const components = Array.from(elements).map((element) => {
@@ -146,19 +144,10 @@ export class Page extends Component {
       ...this.scrollOptions,
     })
 
-    GSAP.ticker.add(this.onGSAPTicker)
-    GSAP.ticker.lagSmoothing(0)
-
     this.lenis.on('scroll', this.onLenisScroll)
   }
 
-  onGSAPTicker(time: number) {
-    this.lenis.raf(time * 1000)
-  }
-
   onLenisScroll(event: { scroll: number }) {
-    ScrollTrigger.update()
-
     this.onScroll(event.scroll)
 
     this.emitter.emit('scroll', event)
@@ -170,8 +159,6 @@ export class Page extends Component {
 
       return
     }
-
-    GSAP.ticker.remove(this.onGSAPTicker)
 
     this.lenis.off('scroll', this.onLenisScroll)
     this.lenis?.destroy()
@@ -185,7 +172,7 @@ export class Page extends Component {
     this.lenis?.resize()
   }
 
-  onRAF(time: number) {
+  onRAF({ time }: TempusState) {
     this.lenis?.raf(time)
   }
 

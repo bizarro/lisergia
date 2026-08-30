@@ -1,7 +1,5 @@
-import { computed, makeObservable, observable } from 'mobx'
-import { Unsubscribe } from 'nanoevents'
-
 import { EventEmitter } from '@lisergia/core'
+import { computed, makeObservable, observable } from 'mobx'
 
 export class ViewportManager extends EventEmitter {
   static PHONE = 768
@@ -10,8 +8,6 @@ export class ViewportManager extends EventEmitter {
 
   height: number = window.innerHeight
   width: number = window.innerWidth
-
-  entries: Map<Function, Unsubscribe> = new Map()
 
   constructor() {
     super()
@@ -53,19 +49,19 @@ export class ViewportManager extends EventEmitter {
     return this.width >= ViewportManager.TABLET
   }
 
-  on(event: string, callback: (...args: any[]) => void) {
+  on<Arguments extends unknown[]>(event: string, callback: (...args: Arguments) => void) {
     const unsubscribe = super.on(event, callback)
 
     if (unsubscribe) {
       this.entries.set(callback, unsubscribe)
     }
 
-    callback(this)
+    Reflect.apply(callback, undefined, [this])
 
     return unsubscribe
   }
 
-  off(event: string, callback: (...args: any[]) => void) {
+  off<Arguments extends unknown[]>(event: string, callback: (...args: Arguments) => void) {
     super.off(event, callback)
 
     const unsubscribe = this.entries.get(callback)
@@ -89,7 +85,10 @@ export class ViewportManager extends EventEmitter {
   destroy() {
     super.destroy()
 
-    this.entries.forEach((unsubscribe) => unsubscribe())
+    this.entries.forEach((unsubscribe) => {
+      unsubscribe()
+    })
+
     this.entries.clear()
 
     window.removeEventListener('resize', this.onResize)

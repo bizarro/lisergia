@@ -1,8 +1,8 @@
-import { autorun, computed, IArrayDidChange, IValueDidChange, makeObservable, observable, observe } from 'mobx'
+import { autorun, computed, type IArrayDidChange, type IValueDidChange, makeObservable, observable, observe } from 'mobx'
 
-import { Component, ComponentParameters } from './Component'
-import { Links } from './Links'
-import { Page, PageParameters } from './Page'
+import { Component, type ComponentParameters } from './Component.js'
+import { Links } from './Links.js'
+import type { Page, PageParameters } from './Page.js'
 
 export interface ApplicationComponentData {
   component: new (params?: ComponentParameters) => Component
@@ -84,7 +84,7 @@ export class ApplicationManager extends Component {
   //
   canvas?: Component
   components: Array<Component> = []
-  transition?: Component & { onTransition?: (args: any) => Promise<void> }
+  transition?: Component & { onTransition?: (application: ApplicationManager) => void | Promise<void> }
 
   initComponents(components: Array<ApplicationComponentData>) {
     const classes = components.map(
@@ -116,11 +116,7 @@ export class ApplicationManager extends Component {
     }
   }
 
-  onComponentChange(event: IArrayDidChange<Component>) {
-    if (event.type === 'splice') {
-      const { added, removed } = event
-    }
-  }
+  onComponentChange(_event: IArrayDidChange<Component>) {}
 
   //
   // Datasets.
@@ -210,50 +206,88 @@ export class ApplicationManager extends Component {
   //
   // Navigate.
   //
-  route: string = window.location.pathname
+  route: string = `${window.location.pathname}${window.location.search}${window.location.hash}`
   routeHistory: Array<string> = [this.route]
+  routeRequestEnabled: boolean = true
   routePushState: boolean = true
 
-  onRouteChange({ oldValue, newValue }: IValueDidChange<string>) {
-    const href = newValue.replace(window.location.origin, '')
+  onRouteChange({ newValue }: IValueDidChange<string>) {
+    if (!this.routeRequestEnabled) {
+      return
+    }
 
-    this.onRouteChangeRequest({
+    const url = new URL(newValue, window.location.href)
+
+    if (url.origin !== window.location.origin) {
+      window.location.assign(url.href)
+
+      return
+    }
+
+    const href = `${url.pathname}${url.search}${url.hash}`
+
+    void this.onRouteChangeRequest({
       href,
       pushState: this.routePushState,
     })
   }
 
   async onRouteChangeRequest({ href, pushState = true }: { href: string; pushState: boolean }) {
-    const request = await window.fetch(href)
-    const response = await request.text()
+    try {
+      const request = await window.fetch(href)
 
-    this.onRequest({
-      href,
-      response,
-      pushState,
-    })
+      if (request.redirected) {
+        window.location.assign(request.url || href)
+
+        return
+      }
+
+      const contentType = request.headers.get('content-type')
+
+      if (contentType && !contentType.toLowerCase().includes('text/html')) {
+        window.location.assign(href)
+
+        return
+      }
+
+      const response = await request.text()
+
+      await this.onRequest({
+        href,
+        response,
+        pushState,
+      })
+    } catch {
+      window.location.assign(href)
+    }
   }
 
   //
   // Request.
   //
   nextPage: {
-    element?: Element
+    element?: HTMLElement
     template?: string
     title?: string
   } = {}
 
   async onRequest({ href, response, pushState }: { href: string; response: string; pushState: boolean }) {
-    let domParser: DOMParser | null = new DOMParser()
-    let dom: Document | null = domParser.parseFromString(response, 'text/html')
+    const dom = new DOMParser().parseFromString(response, 'text/html')
+    const html = dom.documentElement
+    const app = dom.querySelector<HTMLElement>('.app')
+    const page = app?.firstElementChild
+    const template = html.dataset.template ?? this.template
 
-    const html = dom!.querySelector('html')!
-    const app = dom!.querySelector('.app')!
+    if (!app || !(page instanceof HTMLElement) || !this.pages.has(template)) {
+      window.location.assign(href)
+
+      return
+    }
 
     this.nextPage = {
       element: app,
-      template: html.dataset.template ?? this.template,
-      title: dom!.title ?? document.title,
+      template,
+      title: dom.title || document.title,
     }
 
     if (this.transition) {
@@ -272,17 +306,26 @@ export class ApplicationManager extends Component {
     }
 
     this.routeHistory.push(href)
-
-    domParser = null
-    dom = null
   }
 
   //
   // Pop State.
   //
-  onPopState(event: PopStateEvent) {
+  onPopState() {
+    const route = `${document.location.pathname}${document.location.search}${document.location.hash}`
+    const currentUrl = new URL(this.route, window.location.origin)
+    const nextUrl = new URL(route, window.location.origin)
+
+    if (currentUrl.pathname === nextUrl.pathname && currentUrl.search === nextUrl.search) {
+      this.routeRequestEnabled = false
+      this.route = route
+      this.routeRequestEnabled = true
+
+      return
+    }
+
     this.routePushState = false
-    this.route = document.location.pathname
+    this.route = route
     this.routePushState = true
   }
 

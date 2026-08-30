@@ -1,25 +1,31 @@
-import { SplitText } from 'gsap/src/SplitText'
+import { splitText, type TextSplitter } from 'animejs/text'
 
 import Animation from '../classes/Animation'
+
+const WORD_TEMPLATE = '<div data-word="{i}">{value}</div>'
 
 export default class extends Animation {
   declare element: HTMLElement
   declare elements: {
-    words: NodeListOf<HTMLElement>
+    words: Array<HTMLElement>
     target: HTMLElement
   }
 
+  declare split: TextSplitter
+
   constructor({ element }: { element: HTMLElement }) {
-    SplitText.create(element, {
-      type: 'words',
+    const split = splitText(element, {
+      words: WORD_TEMPLATE,
     })
 
     super({
       element,
       elements: {
-        words: 'div div',
+        words: split.words,
       },
     })
+
+    this.split = split
 
     const directions = element.dataset.title?.split(',') ?? []
 
@@ -42,7 +48,7 @@ export default class extends Animation {
   animateOut() {
     super.animateOut()
 
-    this.elements.words.forEach((word, wordIndex) => {
+    this.elements.words.forEach((word) => {
       const direction = word.dataset.direction
 
       if (direction === 'top') {
@@ -57,5 +63,11 @@ export default class extends Animation {
 
       word.style.transition = ''
     })
+  }
+
+  destroy() {
+    this.split.revert()
+
+    super.destroy()
   }
 }

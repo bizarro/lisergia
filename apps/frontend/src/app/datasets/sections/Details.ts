@@ -1,4 +1,4 @@
-import { ApplicationManager, Component } from '@lisergia/core'
+import { type ApplicationManager, Component } from '@lisergia/core'
 
 export default class extends Component {
   declare classes: {
@@ -12,7 +12,7 @@ export default class extends Component {
     mediasButtons: NodeListOf<HTMLElement>
   }
 
-  constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
+  constructor({ element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
       classes: {
         buttonActive: 'details__gallery__navigation__button--active',
@@ -28,7 +28,12 @@ export default class extends Component {
 
   onToggle({ target }: MouseEvent) {
     const element = target as HTMLElement
-    const index = parseInt(element.dataset.index!)
+    const index = parseInt(element.dataset.index!, 10)
+
+    window.posthog?.capture('product_gallery_image_viewed', {
+      image_index: index,
+      total_images: this.elements.medias.length,
+    })
 
     this.elements.medias.forEach((media, mediaIndex) => {
       if (mediaIndex === index) {

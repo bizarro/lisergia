@@ -11,6 +11,7 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
+.dev.vars*
 
 # Testing
 coverage
@@ -18,14 +19,13 @@ coverage
 # Turbo
 .turbo
 
-# Vercel
-.vercel
-
 # Build Outputs
 .next/
 out/
 build
+.wrangler/
 dist
+*.tsbuildinfo
 
 # Debug
 npm-debug.log*

@@ -1,18 +1,55 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "globalDependencies": [".env"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "env": ["GOOGLE_ANALYTICS", "SANITY_API", "SANITY_DATABASE", "SANITY_PROJECT"],
+      "env": [
+        "ASSET_VERSION",
+        "POSTHOG_HOST",
+        "POSTHOG_KEY",
+        "SANITY_API",
+        "SANITY_DATABASE",
+        "SANITY_PROJECT",
+        "SANITY_STUDIO_PREVIEW_URL",
+        "SANITY_STUDIO_URL",
+        "TYPEKIT",
+        "VITE_ORIGIN",
+        "VITE_PORT"
+      ],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["**/*"]
+      "outputs": ["dist/**", "build/**", "*.js", "*.js.map", "*.d.ts", "*.d.ts.map"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint"],
+      "inputs": ["$TURBO_DEFAULT$", "biome.json", ".stylelintrc*"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
     },
     "dev": {
       "dependsOn": ["^build"],
       "cache": false,
+      "env": [
+        "ASSET_VERSION",
+        "BROWSERSYNC_PORT",
+        "BROWSERSYNC_PROXY",
+        "KLAVIYO_API_KEY",
+        "KLAVIYO_COMPANY_ID",
+        "KLAVIYO_LIST_ID",
+        "PORT",
+        "POSTHOG_HOST",
+        "POSTHOG_KEY",
+        "SANITY_API",
+        "SANITY_API_READ_TOKEN",
+        "SANITY_DATABASE",
+        "SANITY_PROJECT",
+        "SANITY_STUDIO_PREVIEW_URL",
+        "SANITY_STUDIO_URL",
+        "TYPEKIT",
+        "VITE_ORIGIN",
+        "VITE_PORT"
+      ],
       "persistent": true
     }
   },

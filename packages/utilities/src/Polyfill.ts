@@ -1,31 +1,35 @@
+type HTMLElementForEach = (
+  this: HTMLElement,
+  callback: (value: HTMLElement, key: HTMLElement, parent: HTMLElement) => void,
+  thisArg?: unknown,
+) => void
+
 declare interface HTMLElement {
-  forEach: Function
+  forEach: HTMLElementForEach
 }
 
 declare interface NodeList {
-  filter: Function
-  find: Function
-  map: Function
+  filter: typeof Array.prototype.filter
+  find: typeof Array.prototype.find
+  map: typeof Array.prototype.map
 }
 
 const HTMLElementPrototype = HTMLElement.prototype as {
-  forEach: Function
+  forEach: HTMLElementForEach
 }
 
 const NodeListPrototype = NodeList.prototype as {
-  filter: Function
-  find: Function
-  map: Function
+  filter: typeof Array.prototype.filter
+  find: typeof Array.prototype.find
+  map: typeof Array.prototype.map
 }
 
 /**
  * Allow `forEach` to work with single HTMLElement.
  */
 if (!HTMLElementPrototype.forEach) {
-  HTMLElementPrototype.forEach = function (callback: Function, thisArg: any) {
-    thisArg = thisArg || window
-
-    callback.call(thisArg, this, this, this)
+  HTMLElementPrototype.forEach = function (callback, thisArg) {
+    callback.call(thisArg ?? window, this, this, this)
   }
 }
 

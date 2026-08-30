@@ -8,9 +8,9 @@ export const createPromise = <T>(): [Promise<T>, (value: T) => void] => {
   return [promise, resolve!]
 }
 
-export const createPromiseWithReject = <T>(): [Promise<T>, (value: T) => void, (reason?: any) => void] => {
+export const createPromiseWithReject = <T>(): [Promise<T>, (value: T) => void, (reason?: unknown) => void] => {
   let resolve: (value: T) => void
-  let reject: (reason?: any) => void
+  let reject: (reason?: unknown) => void
 
   const promise = new Promise<T>((resolvePromise, rejectPromise) => {
     resolve = resolvePromise
@@ -22,9 +22,9 @@ export const createPromiseWithReject = <T>(): [Promise<T>, (value: T) => void, (
 
 export const createPromiseWithTimeout = <T>(
   timeout: number,
-): [Promise<T>, (value: T) => void, (reason?: any) => void] => {
+): [Promise<T>, (value: T) => void, (reason?: unknown) => void] => {
   let resolve: (value: T) => void
-  let reject: (reason?: any) => void
+  let reject: (reason?: unknown) => void
 
   const promise = new Promise<T>((resolvePromise, rejectPromise) => {
     resolve = resolvePromise

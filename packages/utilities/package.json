@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/utilities",
-  "version": "24.0.0",
+  "version": "25.0.0",
   "files": [
     "dist"
   ],
@@ -12,6 +12,6 @@
     "dev": "tsc --build --watch"
   },
   "dependencies": {
-    "@lisergia/config-tsconfig": "24.0.0"
+    "@lisergia/config-tsconfig": "25.0.0"
   }
 }

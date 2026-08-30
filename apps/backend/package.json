@@ -13,8 +13,8 @@
     "lint": "biome check ."
   },
   "dependencies": {
-    "@lisergia/config-stylelint": "24.0.0",
-    "@lisergia/config-tsconfig": "24.0.0",
+    "@lisergia/config-stylelint": "25.0.0",
+    "@lisergia/config-tsconfig": "25.0.0",
     "@sanity/icons": "^5.2.1",
     "@sanity/vision": "^6.11.0",
     "react": "^19.2.8",

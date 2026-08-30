@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/cli",
-  "version": "24.0.0",
+  "version": "25.0.0",
   "type": "module",
   "bin": {
     "lisergia": "index.js"
@@ -9,7 +9,7 @@
     "lint": "biome check ."
   },
   "dependencies": {
-    "@lisergia/config-tsconfig": "24.0.0",
+    "@lisergia/config-tsconfig": "25.0.0",
     "autoprefixer": "^10.5.4",
     "dotenv": "^17.4.2",
     "postcss": "^8.5.26",

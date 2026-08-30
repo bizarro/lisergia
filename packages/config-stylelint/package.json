@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/config-stylelint",
-  "version": "24.0.0",
+  "version": "25.0.0",
   "main": "index.js",
   "dependencies": {
     "stylelint": "^17.14.1",

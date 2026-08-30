@@ -1,5 +1,20 @@
 # @lisergia/cli
 
+## 25.0.0
+
+### Major Changes
+
+- Modernize the Lisergia toolchain and runtime packages for Bun, Vite, current TypeScript, and ESM output.
+
+  Improve client-side navigation, link handling, lifecycle cleanup, and package type safety.
+
+  Update shared configuration and dependency compatibility across the package suite.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/config-tsconfig@25.0.0
+
 ## 24.0.0
 
 ### Major Changes

@@ -6,7 +6,6 @@
       "name": "lisergia",
       "devDependencies": {
         "@biomejs/biome": "^2.5.11",
-        "prettier": "^3.9.6",
         "turbo": "^2.10.12",
         "typescript": "7.0.2",
         "vite": "^8.2.2",
@@ -27,7 +26,6 @@
       },
       "devDependencies": {
         "@types/react": "^19.2.18",
-        "prettier": "^3.9.6",
         "typescript": "^7.0.2",
         "wrangler": "^4.127.1",
       },
@@ -66,7 +64,6 @@
         "@types/ua-parser-js": "^0.7.39",
         "animejs": "^4.5.0",
         "mobx": "^7.0.3",
-        "prettier": "^3.9.6",
         "stylelint": "^17.14.1",
         "typescript": "^7.0.2",
         "wrangler": "^4.127.1",
@@ -86,13 +83,6 @@
         "sass": "^1.103.1",
         "vite": "^8.2.2",
         "vite-plugin-glsl": "^1.6.1",
-      },
-    },
-    "packages/config-prettier": {
-      "name": "@lisergia/config-prettier",
-      "version": "24.0.0",
-      "dependencies": {
-        "prettier-plugin-sort-json": "^4.2.0",
       },
     },
     "packages/config-stylelint": {
@@ -664,8 +654,6 @@
     "@lezer/lr": ["@lezer/lr@1.4.2", "", { "dependencies": { "@lezer/common": "^1.0.0" } }, "sha512-pu0K1jCIdnQ12aWNaAVU5bzi7Bd1w54J3ECgANPmYLtQKP0HBj2cE/5coBD66MT10xbtIuUr7tg0Shbsvk0mDA=="],
 
     "@lisergia/cli": ["@lisergia/cli@workspace:packages/cli"],
-
-    "@lisergia/config-prettier": ["@lisergia/config-prettier@workspace:packages/config-prettier"],
 
     "@lisergia/config-stylelint": ["@lisergia/config-stylelint@workspace:packages/config-stylelint"],
 
@@ -1912,8 +1900,6 @@
     "preact-render-to-string": ["preact-render-to-string@6.7.0", "", { "peerDependencies": { "preact": ">=10 || >= 11.0.0-0" } }, "sha512-Z4WR8fmLMRpdYqJ9i7vrlXSsSrxVJydwrkEXHapexfARbWfGb7vGcnvNQnIzN0cXciMVOlz/XLoiMCi9gUsy9Q=="],
 
     "prettier": ["prettier@3.9.6", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g=="],
-
-    "prettier-plugin-sort-json": ["prettier-plugin-sort-json@4.2.0", "", { "peerDependencies": { "prettier": "^3.0.0" } }, "sha512-jK1w3/7otTvHtv1eoLji2U9mEoOGeyl7QQQ/afLnjht1YtRLSUUk8o0rIIC/HUVXhoGPCFe4SVZbRGYjjUVgvA=="],
 
     "pretty-ms": ["pretty-ms@9.3.1", "", { "dependencies": { "parse-ms": "^4.0.0" } }, "sha512-HzMy3Geq23nVALD/M2LliU+F+M+gVNsvkQWWqeBZ8HDiCgzo6YPJ/Omrmtq24EFrIsk0a3EkQGEd7bDOo+IhGA=="],
 

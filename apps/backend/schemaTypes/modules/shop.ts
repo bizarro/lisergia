@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import { imageConfiguration } from '../shared/image'
+
 export const shop = defineType({
   fields: [
     defineField({
@@ -45,6 +47,7 @@ export const shop = defineType({
                           name: 'image',
                           title: 'Image',
                           type: 'image',
+                          ...imageConfiguration,
                           hidden: ({ parent }) => parent?.type !== 'image',
                         }),
                       ],

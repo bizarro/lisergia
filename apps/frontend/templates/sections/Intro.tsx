@@ -1,9 +1,7 @@
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { IntroSection } from '../types'
 
-export default function Intro({ section }: { section: IntroSection }) {
-  const asset = getAsset(section.image)
-
+export default function Intro({ section, priority = false }: { section: IntroSection; priority?: boolean }) {
   return (
     <header className="intro">
       <div className="intro__content">
@@ -21,7 +19,14 @@ export default function Intro({ section }: { section: IntroSection }) {
       </div>
 
       <figure className="intro__media" data-parallax>
-        <img alt={asset.alt} className="intro__media__image" data-src={asset.url} height="100%" width="100%" />
+        <SanityImage
+          className="intro__media__image"
+          fallbackAlt={section.title}
+          height="100%"
+          image={section.image}
+          priority={priority}
+          width="100%"
+        />
       </figure>
     </header>
   )

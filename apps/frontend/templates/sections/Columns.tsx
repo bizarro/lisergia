@@ -1,20 +1,24 @@
 import { stegaClean } from '@sanity/client/stega'
 
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { ColumnsSection } from '../types'
 
-export default function Columns({ section }: { section: ColumnsSection }) {
+export default function Columns({ section, priority = false }: { section: ColumnsSection; priority?: boolean }) {
   return (
     <section className={`columns columns--${stegaClean(section.type) ?? ''}`}>
       <div className="columns__media">
-        {section.list?.map((item, index) => {
-          const asset = getAsset(item.asset)
-          return (
-            <figure key={index} className={`columns__media__image columns__media__image--${index + 1}`} data-parallax>
-              <img alt={asset.alt} className="columns__media__image" data-src={asset.url} height="100%" width="100%" />
-            </figure>
-          )
-        })}
+        {section.list?.map((item, index) => (
+          <figure key={index} className={`columns__media__image columns__media__image--${index + 1}`} data-parallax>
+            <SanityImage
+              className="columns__media__image"
+              fallbackAlt={section.title}
+              height="100%"
+              image={item}
+              priority={priority && index === 0}
+              width="100%"
+            />
+          </figure>
+        ))}
       </div>
 
       <div className="columns__content">

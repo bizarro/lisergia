@@ -1,11 +1,14 @@
 import { defineField, defineType } from 'sanity'
 
+import { imageConfiguration } from './image'
+
 export const social = defineType({
   fields: [
     defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
+      ...imageConfiguration,
     }),
 
     defineField({

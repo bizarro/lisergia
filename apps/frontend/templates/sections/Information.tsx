@@ -1,6 +1,7 @@
 import { stegaClean } from '@sanity/client/stega'
 
-import { getAsset, parseHTML } from '../helpers'
+import SanityImage from '../components/SanityImage'
+import { parseHTML } from '../helpers'
 import type { InformationSection } from '../types'
 
 function processInformationHTML(html: string): string {
@@ -16,19 +17,23 @@ function processInformationHTML(html: string): string {
     .replace(/<\/li>/g, '</span></div></li>')
 }
 
-export default function Information({ section }: { section: InformationSection }) {
-  const asset = section.image?.asset ? getAsset(section.image.asset) : null
-
+export default function Information({
+  section,
+  priority = false,
+}: {
+  section: InformationSection
+  priority?: boolean
+}) {
   return (
     <section className={`information information--${stegaClean(section.type) ?? ''}`}>
       <div className="information__media">
-        {asset && (
+        {section.image && (
           <figure className="information__media__image" data-parallax>
-            <img
-              alt={asset.alt}
+            <SanityImage
               className="information__media__image"
-              data-src={asset.url}
               height="100%"
+              image={section.image}
+              priority={priority}
               width="100%"
             />
           </figure>

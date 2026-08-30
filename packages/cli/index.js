@@ -13,14 +13,7 @@ const [type] = process.argv.slice(2)
 
 const root = path.resolve()
 
-const silenceDeprecations = [
-  'color-functions',
-  'global-builtin',
-  'if-function',
-  'import',
-  'legacy-js-api',
-  'slash-div',
-]
+const silenceDeprecations = ['color-functions', 'global-builtin', 'if-function', 'import', 'legacy-js-api', 'slash-div']
 
 function svgSpritePlugin(spritesDir, outputName = 'bundle.svg') {
   return {
@@ -77,10 +70,7 @@ function createViteConfig(production = false) {
         },
       },
     },
-    plugins: [
-      glsl({ compress: production }),
-      svgSpritePlugin(path.join(root, 'src', 'sprites')),
-    ],
+    plugins: [glsl({ compress: production }), svgSpritePlugin(path.join(root, 'src', 'sprites'))],
     resolve: {
       preserveSymlinks: true,
     },

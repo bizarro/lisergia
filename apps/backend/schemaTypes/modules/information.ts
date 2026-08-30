@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
+import { imageConfiguration } from '../shared/image'
+
 export const information = defineType({
   fields: [
     defineField({
@@ -29,6 +31,7 @@ export const information = defineType({
       name: 'image',
       title: 'Image',
       type: 'image',
+      ...imageConfiguration,
     }),
   ],
   name: 'information',

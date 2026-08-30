@@ -1,7 +1,9 @@
 {
   "name": "@lisergia/core",
   "version": "24.0.0",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",

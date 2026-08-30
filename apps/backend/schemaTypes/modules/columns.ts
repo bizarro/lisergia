@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import { imageConfiguration } from '../shared/image'
+
 export const columns = defineType({
   fields: [
     defineField({
@@ -39,6 +41,7 @@ export const columns = defineType({
           name: 'image',
           title: 'Image',
           type: 'image',
+          ...imageConfiguration,
         }),
       ],
       type: 'array',

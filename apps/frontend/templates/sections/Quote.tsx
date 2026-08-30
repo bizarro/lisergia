@@ -1,7 +1,7 @@
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { QuoteSection } from '../types'
 
-export default function Quote({ section }: { section: QuoteSection }) {
+export default function Quote({ section, priority = false }: { section: QuoteSection; priority?: boolean }) {
   const parts = section.title?.split('|') ?? []
 
   return (
@@ -13,14 +13,18 @@ export default function Quote({ section }: { section: QuoteSection }) {
           ))}
         </p>
 
-        {section.list?.map((item, index) => {
-          const asset = getAsset(item.asset)
-          return (
-            <figure key={index} className="quote__media">
-              <img alt={asset.alt} className="quote__image" data-src={asset.url} height="100%" width="100%" />
-            </figure>
-          )
-        })}
+        {section.list?.map((item, index) => (
+          <figure key={index} className="quote__media">
+            <SanityImage
+              className="quote__image"
+              fallbackAlt={section.title}
+              height="100%"
+              image={item}
+              priority={priority && index === 0}
+              width="100%"
+            />
+          </figure>
+        ))}
       </div>
     </section>
   )

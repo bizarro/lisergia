@@ -1,8 +1,0 @@
-{
-  "name": "@lisergia/config-prettier",
-  "version": "24.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "prettier-plugin-sort-json": "^4.2.0"
-  }
-}

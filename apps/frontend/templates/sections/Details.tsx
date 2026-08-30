@@ -1,5 +1,6 @@
 import Button from '../components/Button'
-import { getAsset, parseHTML } from '../helpers'
+import SanityImage from '../components/SanityImage'
+import { parseHTML } from '../helpers'
 import type { DetailsSection } from '../types'
 
 interface DetailsProps {
@@ -21,30 +22,34 @@ function processDetailsHTML(html: string): string {
     .replace(/<\/li>/g, '</div></li>')
 }
 
-export default function Details({ section, label, title, price }: DetailsProps) {
+export default function Details({
+  section,
+  label,
+  title,
+  price,
+  priority = false,
+}: DetailsProps & { priority?: boolean }) {
   const gallery = section.gallery ?? []
 
   return (
     <header className="details">
       <div className="details__gallery">
-        {gallery.map((item, index) => {
-          const asset = getAsset(item)
-          return (
-            <figure
-              key={index}
-              className={`details__header__media${index === 0 ? ' details__header__media--active' : ''}`}
-              data-parallax
-            >
-              <img
-                alt={asset.alt}
-                className="details__header__media__image"
-                data-src={asset.url}
-                height="100%"
-                width="100%"
-              />
-            </figure>
-          )
-        })}
+        {gallery.map((item, index) => (
+          <figure
+            key={index}
+            className={`details__header__media${index === 0 ? ' details__header__media--active' : ''}`}
+            data-parallax
+          >
+            <SanityImage
+              className="details__header__media__image"
+              fallbackAlt={title}
+              height="100%"
+              image={item}
+              priority={priority && index === 0}
+              width="100%"
+            />
+          </figure>
+        ))}
 
         <div className="details__gallery__navigation">
           {gallery.map((_, index) => (

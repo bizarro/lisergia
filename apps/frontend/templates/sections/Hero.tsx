@@ -1,15 +1,20 @@
 import Button from '../components/Button'
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { HeroSection } from '../types'
 
-export default function Hero({ section }: { section: HeroSection }) {
-  const asset = getAsset(section.image)
-
+export default function Hero({ section, priority = false }: { section: HeroSection; priority?: boolean }) {
   return (
     <header className="hero">
       <div className="hero__box">
         <figure className="hero__media">
-          <img alt={asset.alt} className="hero__media__image" data-src={asset.url} height="100%" width="100%" />
+          <SanityImage
+            className="hero__media__image"
+            fallbackAlt={section.title}
+            height="100%"
+            image={section.image}
+            priority={priority}
+            width="100%"
+          />
         </figure>
 
         <div className="hero__content">

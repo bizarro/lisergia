@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import { imageConfiguration } from '../shared/image'
+
 export const lookbook = defineType({
   fields: [
     defineField({
@@ -42,6 +44,7 @@ export const lookbook = defineType({
                           name: 'image',
                           title: 'Image',
                           type: 'image',
+                          ...imageConfiguration,
                           hidden: ({ parent }) => parent?.type !== 'image',
                         }),
                       ],

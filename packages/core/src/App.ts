@@ -1,4 +1,12 @@
-import { autorun, computed, type IArrayDidChange, type IValueDidChange, makeObservable, observable, observe } from 'mobx'
+import {
+  autorun,
+  computed,
+  type IArrayDidChange,
+  type IValueDidChange,
+  makeObservable,
+  observable,
+  observe,
+} from 'mobx'
 
 import { Component, type ComponentParameters } from './Component.js'
 import { Links } from './Links.js'

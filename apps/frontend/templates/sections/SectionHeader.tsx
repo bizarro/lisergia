@@ -1,14 +1,19 @@
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { HeaderSection } from '../types'
 
-export default function SectionHeader({ section }: { section: HeaderSection }) {
-  const asset = getAsset(section.image)
-
+export default function SectionHeader({ section, priority = false }: { section: HeaderSection; priority?: boolean }) {
   return (
     <header className="header">
       <div className="header__box">
         <figure className="header__media">
-          <img alt={asset.alt} className="header__media__image" data-src={asset.url} height="100%" width="100%" />
+          <SanityImage
+            className="header__media__image"
+            fallbackAlt={section.title}
+            height="100%"
+            image={section.image}
+            priority={priority}
+            width="100%"
+          />
         </figure>
 
         <div className="header__content">

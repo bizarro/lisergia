@@ -1,9 +1,10 @@
 import { stegaClean } from '@sanity/client/stega'
 
-import { getAsset, parseHTML } from '../helpers'
+import SanityImage from '../components/SanityImage'
+import { parseHTML } from '../helpers'
 import type { LookbookSection } from '../types'
 
-export default function Lookbook({ section }: { section: LookbookSection }) {
+export default function Lookbook({ section, priority = false }: { section: LookbookSection; priority?: boolean }) {
   return (
     <>
       {section.list?.map((entry, entryIndex) => {
@@ -12,14 +13,13 @@ export default function Lookbook({ section }: { section: LookbookSection }) {
           <article key={entryIndex} className={`lookbook-${n}`}>
             {entry.content?.map((item, itemIndex) => {
               if (stegaClean(item.entry.type) === 'image' && item.entry.image) {
-                const asset = getAsset(item.entry.image)
                 return (
                   <figure key={itemIndex} className={`lookbook-${n}__media`} data-parallax>
-                    <img
-                      alt={asset.alt}
+                    <SanityImage
                       className={`lookbook-${n}__media__image`}
-                      data-src={asset.url}
                       height="100%"
+                      image={item.entry.image}
+                      priority={priority && entryIndex === 0 && itemIndex === 0}
                       width="100%"
                     />
                   </figure>

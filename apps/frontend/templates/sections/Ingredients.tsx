@@ -1,9 +1,14 @@
-import { getAsset, parseHTML } from '../helpers'
+import SanityImage from '../components/SanityImage'
+import { parseHTML } from '../helpers'
 import type { IngredientsSection } from '../types'
 
-export default function Ingredients({ section }: { section: IngredientsSection }) {
-  const asset = getAsset(section.image)
-
+export default function Ingredients({
+  section,
+  priority = false,
+}: {
+  section: IngredientsSection
+  priority?: boolean
+}) {
   return (
     <section className="ingredients">
       <div className="ingredients__box">
@@ -31,7 +36,14 @@ export default function Ingredients({ section }: { section: IngredientsSection }
         </div>
 
         <figure className="ingredients__media" data-animation="parallax">
-          <img alt={asset.alt} className="ingredients__media__image" data-src={asset.url} height="100%" width="100%" />
+          <SanityImage
+            className="ingredients__media__image"
+            fallbackAlt={section.title}
+            height="100%"
+            image={section.image}
+            priority={priority}
+            width="100%"
+          />
         </figure>
       </div>
     </section>

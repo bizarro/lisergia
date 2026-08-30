@@ -51,7 +51,7 @@ export default function PageHead({ data }: PageHeadProps) {
       )}
 
       {/* Stylesheets */}
-      <link rel="preconnect" href="https://api.sanity.io" />
+      <link rel="preconnect" href="https://cdn.sanity.io" />
 
       {typekit && (
         <>

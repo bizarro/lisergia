@@ -7,11 +7,18 @@ import type { SanityImageAsset } from './types'
 
 export function getAsset(image: SanityImageSource): SanityImageAsset {
   const config = client.config()
-  return getImageAsset(image, {
-    baseUrl: config.apiHost,
+  const asset = getImageAsset(image, {
     projectId: config.projectId!,
     dataset: config.dataset!,
   })
+
+  const imageAlt = typeof image === 'object' && image !== null && 'alt' in image ? image.alt : undefined
+  const alt = typeof imageAlt === 'string' ? (stegaClean(imageAlt)?.trim() ?? '') : ''
+
+  return {
+    ...asset,
+    alt,
+  }
 }
 
 export function getFile(file: SanityFileSource) {

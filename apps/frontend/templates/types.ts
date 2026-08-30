@@ -1,10 +1,14 @@
-import type { SanityFileSource, SanityImageSource } from '@sanity/asset-utils'
+import type { SanityFileSource, SanityImageObjectStub, SanityImageSource } from '@sanity/asset-utils'
 
 export type { SanityFileSource, SanityImageSource }
 
+export type SanityImage = SanityImageObjectStub & {
+  alt?: string
+}
+
 export interface SanityImageAsset {
   url: string
-  alt?: string
+  alt: string
   width?: number
   height?: number
 }
@@ -58,7 +62,7 @@ export interface Settings {
 export interface PageSocial {
   title?: string
   description?: string
-  image?: SanityImageSource
+  image?: SanityImage
 }
 
 export interface PageData {
@@ -77,7 +81,7 @@ export interface PageData {
   title?: string
   label?: string
   price?: number
-  image?: SanityImageSource
+  image?: SanityImage
   isPreview: boolean
   isDesktop: boolean
   isPhone: boolean
@@ -93,14 +97,14 @@ export interface ButtonData {
 
 export interface HeroSection {
   _type: 'hero'
-  image: SanityImageSource
+  image: SanityImage
   title?: string
   button?: ButtonData
 }
 
 export interface HeaderSection {
   _type: 'header'
-  image: SanityImageSource
+  image: SanityImage
   title?: string
 }
 
@@ -109,7 +113,7 @@ export interface IntroSection {
   label?: string
   title?: string
   description?: string
-  image: SanityImageSource
+  image: SanityImage
 }
 
 export interface CategoriesSection {
@@ -118,7 +122,7 @@ export interface CategoriesSection {
   title?: string
   list?: Array<{
     link?: { title?: string }
-    image: SanityImageSource
+    image: SanityImage
   }>
 }
 
@@ -128,7 +132,7 @@ export interface ColumnsSection {
   label?: string
   title?: string
   description?: string
-  list?: Array<{ asset: SanityImageSource }>
+  list?: SanityImage[]
 }
 
 export interface ContactSection {
@@ -142,7 +146,7 @@ export interface ContactSection {
 export interface DetailsSection {
   _type: 'details'
   description?: unknown
-  gallery?: SanityImageSource[]
+  gallery?: SanityImage[]
 }
 
 export interface DisclaimerSection {
@@ -154,7 +158,7 @@ export interface DisclaimerSection {
 
 export interface ErrorSection {
   _type: 'error'
-  image: SanityImageSource
+  image: SanityImage
   title?: string
   description?: string
   button?: ButtonData
@@ -163,7 +167,7 @@ export interface ErrorSection {
 export interface GallerySection {
   _type: 'gallery'
   title?: string
-  list?: Array<{ asset: SanityImageSource }>
+  list?: SanityImage[]
 }
 
 export interface HighlightSection {
@@ -171,13 +175,13 @@ export interface HighlightSection {
   label?: string
   title?: string
   description?: string
-  list?: SanityImageSource[]
+  list?: SanityImage[]
 }
 
 export interface InformationSection {
   _type: 'information'
   type?: string
-  image?: { asset: SanityImageSource }
+  image?: SanityImage
   description?: unknown
 }
 
@@ -185,7 +189,7 @@ export interface IngredientsSection {
   _type: 'ingredients'
   title?: string
   description?: unknown
-  image: SanityImageSource
+  image: SanityImage
   list?: Array<{
     title?: string
     region?: string
@@ -209,7 +213,7 @@ export interface LookbookSection {
     content?: Array<{
       entry: {
         type: 'image' | 'text'
-        image?: SanityImageSource
+        image?: SanityImage
         title?: unknown
       }
     }>
@@ -229,7 +233,7 @@ export interface MediaSection {
 export interface QuoteSection {
   _type: 'quote'
   title?: string
-  list?: Array<{ asset: SanityImageSource }>
+  list?: SanityImage[]
 }
 
 export interface SeasonsSection {
@@ -237,7 +241,7 @@ export interface SeasonsSection {
   title?: string
   description?: string
   label?: string
-  list?: Array<{ asset: SanityImageSource }>
+  list?: SanityImage[]
 }
 
 export interface ShopSection {
@@ -248,12 +252,12 @@ export interface ShopSection {
         type: 'product' | 'image'
         product?: {
           slug: { current: string }
-          image: { asset: SanityImageSource }
+          image: SanityImage
           label?: string
           title?: string
           price?: number
         }
-        image?: { asset: SanityImageSource }
+        image?: SanityImage
       }
     }>
   }>

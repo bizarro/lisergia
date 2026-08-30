@@ -1,7 +1,7 @@
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { SeasonsSection } from '../types'
 
-export default function Seasons({ section }: { section: SeasonsSection }) {
+export default function Seasons({ section, priority = false }: { section: SeasonsSection; priority?: boolean }) {
   const titleParts = section.title?.split('-') ?? []
 
   return (
@@ -21,20 +21,18 @@ export default function Seasons({ section }: { section: SeasonsSection }) {
           <p className="seasons__highlight">{section.label}</p>
 
           <div className="seasons__gallery">
-            {section.list?.map((item, index) => {
-              const asset = getAsset(item.asset)
-              return (
-                <figure key={index} className={`seasons__gallery__media seasons__gallery__media--${index + 1}`}>
-                  <img
-                    alt={asset.alt}
-                    className="seasons__gallery__media__image"
-                    data-src={asset.url}
-                    height="100%"
-                    width="100%"
-                  />
-                </figure>
-              )
-            })}
+            {section.list?.map((item, index) => (
+              <figure key={index} className={`seasons__gallery__media seasons__gallery__media--${index + 1}`}>
+                <SanityImage
+                  className="seasons__gallery__media__image"
+                  fallbackAlt={section.title}
+                  height="100%"
+                  image={item}
+                  priority={priority && index === 0}
+                  width="100%"
+                />
+              </figure>
+            ))}
           </div>
         </div>
       </div>

@@ -1,14 +1,15 @@
 import { stegaClean } from '@sanity/client/stega'
 
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { Category, ShopSection } from '../types'
 
 interface ShopProps {
   section: ShopSection
   categories: Category[]
+  priority?: boolean
 }
 
-export default function Shop({ section, categories }: ShopProps) {
+export default function Shop({ section, categories, priority = false }: ShopProps) {
   return (
     <section className="shop">
       <div className="shop__wrapper">
@@ -31,16 +32,16 @@ export default function Shop({ section, categories }: ShopProps) {
               {category.content?.map((item, itemIndex) => {
                 if (stegaClean(item.entry.type) === 'product' && item.entry.product) {
                   const product = item.entry.product
-                  const asset = getAsset(product.image.asset)
                   return (
                     <article key={itemIndex} className="shop__category__item">
                       <a href={`/product/${stegaClean(product.slug.current)}`}>
                         <figure className="shop__category__item__media">
-                          <img
-                            alt={asset.alt}
+                          <SanityImage
                             className="shop__category__item__media__image"
-                            data-src={asset.url}
+                            fallbackAlt={product.title}
                             height="100%"
+                            image={product.image}
+                            priority={priority && catIndex === 0 && itemIndex === 0}
                             width="100%"
                           />
                         </figure>
@@ -61,14 +62,13 @@ export default function Shop({ section, categories }: ShopProps) {
                 }
 
                 if (stegaClean(item.entry.type) === 'image' && item.entry.image) {
-                  const asset = getAsset(item.entry.image.asset)
                   return (
                     <figure key={itemIndex} className="shop__category__media" data-parallax>
-                      <img
-                        alt={asset.alt}
+                      <SanityImage
                         className="shop__category__media__image"
-                        data-src={asset.url}
                         height="100%"
+                        image={item.entry.image}
+                        priority={priority && catIndex === 0 && itemIndex === 0}
                         width="100%"
                       />
                     </figure>

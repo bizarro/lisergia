@@ -1,9 +1,6 @@
 import { type ClientPerspective, validateApiPerspective } from '@sanity/client'
 import { validatePreviewUrl } from '@sanity/preview-url-secret'
-import {
-  perspectiveCookieName,
-  urlSearchParamPreviewSecret,
-} from '@sanity/preview-url-secret/constants'
+import { perspectiveCookieName, urlSearchParamPreviewSecret } from '@sanity/preview-url-secret/constants'
 import { withoutSecretSearchParams } from '@sanity/preview-url-secret/without-secret-search-params'
 
 import { client } from '../client'

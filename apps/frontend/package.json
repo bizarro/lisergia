@@ -46,7 +46,6 @@
     "@types/ua-parser-js": "^0.7.39",
     "animejs": "^4.5.0",
     "mobx": "^7.0.3",
-    "prettier": "^3.9.6",
     "stylelint": "^17.14.1",
     "typescript": "^7.0.2",
     "wrangler": "^4.127.1"

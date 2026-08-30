@@ -1,14 +1,19 @@
 import Button from '../components/Button'
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { ErrorSection as ErrorSectionData } from '../types'
 
-export default function ErrorSection({ section }: { section: ErrorSectionData }) {
-  const asset = getAsset(section.image)
-
+export default function ErrorSection({ section, priority = false }: { section: ErrorSectionData; priority?: boolean }) {
   return (
     <header className="error">
       <figure className="error__media">
-        <img alt={asset.alt} className="error__media__image" data-src={asset.url} height="100%" width="100%" />
+        <SanityImage
+          className="error__media__image"
+          fallbackAlt={section.title}
+          height="100%"
+          image={section.image}
+          priority={priority}
+          width="100%"
+        />
       </figure>
 
       <div className="error__wrapper">

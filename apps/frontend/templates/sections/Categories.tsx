@@ -1,7 +1,7 @@
-import { getAsset } from '../helpers'
+import SanityImage from '../components/SanityImage'
 import type { CategoriesSection } from '../types'
 
-export default function Categories({ section }: { section: CategoriesSection }) {
+export default function Categories({ section, priority = false }: { section: CategoriesSection; priority?: boolean }) {
   const list = section.list ?? []
   const lastItem = list[list.length - 1]
 
@@ -24,35 +24,33 @@ export default function Categories({ section }: { section: CategoriesSection }) 
               {lastItem.link?.title}
 
               <figure>
-                <img
-                  alt={getAsset(lastItem.image).alt}
+                <SanityImage
                   className="categories__gallery__image"
-                  data-src={getAsset(lastItem.image).url}
+                  fallbackAlt={lastItem.link?.title ?? section.title}
                   height="100%"
+                  image={lastItem.image}
+                  priority={priority}
                   width="100%"
                 />
               </figure>
             </div>
           )}
 
-          {list.map((item, index) => {
-            const asset = getAsset(item.image)
-            return (
-              <div key={index} className="categories__gallery__media">
-                {item.link?.title}
+          {list.map((item, index) => (
+            <div key={index} className="categories__gallery__media">
+              {item.link?.title}
 
-                <figure>
-                  <img
-                    alt={asset.alt}
-                    className="categories__gallery__image"
-                    data-src={asset.url}
-                    height="100%"
-                    width="100%"
-                  />
-                </figure>
-              </div>
-            )
-          })}
+              <figure>
+                <SanityImage
+                  className="categories__gallery__image"
+                  fallbackAlt={item.link?.title ?? section.title}
+                  height="100%"
+                  image={item.image}
+                  width="100%"
+                />
+              </figure>
+            </div>
+          ))}
         </div>
       </div>
     </section>

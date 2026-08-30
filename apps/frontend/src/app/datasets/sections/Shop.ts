@@ -1,8 +1,8 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { type DOMRectBounds, DOMUtils, } from '@lisergia/utilities'
+import { type DOMRectBounds, DOMUtils } from '@lisergia/utilities'
 
-import { autorun, } from 'mobx'
+import { autorun } from 'mobx'
 
 export default class Shop extends Component {
   declare element: HTMLElement

@@ -25,7 +25,6 @@ export class Link extends Component {
       event.ctrlKey ||
       event.shiftKey ||
       event.altKey ||
-      this.element.hasAttribute('data-link-override') ||
       this.element.hasAttribute('download')
     ) {
       return false
@@ -53,7 +52,7 @@ export class Link extends Component {
     const isLocal = isHttp && url.origin === window.location.origin
 
     if (isLocal) {
-      this.element.addEventListener('click', this.onClick)
+      this.element.onclick = this.onClick
     } else if (isHttp) {
       if (!this.element.hasAttribute('target')) {
         this.element.setAttribute('target', '_blank')
@@ -69,6 +68,8 @@ export class Link extends Component {
   }
 
   removeEventListeners() {
-    this.element.removeEventListener('click', this.onClick)
+    if (this.element.onclick === this.onClick) {
+      this.element.onclick = null
+    }
   }
 }

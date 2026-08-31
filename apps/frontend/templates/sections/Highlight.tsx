@@ -1,7 +1,7 @@
 import SanityImage from '../components/SanityImage'
 import type { HighlightSection } from '../types'
 
-const speeds = [1.5, -0.5, 1, -2]
+const speeds = [1, -0.5, 1, -2]
 const imageSizes = [
   '(max-width: 767px) 51vw, 29vw',
   '(max-width: 767px) 39vw, 16vw',

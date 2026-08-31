@@ -26,10 +26,9 @@ export default function Seasons({ section, priority = false }: { section: Season
                 <SanityImage
                   className="seasons__gallery__media__image"
                   fallbackAlt={section.title}
-                  height="100%"
                   image={item}
                   priority={priority && index === 0}
-                  width="100%"
+                  sizes="(max-width: 767px) calc(100vw - 40px), calc(100vw - 80px)"
                 />
               </figure>
             ))}

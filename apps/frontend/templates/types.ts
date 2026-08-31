@@ -11,6 +11,7 @@ export interface SanityImageAsset {
   alt: string
   width?: number
   height?: number
+  srcSet?: string
 }
 
 export interface SanityFileAsset {

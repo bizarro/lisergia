@@ -12,10 +12,9 @@ export default function Columns({ section, priority = false }: { section: Column
             <SanityImage
               className="columns__media__image"
               fallbackAlt={section.title}
-              height="100%"
               image={item}
               priority={priority && index === 0}
-              width="100%"
+              sizes={index === 1 ? '(max-width: 767px) 47vw, 24vw' : '(max-width: 767px) calc(100vw - 40px), 47vw'}
             />
           </figure>
         ))}

@@ -18,10 +18,9 @@ export default function Quote({ section, priority = false }: { section: QuoteSec
             <SanityImage
               className="quote__image"
               fallbackAlt={section.title}
-              height="100%"
               image={item}
               priority={priority && index === 0}
-              width="100%"
+              sizes="(max-width: 767px) 48px, 80px"
             />
           </figure>
         ))}

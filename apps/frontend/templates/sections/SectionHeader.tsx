@@ -9,10 +9,8 @@ export default function SectionHeader({ section, priority = false }: { section: 
           <SanityImage
             className="header__media__image"
             fallbackAlt={section.title}
-            height="100%"
             image={section.image}
             priority={priority}
-            width="100%"
           />
         </figure>
 

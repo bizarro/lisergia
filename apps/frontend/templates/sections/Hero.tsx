@@ -10,10 +10,8 @@ export default function Hero({ section, priority = false }: { section: HeroSecti
           <SanityImage
             className="hero__media__image"
             fallbackAlt={section.title}
-            height="100%"
             image={section.image}
             priority={priority}
-            width="100%"
           />
         </figure>
 

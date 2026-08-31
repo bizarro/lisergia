@@ -17,28 +17,30 @@ import {
   type PageParameters,
 } from '@lisergia/core'
 
+import createAsyncDataset from './AsyncDataset'
 import Menu from './components/Menu'
 import Navigation from './components/Navigation'
 import Transition from './components/Transition'
-
-import Newsletter from './datasets/Newsletter'
-import Paragraph from './datasets/Paragraph'
-import Parallax from './datasets/Parallax'
-import Reveal from './datasets/Reveal'
 import Source from './datasets/Source'
-import Categories from './datasets/sections/Categories'
-import Details from './datasets/sections/Details'
-import Footer from './datasets/sections/Footer'
-import Hero from './datasets/sections/Hero'
-import List from './datasets/sections/List'
-import Marquee from './datasets/sections/Marquee'
-import Media from './datasets/sections/Media'
-import Seasons from './datasets/sections/Seasons'
-import Shop from './datasets/sections/Shop'
-import Title from './datasets/Title'
-import Translate from './datasets/Translate'
 
 import Standard from './templates/Standard'
+
+const Newsletter = createAsyncDataset(() => import('./datasets/Newsletter'))
+const Paragraph = createAsyncDataset(() => import('./datasets/Paragraph'))
+const Parallax = createAsyncDataset(() => import('./datasets/Parallax'))
+const Reveal = createAsyncDataset(() => import('./datasets/Reveal'))
+const Title = createAsyncDataset(() => import('./datasets/Title'))
+const Translate = createAsyncDataset(() => import('./datasets/Translate'))
+
+const Categories = createAsyncDataset(() => import('./datasets/sections/Categories'))
+const Details = createAsyncDataset(() => import('./datasets/sections/Details'))
+const Footer = createAsyncDataset(() => import('./datasets/sections/Footer'))
+const Hero = createAsyncDataset(() => import('./datasets/sections/Hero'))
+const List = createAsyncDataset(() => import('./datasets/sections/List'))
+const Marquee = createAsyncDataset(() => import('./datasets/sections/Marquee'))
+const Media = createAsyncDataset(() => import('./datasets/sections/Media'))
+const Seasons = createAsyncDataset(() => import('./datasets/sections/Seasons'))
+const Shop = createAsyncDataset(() => import('./datasets/sections/Shop'))
 
 const components: Array<ApplicationComponentData> = [
   {
@@ -128,14 +130,11 @@ const routes: Array<ApplicationRoute> = [
 ]
 
 Application.initRoutes(routes)
-Application.initSprites()
 
 Application.initDatasets(datasets)
 Application.initPage()
 
 Application.initComponents(components)
-
-document.documentElement.classList.add('loaded')
 
 if (document.documentElement.dataset.sanityPreview === 'true') {
   void import('./preview')

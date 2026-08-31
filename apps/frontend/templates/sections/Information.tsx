@@ -31,10 +31,9 @@ export default function Information({
           <figure className="information__media__image" data-parallax>
             <SanityImage
               className="information__media__image"
-              height="100%"
               image={section.image}
               priority={priority}
-              width="100%"
+              sizes="(max-width: 767px) calc(100vw - 40px), 47vw"
             />
           </figure>
         )}

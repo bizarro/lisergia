@@ -2,6 +2,12 @@ import SanityImage from '../components/SanityImage'
 import type { HighlightSection } from '../types'
 
 const speeds = [1.5, -0.5, 1, -2]
+const imageSizes = [
+  '(max-width: 767px) 51vw, 29vw',
+  '(max-width: 767px) 39vw, 16vw',
+  '(max-width: 767px) 38vw, 18vw',
+  '(max-width: 767px) 60vw, 33vw',
+]
 
 export default function Highlight({ section, priority = false }: { section: HighlightSection; priority?: boolean }) {
   return (
@@ -24,10 +30,9 @@ export default function Highlight({ section, priority = false }: { section: High
             <SanityImage
               className="highlight__media__image"
               fallbackAlt={section.title}
-              height="100%"
               image={media}
               priority={priority && index === 0}
-              width="100%"
+              sizes={imageSizes[index] ?? '60vw'}
             />
           </div>
         </figure>

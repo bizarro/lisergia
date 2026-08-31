@@ -1,6 +1,6 @@
 import { stegaClean } from '@sanity/client/stega'
 
-import { lowercase, parseHTML } from '../helpers'
+import { getVersionedPath, lowercase, parseHTML } from '../helpers'
 import type { Footer as FooterData, PageSocial, Settings } from '../types'
 
 interface FooterProps {
@@ -10,6 +10,8 @@ interface FooterProps {
 }
 
 export default function Footer({ footer, settings, social }: FooterProps) {
+  const spriteUrl = getVersionedPath('/bundle.svg')
+
   return (
     <footer className="footer">
       <div className="footer__column">
@@ -87,7 +89,7 @@ export default function Footer({ footer, settings, social }: FooterProps) {
                   {item.text}
 
                   <svg className="footer__social__icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <use xlinkHref={`#${lowercase(item.text)}`}></use>
+                    <use href={`${spriteUrl}#${lowercase(item.text)}`}></use>
                   </svg>
                 </a>
               </li>

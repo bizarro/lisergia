@@ -1,6 +1,6 @@
 import { stegaClean } from '@sanity/client/stega'
 
-import { lowercase } from '../helpers'
+import { getVersionedPath, lowercase } from '../helpers'
 import type { Menu as MenuData, Settings } from '../types'
 
 interface MenuProps {
@@ -9,6 +9,8 @@ interface MenuProps {
 }
 
 export default function Menu({ menu, settings }: MenuProps) {
+  const spriteUrl = getVersionedPath('/bundle.svg')
+
   return (
     <nav className="menu">
       <div className="menu__box">
@@ -39,7 +41,7 @@ export default function Menu({ menu, settings }: MenuProps) {
                 {item.text}
 
                 <svg className="menu__social__icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <use xlinkHref={`#${lowercase(item.text)}`}></use>
+                  <use href={`${spriteUrl}#${lowercase(item.text)}`}></use>
                 </svg>
               </a>
             </li>

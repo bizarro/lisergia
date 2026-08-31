@@ -39,10 +39,9 @@ export default function Shop({ section, categories, priority = false }: ShopProp
                           <SanityImage
                             className="shop__category__item__media__image"
                             fallbackAlt={product.title}
-                            height="100%"
                             image={product.image}
                             priority={priority && catIndex === 0 && itemIndex === 0}
-                            width="100%"
+                            sizes="(max-width: 767px) 100vw, 50vw"
                           />
                         </figure>
 
@@ -66,10 +65,9 @@ export default function Shop({ section, categories, priority = false }: ShopProp
                     <figure key={itemIndex} className="shop__category__media" data-parallax>
                       <SanityImage
                         className="shop__category__media__image"
-                        height="100%"
                         image={item.entry.image}
                         priority={priority && catIndex === 0 && itemIndex === 0}
-                        width="100%"
+                        sizes="(max-width: 767px) 100vw, 50vw"
                       />
                     </figure>
                   )

@@ -5,6 +5,15 @@ import { parseHTML } from '../helpers'
 import type { LookbookSection } from '../types'
 
 export default function Lookbook({ section, priority = false }: { section: LookbookSection; priority?: boolean }) {
+  const imageSizes = [
+    '(max-width: 767px) 100vw, 50vw',
+    '100vw',
+    '(max-width: 767px) 100vw, 41vw',
+    '(max-width: 767px) 100vw, 30vw',
+    '100vw',
+    '(max-width: 767px) 100vw, 66vw',
+  ]
+
   return (
     <>
       {section.list?.map((entry, entryIndex) => {
@@ -17,10 +26,9 @@ export default function Lookbook({ section, priority = false }: { section: Lookb
                   <figure key={itemIndex} className={`lookbook-${n}__media`} data-parallax>
                     <SanityImage
                       className={`lookbook-${n}__media__image`}
-                      height="100%"
                       image={item.entry.image}
                       priority={priority && entryIndex === 0 && itemIndex === 0}
-                      width="100%"
+                      sizes={imageSizes[entryIndex] ?? '100vw'}
                     />
                   </figure>
                 )

@@ -26,12 +26,18 @@ export default class extends Component {
 
   declare observer: IntersectionObserver
 
+  isTargetInViewport() {
+    const bounds = this.elements.target.getBoundingClientRect()
+
+    return bounds.bottom > 0 && bounds.top < window.innerHeight
+  }
+
   createObserver() {
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!this.isVisible && entry.isIntersecting) {
           this.animateIn()
-        } else {
+        } else if (this.isVisible && !entry.isIntersecting) {
           this.animateOut()
         }
       })

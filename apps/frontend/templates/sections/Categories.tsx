@@ -27,10 +27,9 @@ export default function Categories({ section, priority = false }: { section: Cat
                 <SanityImage
                   className="categories__gallery__image"
                   fallbackAlt={lastItem.link?.title ?? section.title}
-                  height="100%"
                   image={lastItem.image}
                   priority={priority}
-                  width="100%"
+                  sizes="(max-width: 767px) 65vw, 47vw"
                 />
               </figure>
             </div>
@@ -44,9 +43,8 @@ export default function Categories({ section, priority = false }: { section: Cat
                 <SanityImage
                   className="categories__gallery__image"
                   fallbackAlt={item.link?.title ?? section.title}
-                  height="100%"
                   image={item.image}
-                  width="100%"
+                  sizes="(max-width: 767px) 65vw, 47vw"
                 />
               </figure>
             </div>

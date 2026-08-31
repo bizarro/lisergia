@@ -39,10 +39,8 @@ export default function Ingredients({
           <SanityImage
             className="ingredients__media__image"
             fallbackAlt={section.title}
-            height="100%"
             image={section.image}
             priority={priority}
-            width="100%"
           />
         </figure>
       </div>

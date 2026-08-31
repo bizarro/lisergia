@@ -33,7 +33,9 @@ export default class extends Animation {
       word.dataset.direction = directions[index]
     })
 
-    this.animateOut()
+    if (!this.isTargetInViewport()) {
+      this.animateOut()
+    }
   }
 
   animateIn() {

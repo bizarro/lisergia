@@ -22,10 +22,9 @@ export default function Intro({ section, priority = false }: { section: IntroSec
         <SanityImage
           className="intro__media__image"
           fallbackAlt={section.title}
-          height="100%"
           image={section.image}
           priority={priority}
-          width="100%"
+          sizes="(max-width: 767px) 100vw, 59vw"
         />
       </figure>
     </header>

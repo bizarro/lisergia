@@ -1,6 +1,21 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
 
-import { animate } from 'animejs'
+async function animateOpacity(element: HTMLElement, from: number, to: number) {
+  const animation = element.animate(
+    { opacity: [String(from), String(to)] },
+    {
+      duration: 1000,
+      easing: 'linear',
+      fill: 'forwards',
+    },
+  )
+
+  await animation.finished
+
+  element.style.opacity = String(to)
+
+  animation.cancel()
+}
 
 export default class Transition extends Component {
   constructor({ application }: { application: ApplicationManager }) {
@@ -14,10 +29,7 @@ export default class Transition extends Component {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!prefersReducedMotion) {
-      await animate(application.currentPage!.element, {
-        duration: 1000,
-        opacity: 0,
-      })
+      await animateOpacity(application.currentPage!.element, 1, 0)
     }
 
     application.currentPage!.element.remove()
@@ -33,13 +45,7 @@ export default class Transition extends Component {
     })
 
     if (!prefersReducedMotion) {
-      await animate(application.currentPage!.element, {
-        duration: 1000,
-        opacity: {
-          from: 0,
-          to: 1,
-        },
-      })
+      await animateOpacity(application.currentPage!.element, 0, 1)
     }
   }
 }

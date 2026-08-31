@@ -43,10 +43,9 @@ export default function Details({
             <SanityImage
               className="details__header__media__image"
               fallbackAlt={title}
-              height="100%"
               image={item}
               priority={priority && index === 0}
-              width="100%"
+              sizes="(max-width: 767px) calc(100vw - 40px), 47vw"
             />
           </figure>
         ))}

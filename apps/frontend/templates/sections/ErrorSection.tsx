@@ -9,10 +9,9 @@ export default function ErrorSection({ section, priority = false }: { section: E
         <SanityImage
           className="error__media__image"
           fallbackAlt={section.title}
-          height="100%"
           image={section.image}
           priority={priority}
-          width="100%"
+          sizes="720px"
         />
       </figure>
 

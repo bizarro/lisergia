@@ -7,7 +7,7 @@
 .hero__media {
   @extend %cover;
 
-  transform: scale(1.2);
+  transform: scale(1);
 }
 
 .hero__media__image {
@@ -25,11 +25,11 @@
 .hero__box {
   align-items: center;
   background: var(--color-black);
-  border-radius: calc(1rem * var(--border));
+  border-radius: calc(1rem * var(--border, 1));
   color: var(--color-white);
   display: flex;
   flex-direction: column;
-  inset: calc(8rem * var(--inset, 0)) calc(4rem * var(--inset, 0)) calc(4rem * var(--inset, 0));
+  inset: calc(8rem * var(--inset, 1)) calc(4rem * var(--inset, 1)) calc(4rem * var(--inset, 1));
   justify-content: center;
   overflow: hidden;
   position: absolute;
@@ -37,11 +37,11 @@
   transform: translateZ(0);
 
   @include media('>=desktop') {
-    inset: calc(80px * var(--inset, 0)) calc(40px * var(--inset, 0)) calc(40px * var(--inset, 0));
+    inset: calc(80px * var(--inset, 1)) calc(40px * var(--inset, 1)) calc(40px * var(--inset, 1));
   }
 
   @include media('<phone') {
-    inset: calc(6rem * var(--inset, 0)) calc(2rem * var(--inset, 0)) calc(2rem * var(--inset, 0));
+    inset: calc(6rem * var(--inset, 1)) calc(2rem * var(--inset, 1)) calc(2rem * var(--inset, 1));
   }
 }
 
@@ -213,7 +213,7 @@
   display: flex;
   justify-content: center;
   margin: 5rem auto 0;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 1.2s var(--ease-out-expo);
 
   .hero--active & {

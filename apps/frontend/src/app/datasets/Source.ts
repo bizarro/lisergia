@@ -1,7 +1,7 @@
 import { Component } from '@lisergia/core'
 
 export default class Source extends Component {
-  declare element: HTMLElement
+  declare element: HTMLImageElement
 
   constructor({ element }: { element: HTMLElement }) {
     super({
@@ -31,6 +31,10 @@ export default class Source extends Component {
   animateIn() {
     this.element.onload = () => {
       this.element.classList.add('loaded')
+    }
+
+    if (this.element.dataset.srcset) {
+      this.element.setAttribute('srcset', this.element.dataset.srcset)
     }
 
     this.element.setAttribute('src', this.element.dataset.src!)

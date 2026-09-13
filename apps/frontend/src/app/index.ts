@@ -1,11 +1,5 @@
 import '../styles/index.scss'
 
-import { configure } from 'mobx'
-
-configure({
-  enforceActions: 'never',
-})
-
 import {
   Application,
   type ApplicationComponentData,

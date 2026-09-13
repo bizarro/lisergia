@@ -1,13 +1,3 @@
-import {
-  autorun,
-  computed,
-  type IArrayDidChange,
-  type IValueDidChange,
-  makeObservable,
-  observable,
-  observe,
-} from 'mobx'
-
 import { Component, type ComponentParameters } from './Component.js'
 import { Links } from './Links.js'
 import type { Page, PageParameters } from './Page.js'
@@ -35,36 +25,6 @@ export class ApplicationManager extends Component {
       autoListeners: false,
       element: '.app',
     })
-
-    makeObservable(this, {
-      // Application DOM Element.
-      element: observable,
-
-      // Components.
-      canvas: observable,
-      components: observable,
-      transition: observable,
-
-      // Page Information.
-      currentPage: observable,
-      nextPage: observable,
-
-      // Route Information.
-      route: observable,
-      routeHistory: observable,
-
-      // Template Information.
-      template: observable,
-
-      // Page Scroll.
-      scroll: computed,
-    })
-
-    observe(this.components, this.onComponentChange)
-    observe(this, 'route', this.onRouteChange)
-
-    autorun(this.onTitleUpdate)
-    autorun(this.onTemplateUpdate)
 
     this.addEventListeners()
   }
@@ -123,8 +83,6 @@ export class ApplicationManager extends Component {
       this.components.splice(index, 1)
     }
   }
-
-  onComponentChange(_event: IArrayDidChange<Component>) {}
 
   //
   // Datasets.
@@ -203,6 +161,8 @@ export class ApplicationManager extends Component {
 
     this.currentPage = page
     this.currentPage.create()
+
+    this.fire('page', page)
   }
 
   destroyPage() {
@@ -216,15 +176,21 @@ export class ApplicationManager extends Component {
   //
   route: string = `${window.location.pathname}${window.location.search}${window.location.hash}`
   routeHistory: Array<string> = [this.route]
-  routeRequestEnabled: boolean = true
-  routePushState: boolean = true
 
-  onRouteChange({ newValue }: IValueDidChange<string>) {
-    if (!this.routeRequestEnabled) {
-      return
+  setRoute(route: string) {
+    if (route === this.route) {
+      return false
     }
 
-    const url = new URL(newValue, window.location.href)
+    this.route = route
+
+    this.fire('route', route)
+
+    return true
+  }
+
+  navigate(href: string, { pushState = true }: { pushState?: boolean } = {}) {
+    const url = new URL(href, window.location.href)
 
     if (url.origin !== window.location.origin) {
       window.location.assign(url.href)
@@ -232,11 +198,15 @@ export class ApplicationManager extends Component {
       return
     }
 
-    const href = `${url.pathname}${url.search}${url.hash}`
+    const route = `${url.pathname}${url.search}${url.hash}`
+
+    if (!this.setRoute(route)) {
+      return
+    }
 
     void this.onRouteChangeRequest({
-      href,
-      pushState: this.routePushState,
+      href: route,
+      pushState,
     })
   }
 
@@ -298,6 +268,9 @@ export class ApplicationManager extends Component {
       title: dom.title || document.title,
     }
 
+    this.onTitleUpdate()
+    this.onTemplateUpdate()
+
     if (this.transition) {
       await this.transition.onTransition?.(this)
     } else {
@@ -324,17 +297,14 @@ export class ApplicationManager extends Component {
     const currentUrl = new URL(this.route, window.location.origin)
     const nextUrl = new URL(route, window.location.origin)
 
+    // Hash-only change: update the route without requesting a new page.
     if (currentUrl.pathname === nextUrl.pathname && currentUrl.search === nextUrl.search) {
-      this.routeRequestEnabled = false
-      this.route = route
-      this.routeRequestEnabled = true
+      this.setRoute(route)
 
       return
     }
 
-    this.routePushState = false
-    this.route = route
-    this.routePushState = true
+    this.navigate(route, { pushState: false })
   }
 
   //
@@ -345,14 +315,23 @@ export class ApplicationManager extends Component {
   }
 
   //
+  // Resize.
+  //
+  onResize() {
+    this.fire('resize')
+  }
+
+  //
   // Listeners.
   //
   addEventListeners() {
     window.addEventListener('popstate', this.onPopState)
+    window.addEventListener('resize', this.onResize)
   }
 
   removeEventListeners() {
     window.removeEventListener('popstate', this.onPopState)
+    window.removeEventListener('resize', this.onResize)
   }
 }
 

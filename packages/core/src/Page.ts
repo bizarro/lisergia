@@ -1,5 +1,4 @@
 import Lenis, { type LenisOptions } from 'lenis'
-import { makeObservable, observable } from 'mobx'
 import Tempus, { type TempusState } from 'tempus'
 
 import type { ApplicationManager } from './App.js'
@@ -56,13 +55,6 @@ export class Page extends Component {
 
     this.scrollEnabled = scrollEnabled
     this.scrollOptions = scrollOptions
-
-    makeObservable(this, {
-      element: observable,
-      elements: observable,
-      components: observable,
-      scroll: observable,
-    })
   }
 
   create() {
@@ -170,6 +162,8 @@ export class Page extends Component {
   //
   onResize() {
     this.lenis?.resize()
+
+    this.application.fire('resize')
   }
 
   onRAF({ time }: TempusState) {
@@ -178,10 +172,12 @@ export class Page extends Component {
 
   onScroll(scroll: number) {
     this.scroll = scroll
+
+    this.application.fire('scroll', scroll)
   }
 
   onScrollFallback() {
-    this.scroll = this.element.scrollTop
+    this.onScroll(this.element.scrollTop)
 
     this.emitter.emit('scroll', { scroll: this.scroll })
   }

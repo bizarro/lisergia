@@ -1,5 +1,4 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
-import { autorun } from 'mobx'
 
 export default class Navigation extends Component {
   declare classes: {
@@ -32,7 +31,13 @@ export default class Navigation extends Component {
       },
     })
 
-    autorun(this.onChange)
+    application.on('route', this.onChange)
+
+    this.addDisposer(() => {
+      application.off('route', this.onChange)
+    })
+
+    this.onChange()
   }
 
   onToggle() {
@@ -50,12 +55,13 @@ export default class Navigation extends Component {
   onChange() {
     document.documentElement.classList.remove(this.classes.open)
 
+    const { pathname } = new URL(this.application!.route, window.location.origin)
+
     this.elements.menuLinks.forEach((link) => {
-      if (this.application!.route.indexOf(link.href) > -1) {
-        link.classList.add(this.classes.menuLinksActive)
-      } else {
-        link.classList.remove(this.classes.menuLinksActive)
-      }
+      const linkPathname = new URL(link.href, window.location.origin).pathname
+      const isActive = linkPathname === '/' ? pathname === '/' : pathname.startsWith(linkPathname)
+
+      link.classList.toggle(this.classes.menuLinksActive, isActive)
     })
   }
 

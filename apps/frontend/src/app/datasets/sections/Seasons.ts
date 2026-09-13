@@ -1,8 +1,6 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { DOMUtils, MathUtils } from '@lisergia/utilities'
-
-import { autorun, computed, makeObservable } from 'mobx'
+import { type DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
 
 export default class Seasons extends Component {
   declare element: HTMLElement
@@ -13,6 +11,8 @@ export default class Seasons extends Component {
     media3: HTMLElement
     media4: HTMLElement
   }
+
+  declare bounds: DOMRectBounds
 
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
@@ -27,22 +27,19 @@ export default class Seasons extends Component {
       },
     })
 
-    makeObservable(this, {
-      bounds: computed,
-    })
-
-    this.addDisposer(autorun(this.onUpdate))
-  }
-
-  get bounds() {
-    return DOMUtils.getBounds(this.element)
+    this.onResize()
   }
 
   scrollSpeed = 0
   scrollLast = 0
 
-  onUpdate() {
-    const { scroll } = this.application!
+  onResize() {
+    this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
+
+    this.onScroll(this.application!.scroll)
+  }
+
+  onScroll(scroll: number) {
     const { height } = Viewport
 
     const scrollOffset = scroll - this.bounds.top

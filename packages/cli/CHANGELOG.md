@@ -1,5 +1,11 @@
 # @lisergia/cli
 
+## 26.0.0
+
+### Patch Changes
+
+- @lisergia/config-tsconfig@26.0.0
+
 ## 25.0.0
 
 ### Major Changes

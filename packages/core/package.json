@@ -1,6 +1,6 @@
 {
   "name": "@lisergia/core",
-  "version": "25.0.0",
+  "version": "26.0.0",
   "files": [
     "dist"
   ],
@@ -12,10 +12,9 @@
     "dev": "tsc --build --watch"
   },
   "dependencies": {
-    "@lisergia/config-tsconfig": "25.0.0",
+    "@lisergia/config-tsconfig": "26.0.0",
     "auto-bind": "^5.0.1",
     "lenis": "^1.3.26",
-    "mobx": "^7.0.3",
     "nanoevents": "^10.0.0",
     "tempus": "^1.0.0"
   }

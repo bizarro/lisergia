@@ -2,15 +2,14 @@ import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
 import { type DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
 
-import { autorun, makeObservable, observable } from 'mobx'
-
 export default class Media extends Component {
   declare element: HTMLElement
   declare elements: {
     mediaVideo: HTMLElement
   }
-  bounds: DOMRectBounds
-  resizeObserver: ResizeObserver
+
+  declare bounds: DOMRectBounds
+  declare resizeObserver: ResizeObserver
 
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
@@ -21,18 +20,6 @@ export default class Media extends Component {
       },
     })
 
-    this.bounds = DOMUtils.getBounds(this.element, application.scroll)
-
-    makeObservable(this, {
-      bounds: observable,
-    })
-
-    const disposeResize = Viewport.on('resize', this.onResize)
-
-    if (disposeResize) {
-      this.addDisposer(disposeResize)
-    }
-
     this.resizeObserver = new ResizeObserver(this.onResize)
     this.resizeObserver.observe(this.element)
 
@@ -42,15 +29,16 @@ export default class Media extends Component {
       this.resizeObserver.observe(content)
     }
 
-    this.addDisposer(autorun(this.onUpdate))
+    this.onResize()
   }
 
   onResize() {
     this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
+
+    this.onScroll(this.application!.scroll)
   }
 
-  onUpdate() {
-    const { scroll } = this.application!
+  onScroll(scroll: number) {
     const { height, top } = this.bounds
 
     const headerScale = MathUtils.map(scroll, top - Viewport.height, top + height, 1, 1.5, true)

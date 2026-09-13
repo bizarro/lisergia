@@ -28,7 +28,6 @@ Marketing landing pages typically align with the creative vision of art director
 The Front End architecture is Lisergia itself: server-rendered TSX views, SCSS, and a TypeScript client runtime that enhances the generated pages with transitions, datasets, and animations. Preact only turns the view tree into static HTML; it does not hydrate the page or replace Lisergia's runtime. Lisergia also includes several libraries by default to streamline development and improve the developer experience:
 
 - [Lenis](https://lenis.darkroom.engineering/): improves scroll behavior to feel smooth and natural by default.
-- [MobX](https://mobx.js.org/): simplifies and streamlines application state management.
 - [NanoEvents](https://github.com/ai/nanoevents): enables lightweight event handling via `.on` and `.off` methods.
 - [Auto Bind](https://github.com/sindresorhus/auto-bind): eliminates the need for manual `.bind(this)` calls.
 - [Tempus](https://github.com/darkroomengineering/tempus): a `requestAnimationFrame` manager for coordinated frame-based updates.

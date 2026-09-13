@@ -61,6 +61,16 @@ export class Component extends EventEmitter {
 
     this.id = id
 
+    if (this.application) {
+      this.application.on('scroll', this.onScroll)
+      this.application.on('resize', this.onResize)
+
+      this.addDisposer(() => {
+        this.application?.off('scroll', this.onScroll)
+        this.application?.off('resize', this.onResize)
+      })
+    }
+
     if (this.autoMount) {
       this.create()
     }
@@ -147,6 +157,16 @@ export class Component extends EventEmitter {
   addEventListeners() {}
 
   removeEventListeners() {}
+
+  //
+  // Hooks.
+  //
+  // Called whenever the application page scrolls or resizes. Wired automatically
+  // when the component receives an `application`; override in subclasses.
+  //
+  onResize() {}
+
+  onScroll(_scroll: number) {}
 
   destroy() {
     this.destroyDisposers()

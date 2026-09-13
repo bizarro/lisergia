@@ -1,5 +1,9 @@
 # @lisergia/config-tsconfig
 
+## 26.0.0
+
+No changes in this release.
+
 ## 25.0.0
 
 ### Major Changes

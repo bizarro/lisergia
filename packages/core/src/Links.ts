@@ -1,5 +1,3 @@
-import { reaction } from 'mobx'
-
 import type { ApplicationManager } from './App.js'
 import { EventEmitter } from './EventEmitter.js'
 import { Link } from './Link.js'
@@ -12,12 +10,9 @@ export class Links extends EventEmitter {
     super()
 
     this.application = application
+    this.application.on('page', this.refresh)
 
-    reaction(
-      () => application.currentPage,
-      () => this.refresh(),
-      { fireImmediately: true },
-    )
+    this.refresh()
   }
 
   addEventListeners() {
@@ -39,12 +34,20 @@ export class Links extends EventEmitter {
   }
 
   onLinkClick(href: string) {
-    const url = new URL(href, window.location.href)
-
-    this.application.route = `${url.pathname}${url.search}${url.hash}`
+    this.application.navigate(href)
   }
 
   refresh() {
     this.addEventListeners()
+  }
+
+  destroy() {
+    this.application.off('page', this.refresh)
+
+    this.links?.forEach((link) => {
+      link.destroy()
+    })
+
+    super.destroy()
   }
 }

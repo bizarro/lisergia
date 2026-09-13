@@ -1,8 +1,6 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { DOMUtils, MathUtils } from '@lisergia/utilities'
-
-import { autorun, computed, makeObservable } from 'mobx'
+import { type DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
 
 export default class Footer extends Component {
   declare element: HTMLElement
@@ -11,6 +9,9 @@ export default class Footer extends Component {
     box: HTMLElement
     footer: HTMLElement
   }
+
+  declare bounds: DOMRectBounds
+  declare boundsFooter: DOMRectBounds
 
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
@@ -22,27 +23,22 @@ export default class Footer extends Component {
       },
     })
 
-    makeObservable(this, {
-      bounds: computed,
-      boundsFooter: computed,
-    })
-
-    this.addDisposer(autorun(this.onUpdate))
+    this.onResize()
   }
 
-  get bounds() {
-    return DOMUtils.getBounds(this.element)
-  }
-
-  get boundsFooter() {
-    return DOMUtils.getBounds(this.elements.footer)
-  }
-
-  onUpdate() {
+  onResize() {
     const { scroll } = this.application!
-    const { top } = this.boundsFooter
+
+    this.bounds = DOMUtils.getBounds(this.element, scroll)
+    this.boundsFooter = DOMUtils.getBounds(this.elements.footer, scroll)
 
     this.elements.footer.style.setProperty('--height', `${this.bounds.height}px`)
+
+    this.onScroll(scroll)
+  }
+
+  onScroll(scroll: number) {
+    const { top } = this.boundsFooter
 
     const scale = MathUtils.map(scroll + Viewport.height, top, top + this.bounds.height, 1, 0.95, true)
 

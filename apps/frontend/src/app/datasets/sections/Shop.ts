@@ -2,8 +2,6 @@ import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
 import { type DOMRectBounds, DOMUtils } from '@lisergia/utilities'
 
-import { autorun } from 'mobx'
-
 export default class Shop extends Component {
   declare element: HTMLElement
   declare elements: {
@@ -21,24 +19,20 @@ export default class Shop extends Component {
       },
     })
 
-    const disposeResize = Viewport.on('resize', this.onResize)
-
-    if (disposeResize) {
-      this.addDisposer(disposeResize)
-    }
-
-    this.addDisposer(autorun(this.onUpdate))
+    this.onResize()
   }
 
   onResize() {
-    this.elements.categories.forEach((category) => {
-      category.bounds = DOMUtils.getBounds(category)
-    })
-  }
-
-  onUpdate() {
     const { scroll } = this.application!
 
+    this.elements.categories.forEach((category) => {
+      category.bounds = DOMUtils.getBounds(category, scroll)
+    })
+
+    this.onScroll(scroll)
+  }
+
+  onScroll(scroll: number) {
     let index = 0
 
     this.elements.categories.forEach((category, categoryIndex) => {

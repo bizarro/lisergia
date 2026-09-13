@@ -1,5 +1,11 @@
 # @lisergia/styles
 
+## 26.0.0
+
+### Patch Changes
+
+- @lisergia/config-stylelint@26.0.0
+
 ## 25.0.0
 
 ### Major Changes

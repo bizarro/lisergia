@@ -1,10 +1,8 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
-import { DOMUtils, MathUtils } from '@lisergia/utilities'
+import { type DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
 
 import { createTimeline } from 'animejs'
 import { splitText, type TextSplitter } from 'animejs/text'
-
-import { autorun, computed, makeObservable } from 'mobx'
 
 const WORD_TEMPLATE = '<div><div data-word="{i}">{value}</div></div>'
 
@@ -21,6 +19,7 @@ export default class Hero extends Component {
   }
 
   declare titleSplit: TextSplitter
+  declare bounds: DOMRectBounds
 
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
@@ -98,19 +97,16 @@ export default class Hero extends Component {
       timeline.play()
     }
 
-    makeObservable(this, {
-      bounds: computed,
-    })
-
-    this.addDisposer(autorun(this.onUpdate))
+    this.onResize()
   }
 
-  get bounds() {
-    return DOMUtils.getBounds(this.element)
+  onResize() {
+    this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
+
+    this.onScroll(this.application!.scroll)
   }
 
-  onUpdate() {
-    const { scroll } = this.application!
+  onScroll(scroll: number) {
     const { height, top } = this.bounds
 
     const scale = MathUtils.map(scroll, top, top + height, 1, 1.5)

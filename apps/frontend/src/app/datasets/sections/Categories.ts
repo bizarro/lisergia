@@ -1,14 +1,14 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
 import { Viewport } from '@lisergia/managers'
-import { DOMUtils, MathUtils } from '@lisergia/utilities'
-
-import { autorun, computed, makeObservable } from 'mobx'
+import { type DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
 
 export default class Categories extends Component {
   declare element: HTMLElement
   declare elements: {
     gallery: HTMLElement
   }
+
+  declare bounds: DOMRectBounds
 
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
@@ -19,19 +19,16 @@ export default class Categories extends Component {
       },
     })
 
-    makeObservable(this, {
-      bounds: computed,
-    })
-
-    this.addDisposer(autorun(this.onUpdate))
+    this.onResize()
   }
 
-  get bounds() {
-    return DOMUtils.getBounds(this.element)
+  onResize() {
+    this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
+
+    this.onScroll(this.application!.scroll)
   }
 
-  onUpdate() {
-    const { scroll } = this.application!
+  onScroll(scroll: number) {
     const { height, top } = this.bounds
 
     const x = MathUtils.map(scroll, top, top + height - Viewport.height, 0, -49, true)

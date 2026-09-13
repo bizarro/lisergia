@@ -1,5 +1,17 @@
 # @lisergia/managers
 
+## 26.0.0
+
+### Major Changes
+
+- Remove MobX. `Viewport.width` and `Viewport.height` are now live getters; `isPhone`, `isTablet`, `isDesktop` and `aspect` are plain getters.
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@26.0.0
+  - @lisergia/config-tsconfig@26.0.0
+
 ## 25.0.0
 
 ### Major Changes

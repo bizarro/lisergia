@@ -1,5 +1,17 @@
 # @lisergia/core
 
+## 26.0.0
+
+### Major Changes
+
+- Remove MobX. Components now react to page scroll and resize through `onScroll(scroll)` and `onResize()` hooks, wired automatically when a component receives an `application`.
+
+  `ApplicationManager` fires `scroll`, `resize`, `page` and `route` events. Navigation is triggered with `application.navigate(href)` instead of assigning `application.route`. Removed `onRouteChange`, `onComponentChange`, `routeRequestEnabled` and `routePushState`.
+
+### Patch Changes
+
+- @lisergia/config-tsconfig@26.0.0
+
 ## 25.0.0
 
 ### Major Changes

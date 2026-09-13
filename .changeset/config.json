@@ -2,7 +2,17 @@
   "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
+  "fixed": [
+    [
+      "@lisergia/cli",
+      "@lisergia/config-stylelint",
+      "@lisergia/config-tsconfig",
+      "@lisergia/core",
+      "@lisergia/managers",
+      "@lisergia/styles",
+      "@lisergia/utilities"
+    ]
+  ],
   "linked": [],
   "access": "public",
   "baseBranch": "main",

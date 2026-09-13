@@ -19,7 +19,12 @@ export default function Hero({ section, priority = false }: { section: HeroSecti
           <h1 className="hero__title">{section.title}</h1>
 
           <div className="hero__button">
-            <Button class="hero__button__element" text={section.button?.text} url={section.button?.url} />
+            <Button
+              animated={false}
+              class="hero__button__element"
+              text={section.button?.text}
+              url={section.button?.url}
+            />
           </div>
         </div>
       </div>

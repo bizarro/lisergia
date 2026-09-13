@@ -12,7 +12,8 @@
     "SANITY_API": "2023-05-03",
     "SANITY_DATABASE": "production",
     "SANITY_PROJECT": "lqn1inyo",
-    "SANITY_STUDIO_URL": "https://studio.lisergia.dev"
+    "SANITY_STUDIO_URL": "https://studio.lisergia.dev",
+    "TYPEKIT": "fxd0iol"
   },
   "routes": [
     {

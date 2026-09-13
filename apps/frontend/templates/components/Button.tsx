@@ -1,14 +1,17 @@
 import { stegaClean } from '@sanity/client/stega'
 
 interface ButtonProps {
+  animated?: boolean
   class?: string
   text?: string
   url?: string
 }
 
-export default function Button({ class: className, text, url }: ButtonProps) {
+export default function Button({ animated = true, class: className, text, url }: ButtonProps) {
+  const classes = ['button', className, animated ? undefined : 'button--active'].filter(Boolean).join(' ')
+
   return (
-    <a className={`button ${className ?? ''}`} data-reveal="button--active" href={stegaClean(url) ?? ''}>
+    <a className={classes} data-reveal={animated ? 'button--active' : undefined} href={stegaClean(url) ?? ''}>
       <span className="button__background"></span>
 
       <span className="button__text">

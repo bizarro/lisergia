@@ -1,10 +1,23 @@
 import type { ApplicationManager } from './App.js'
 import { EventEmitter } from './EventEmitter.js'
-import { Link } from './Link.js'
+import { isRoutableLink, prepareExternalLink, shouldHandleLinkClick } from './Link.js'
 
+function getAnchor(event: Event) {
+  const target = event.target
+
+  if (!(target instanceof Element)) {
+    return null
+  }
+
+  const anchor = target.closest('a[href]')
+
+  return anchor instanceof HTMLAnchorElement ? anchor : null
+}
+
+// Handles every link through delegated listeners on the document, so links added
+// later (e.g. by a new page) work without creating a component per anchor.
 export class Links extends EventEmitter {
   declare application: ApplicationManager
-  declare links: Array<Link>
 
   constructor(application: ApplicationManager) {
     super()
@@ -12,41 +25,60 @@ export class Links extends EventEmitter {
     this.application = application
     this.application.on('page', this.refresh)
 
+    this.addEventListeners()
+
     this.refresh()
   }
 
-  addEventListeners() {
-    this.links?.forEach((link) => {
-      link.destroy()
-    })
+  onClick(event: MouseEvent) {
+    const anchor = getAnchor(event)
 
-    const links = document.querySelectorAll('a')
+    if (!anchor || !shouldHandleLinkClick(anchor, event)) {
+      return
+    }
 
-    this.links = Array.from(links).map((element) => {
-      const link = new Link({
-        element,
-      })
+    event.preventDefault()
 
-      link.on('click', this.onLinkClick)
-
-      return link
-    })
+    this.application.navigate(anchor.href)
   }
 
-  onLinkClick(href: string) {
-    this.application.navigate(href)
+  // Hover, touch and keyboard focus are early signals of a click.
+  onIntent(event: Event) {
+    const anchor = getAnchor(event)
+
+    if (!anchor || !isRoutableLink(anchor)) {
+      return
+    }
+
+    this.application.prefetch(anchor.href)
   }
 
   refresh() {
-    this.addEventListeners()
+    document.querySelectorAll('a[href]').forEach((element) => {
+      if (element instanceof HTMLAnchorElement) {
+        prepareExternalLink(element)
+      }
+    })
+  }
+
+  addEventListeners() {
+    document.addEventListener('click', this.onClick)
+    document.addEventListener('focusin', this.onIntent)
+    document.addEventListener('pointerover', this.onIntent, { passive: true })
+    document.addEventListener('touchstart', this.onIntent, { passive: true })
+  }
+
+  removeEventListeners() {
+    document.removeEventListener('click', this.onClick)
+    document.removeEventListener('focusin', this.onIntent)
+    document.removeEventListener('pointerover', this.onIntent)
+    document.removeEventListener('touchstart', this.onIntent)
   }
 
   destroy() {
     this.application.off('page', this.refresh)
 
-    this.links?.forEach((link) => {
-      link.destroy()
-    })
+    this.removeEventListeners()
 
     super.destroy()
   }

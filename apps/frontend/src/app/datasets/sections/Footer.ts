@@ -24,6 +24,7 @@ export default class Footer extends Component {
     })
 
     this.onResize()
+    this.onScroll(this.application!.scroll)
   }
 
   onResize() {
@@ -33,8 +34,6 @@ export default class Footer extends Component {
     this.boundsFooter = DOMUtils.getBounds(this.elements.footer, scroll)
 
     this.elements.footer.style.setProperty('--height', `${this.bounds.height}px`)
-
-    this.onScroll(scroll)
   }
 
   onScroll(scroll: number) {

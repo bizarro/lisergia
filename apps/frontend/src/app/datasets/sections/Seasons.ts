@@ -28,6 +28,7 @@ export default class Seasons extends Component {
     })
 
     this.onResize()
+    this.onScroll(this.application!.scroll)
   }
 
   scrollSpeed = 0
@@ -35,8 +36,14 @@ export default class Seasons extends Component {
 
   onResize() {
     this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
+  }
 
-    this.onScroll(this.application!.scroll)
+  // Scrolling while culled would otherwise read as one huge jump in speed.
+  onVisibilityChange(isInView: boolean) {
+    this.scrollLast = this.application!.scroll
+    this.scrollSpeed = 0
+
+    super.onVisibilityChange(isInView)
   }
 
   onScroll(scroll: number) {
@@ -44,7 +51,7 @@ export default class Seasons extends Component {
 
     const scrollOffset = scroll - this.bounds.top
 
-    const skewX = MathUtils.clamp(-10, 10, this.scrollSpeed)
+    const skewX = MathUtils.clamp(this.scrollSpeed, -10, 10)
     const translateX = MathUtils.map(scrollOffset, 0, height * 3, 11, 88)
 
     this.elements.highlight.style.transform = `translateX(-${translateX}%) skewX(${skewX}deg)`

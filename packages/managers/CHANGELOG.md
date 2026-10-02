@@ -1,5 +1,13 @@
 # @lisergia/managers
 
+## 27.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @lisergia/core@27.0.0
+  - @lisergia/config-tsconfig@27.0.0
+
 ## 26.0.0
 
 ### Major Changes

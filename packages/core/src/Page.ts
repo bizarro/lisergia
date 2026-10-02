@@ -163,7 +163,7 @@ export class Page extends Component {
   onResize() {
     this.lenis?.resize()
 
-    this.application.fire('resize')
+    this.application.onResize()
   }
 
   onRAF({ time }: TempusState) {

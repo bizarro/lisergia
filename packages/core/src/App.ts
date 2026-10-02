@@ -15,6 +15,23 @@ export interface ApplicationRoute {
   template: string
 }
 
+export interface ApplicationResponse {
+  contentType: string | null
+  redirected: boolean
+  text: string
+  url: string
+}
+
+function getRequestKey(href: string) {
+  const url = new URL(href, window.location.href)
+
+  return `${url.pathname}${url.search}`
+}
+
+function isHTML(contentType: string | null) {
+  return !contentType || contentType.toLowerCase().includes('text/html')
+}
+
 export class ApplicationManager extends Component {
   declare element: HTMLElement
 
@@ -212,7 +229,7 @@ export class ApplicationManager extends Component {
 
   async onRouteChangeRequest({ href, pushState = true }: { href: string; pushState: boolean }) {
     try {
-      const request = await window.fetch(href)
+      const request = await this.request(href)
 
       if (request.redirected) {
         window.location.assign(request.url || href)
@@ -220,24 +237,82 @@ export class ApplicationManager extends Component {
         return
       }
 
-      const contentType = request.headers.get('content-type')
-
-      if (contentType && !contentType.toLowerCase().includes('text/html')) {
+      if (!isHTML(request.contentType)) {
         window.location.assign(href)
 
         return
       }
 
-      const response = await request.text()
-
       await this.onRequest({
         href,
-        response,
+        response: request.text,
         pushState,
       })
     } catch {
       window.location.assign(href)
     }
+  }
+
+  //
+  // Prefetch.
+  //
+  // Responses are cached per path for the whole session, so hovering a link
+  // warms up the navigation and going back to a visited page skips the network.
+  // Disable (e.g. in preview mode) when pages can change between requests.
+  //
+  IS_PREFETCH_ENABLED = true
+
+  requests: Map<string, Promise<ApplicationResponse>> = new Map()
+
+  get isPrefetchEnabled() {
+    const { connection } = window.navigator as Navigator & { connection?: { saveData?: boolean } }
+
+    return this.IS_PREFETCH_ENABLED && !connection?.saveData
+  }
+
+  request(href: string) {
+    const key = getRequestKey(href)
+    const cached = this.requests.get(key)
+
+    if (cached) {
+      return cached
+    }
+
+    const request = window.fetch(href).then(async (response) => {
+      const contentType = response.headers.get('content-type')
+
+      return {
+        contentType,
+        redirected: response.redirected,
+        // Skip reading non-HTML bodies (e.g. files), they are opened natively.
+        text: isHTML(contentType) ? await response.text() : '',
+        url: response.url,
+      }
+    })
+
+    if (this.isPrefetchEnabled) {
+      this.requests.set(key, request)
+
+      request.catch(() => {
+        this.requests.delete(key)
+      })
+    }
+
+    return request
+  }
+
+  prefetch(href: string) {
+    if (!this.isPrefetchEnabled) {
+      return
+    }
+
+    const url = new URL(href, window.location.href)
+
+    if (url.origin !== window.location.origin || getRequestKey(url.href) === getRequestKey(this.route)) {
+      return
+    }
+
+    this.request(url.href).catch(() => {})
   }
 
   //
@@ -311,14 +386,29 @@ export class ApplicationManager extends Component {
   // Scroll.
   //
   get scroll() {
-    return this.currentPage!.scroll ?? 0
+    return this.currentPage?.scroll ?? 0
   }
 
   //
   // Resize.
   //
+  // Window resizes and page ResizeObserver callbacks are coalesced into a single
+  // flush per frame. Components measure on `resize`, then write on `scroll`, so
+  // layout is only computed once instead of once per component.
+  //
+  resizeFrame?: number
+
   onResize() {
-    this.fire('resize')
+    if (this.resizeFrame !== undefined) {
+      return
+    }
+
+    this.resizeFrame = window.requestAnimationFrame(() => {
+      this.resizeFrame = undefined
+
+      this.fire('resize')
+      this.fire('scroll', this.scroll)
+    })
   }
 
   //

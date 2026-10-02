@@ -123,6 +123,11 @@ const routes: Array<ApplicationRoute> = [
   },
 ]
 
+const isPreview = document.documentElement.dataset.sanityPreview === 'true'
+
+// Draft content changes between requests, so never serve cached pages in preview.
+Application.IS_PREFETCH_ENABLED = !isPreview
+
 Application.initRoutes(routes)
 
 Application.initDatasets(datasets)
@@ -130,6 +135,6 @@ Application.initPage()
 
 Application.initComponents(components)
 
-if (document.documentElement.dataset.sanityPreview === 'true') {
+if (isPreview) {
   void import('./preview')
 }

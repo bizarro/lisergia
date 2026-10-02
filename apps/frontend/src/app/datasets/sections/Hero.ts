@@ -98,12 +98,11 @@ export default class Hero extends Component {
     }
 
     this.onResize()
+    this.onScroll(this.application!.scroll)
   }
 
   onResize() {
     this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
-
-    this.onScroll(this.application!.scroll)
   }
 
   onScroll(scroll: number) {

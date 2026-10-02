@@ -2,6 +2,10 @@
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "lisergia",
   "main": "worker.ts",
+  "alias": {
+    // Vite build manifest (see `templates/manifest.ts`). Requires `lisergia build` first.
+    "lisergia:manifest": "./build/.vite/manifest.json"
+  },
   "compatibility_date": "2026-08-29",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {

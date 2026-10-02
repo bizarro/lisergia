@@ -1,11 +1,17 @@
 import { stegaClean } from '@sanity/client/stega'
 
-import { getAsset, getVersionedPath } from '../helpers'
+import { getAsset } from '../helpers'
+import { bundle } from '../manifest'
 import type { PageData } from '../types'
 
 const isDev = process.env.NODE_ENV !== 'production'
 const vitePort = process.env.VITE_PORT ?? process.env.BROWSERSYNC_PORT ?? '5173'
 const viteOrigin = process.env.VITE_ORIGIN ?? `http://localhost:${vitePort}`
+const assetOrigin = isDev ? viteOrigin : ''
+
+// Self-hosted fonts from `src/styles/base/fonts.scss`. Otherwise they are only
+// discovered after the stylesheet downloads and parses.
+const fonts = ['/fonts/neue-montreal.woff2', '/fonts/editorial-new.woff2']
 
 interface PageHeadProps {
   data: PageData
@@ -53,6 +59,17 @@ export default function PageHead({ data }: PageHeadProps) {
       {/* Stylesheets */}
       <link rel="preconnect" href="https://cdn.sanity.io" />
 
+      {fonts.map((font) => (
+        <link
+          as="font"
+          crossOrigin="anonymous"
+          href={`${assetOrigin}${font}`}
+          key={font}
+          rel="preload"
+          type="font/woff2"
+        />
+      ))}
+
       {typekit && (
         <>
           <link rel="preconnect" href="https://use.typekit.net" />
@@ -68,7 +85,7 @@ export default function PageHead({ data }: PageHeadProps) {
       {isDev ? (
         <link rel="stylesheet" href={`${viteOrigin}/styles/index.scss`} type="text/css" />
       ) : (
-        <link rel="stylesheet" href={getVersionedPath('/bundle.css')} type="text/css" />
+        bundle.css.map((href) => <link href={href} key={href} rel="stylesheet" type="text/css" />)
       )}
 
       {/* Favicons */}

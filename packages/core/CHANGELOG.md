@@ -1,5 +1,19 @@
 # @lisergia/core
 
+## 27.0.0
+
+### Major Changes
+
+- Improve resize sync, add link prefetching and module preloading.
+
+  `@lisergia/cli` now emits hashed `bundle-[hash].js` and `bundle-[hash].css` files alongside a `.vite/manifest.json`, instead of fixed `bundle.js` and `bundle.css`. Read the manifest to reference the entry and emit `modulepreload` hints.
+
+  `@lisergia/core` coalesces window and page resizes into a single `resize` flush per frame, followed by `scroll`, so `onResize` should only measure. `onScroll` only runs while a component is in view; pass `cullOffscreen: false` to opt out. `Links` now uses delegated document listeners and prefetches pages on hover, touch and focus through `application.prefetch(href)`, caching responses per path (toggle with `IS_PREFETCH_ENABLED`). Removed `Links.links` and `Links.onLinkClick`.
+
+### Patch Changes
+
+- @lisergia/config-tsconfig@27.0.0
+
 ## 26.0.0
 
 ### Major Changes

@@ -1,4 +1,4 @@
-import { getVersionedPath } from '../helpers'
+import { bundle } from '../manifest'
 
 const isDev = process.env.NODE_ENV !== 'production'
 const vitePort = process.env.VITE_PORT ?? process.env.BROWSERSYNC_PORT ?? '5173'
@@ -18,6 +18,10 @@ function getPostHogScript(posthog: NonNullable<ScriptsProps['posthog']>) {
   const key = JSON.stringify(posthog.key).replaceAll('<', '\\u003c')
   const config = JSON.stringify({
     api_host: posthog.host,
+    // Real-user monitoring: LCP, CLS, FCP and INP (with attribution for LCP and INP).
+    capture_performance: {
+      web_vitals: true,
+    },
     defaults: '2026-05-30',
   }).replaceAll('<', '\\u003c')
 
@@ -35,7 +39,7 @@ export default function Scripts({ posthog }: ScriptsProps) {
           <script type="module" src={`${viteOrigin}/app/index.ts`}></script>
         </>
       ) : (
-        <script type="module" src={getVersionedPath('/bundle.js')}></script>
+        <script type="module" src={bundle.js}></script>
       )}
 
       {posthog && <script dangerouslySetInnerHTML={{ __html: getPostHogScript(posthog) }}></script>}

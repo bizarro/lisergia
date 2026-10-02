@@ -1,0 +1,2 @@
+# Build metadata read by the Worker at bundle time, not a public asset.
+.vite

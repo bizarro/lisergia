@@ -20,7 +20,11 @@ export default class Media extends Component {
       },
     })
 
-    this.resizeObserver = new ResizeObserver(this.onResize)
+    // Coalesced with every other resize source into one measure + write flush.
+    this.resizeObserver = new ResizeObserver(() => {
+      this.application!.onResize()
+    })
+
     this.resizeObserver.observe(this.element)
 
     const content = this.element.closest<HTMLElement>('.page__content')
@@ -30,12 +34,11 @@ export default class Media extends Component {
     }
 
     this.onResize()
+    this.onScroll(this.application!.scroll)
   }
 
   onResize() {
     this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
-
-    this.onScroll(this.application!.scroll)
   }
 
   onScroll(scroll: number) {

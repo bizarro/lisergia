@@ -71,12 +71,12 @@
     },
     "packages/cli": {
       "name": "@lisergia/cli",
-      "version": "25.0.0",
+      "version": "26.0.0",
       "bin": {
         "lisergia": "index.js",
       },
       "dependencies": {
-        "@lisergia/config-tsconfig": "25.0.0",
+        "@lisergia/config-tsconfig": "26.0.0",
         "autoprefixer": "^10.5.4",
         "dotenv": "^17.4.2",
         "postcss": "^8.5.26",
@@ -87,7 +87,7 @@
     },
     "packages/config-stylelint": {
       "name": "@lisergia/config-stylelint",
-      "version": "25.0.0",
+      "version": "26.0.0",
       "dependencies": {
         "stylelint": "^17.14.1",
         "stylelint-config-standard-scss": "^17.0.0",
@@ -96,11 +96,11 @@
     },
     "packages/config-tsconfig": {
       "name": "@lisergia/config-tsconfig",
-      "version": "25.0.0",
+      "version": "26.0.0",
     },
     "packages/core": {
       "name": "@lisergia/core",
-      "version": "25.0.0",
+      "version": "26.0.0",
       "dependencies": {
         "@lisergia/config-tsconfig": "25.0.0",
         "auto-bind": "^5.0.1",
@@ -111,7 +111,7 @@
     },
     "packages/managers": {
       "name": "@lisergia/managers",
-      "version": "25.0.0",
+      "version": "26.0.0",
       "dependencies": {
         "@lisergia/config-tsconfig": "25.0.0",
         "@lisergia/core": "25.0.0",
@@ -120,7 +120,7 @@
     },
     "packages/styles": {
       "name": "@lisergia/styles",
-      "version": "25.0.0",
+      "version": "26.0.0",
       "dependencies": {
         "@lisergia/config-stylelint": "25.0.0",
         "stylelint": "^17.14.1",
@@ -128,7 +128,7 @@
     },
     "packages/utilities": {
       "name": "@lisergia/utilities",
-      "version": "25.0.0",
+      "version": "26.0.0",
       "dependencies": {
         "@lisergia/config-tsconfig": "25.0.0",
       },

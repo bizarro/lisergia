@@ -20,6 +20,7 @@ export default class Parallax extends Component {
     })
 
     this.onResize()
+    this.onScroll(this.application!.scroll)
   }
 
   get amount() {
@@ -28,8 +29,6 @@ export default class Parallax extends Component {
 
   onResize() {
     this.bounds = DOMUtils.getBounds(this.element, this.application!.scroll)
-
-    this.onScroll(this.application!.scroll)
   }
 
   onScroll(scroll: number) {

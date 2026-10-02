@@ -20,6 +20,7 @@ export default class Shop extends Component {
     })
 
     this.onResize()
+    this.onScroll(this.application!.scroll)
   }
 
   onResize() {
@@ -28,8 +29,6 @@ export default class Shop extends Component {
     this.elements.categories.forEach((category) => {
       category.bounds = DOMUtils.getBounds(category, scroll)
     })
-
-    this.onScroll(scroll)
   }
 
   onScroll(scroll: number) {

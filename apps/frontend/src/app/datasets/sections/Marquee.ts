@@ -1,5 +1,4 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
-import { Viewport } from '@lisergia/managers'
 import { DOMUtils, MathUtils } from '@lisergia/utilities'
 
 import Tempus from 'tempus'
@@ -46,11 +45,10 @@ export default class extends Component {
       },
     })
 
-    this.widthTotal = this.elements.list.getBoundingClientRect().width
+    this.onResize()
 
-    this.reset()
-
-    Viewport.on('resize', this.onResize)
+    // Not scroll-driven, so visibility is opted into to pause the loop offscreen.
+    this.observeVisibility()
 
     this.unsubscribeRaf = Tempus.add(this.onUpdate)
   }
@@ -62,6 +60,10 @@ export default class extends Component {
   declare direction: 'up' | 'down'
 
   onUpdate() {
+    if (!this.isInView) {
+      return
+    }
+
     this.scroll.target += this.multiplier
     this.scroll.current = MathUtils.lerp(this.scroll.current, this.scroll.target, this.scroll.ease)
 
@@ -104,8 +106,16 @@ export default class extends Component {
     this.scroll.clamp = scrollClamp
   }
 
+  // Application resizes also fire when the page height changes (images, fonts),
+  // so only restart the marquee when its own width actually changed.
   onResize() {
-    this.widthTotal = this.elements.list.getBoundingClientRect().width
+    const widthTotal = this.elements.list.getBoundingClientRect().width
+
+    if (widthTotal === this.widthTotal) {
+      return
+    }
+
+    this.widthTotal = widthTotal
 
     this.reset()
 
@@ -120,9 +130,12 @@ export default class extends Component {
   }
 
   reset() {
+    // Write every transform before reading any bounds to avoid forcing a layout per item.
     this.elements.items.forEach((element) => {
       this.transform(element, 0)
+    })
 
+    this.elements.items.forEach((element) => {
       const bounds = DOMUtils.getBounds(element)
 
       element.extra = 0
@@ -134,8 +147,6 @@ export default class extends Component {
 
   destroy() {
     super.destroy()
-
-    Viewport.off('resize', this.onResize)
 
     this.unsubscribeRaf?.()
     this.unsubscribeRaf = undefined

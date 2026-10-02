@@ -47,14 +47,17 @@ function createViteConfig(production = false) {
     build: {
       outDir: path.join(root, 'build'),
       emptyOutDir: true,
+      // `.vite/manifest.json` maps sources to hashed files, read by the Worker
+      // to reference the entry and emit `modulepreload` hints.
+      manifest: true,
       sourcemap: !production,
       rollupOptions: {
         input: path.join(root, 'src', 'app', 'index.ts'),
         output: {
-          entryFileNames: 'bundle.js',
+          entryFileNames: 'bundle-[hash].js',
           chunkFileNames: 'bundle-[hash].js',
           assetFileNames: (assetInfo) => {
-            if (/\.css$/i.test(assetInfo.name ?? '')) return 'bundle.css'
+            if (/\.css$/i.test(assetInfo.name ?? '')) return 'bundle-[hash].css'
             return '[name][extname]'
           },
         },

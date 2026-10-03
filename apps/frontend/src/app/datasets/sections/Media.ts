@@ -5,11 +5,10 @@ import { type DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
 export default class Media extends Component {
   declare element: HTMLElement
   declare elements: {
-    mediaVideo: HTMLElement
+    mediaVideo: HTMLVideoElement
   }
 
   declare bounds: DOMRectBounds
-  declare resizeObserver: ResizeObserver
 
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
@@ -20,21 +19,10 @@ export default class Media extends Component {
       },
     })
 
-    // Coalesced with every other resize source into one measure + write flush.
-    this.resizeObserver = new ResizeObserver(() => {
-      this.application!.onResize()
-    })
-
-    this.resizeObserver.observe(this.element)
-
-    const content = this.element.closest<HTMLElement>('.page__content')
-
-    if (content) {
-      this.resizeObserver.observe(content)
-    }
-
+    // Measure now and write in the next resize flush, batched with every other
+    // component, instead of forcing a layout per component while hydrating.
     this.onResize()
-    this.onScroll(this.application!.scroll)
+    this.application!.onResize()
   }
 
   onResize() {
@@ -50,9 +38,16 @@ export default class Media extends Component {
     this.elements.mediaVideo.style.transform = `translate3d(0, ${headerY}px, 0) scale(${headerScale})`
   }
 
-  destroy() {
-    this.resizeObserver.disconnect()
+  // Stop decoding the video while it is offscreen.
+  onVisibilityChange(isInView: boolean) {
+    const video = this.elements.mediaVideo
 
-    super.destroy()
+    if (isInView) {
+      video.play().catch(() => {})
+    } else {
+      video.pause()
+    }
+
+    super.onVisibilityChange(isInView)
   }
 }

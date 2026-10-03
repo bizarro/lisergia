@@ -1,7 +1,7 @@
 import { stegaClean } from '@sanity/client/stega'
 
 import { getAsset } from '../helpers'
-import { bundle } from '../manifest'
+import { bundle, fonts } from '../manifest'
 import type { PageData } from '../types'
 
 const isDev = process.env.NODE_ENV !== 'production'
@@ -9,16 +9,12 @@ const vitePort = process.env.VITE_PORT ?? process.env.BROWSERSYNC_PORT ?? '5173'
 const viteOrigin = process.env.VITE_ORIGIN ?? `http://localhost:${vitePort}`
 const assetOrigin = isDev ? viteOrigin : ''
 
-// Self-hosted fonts from `src/styles/base/fonts.scss`. Otherwise they are only
-// discovered after the stylesheet downloads and parses.
-const fonts = ['/fonts/neue-montreal.woff2', '/fonts/editorial-new.woff2']
-
 interface PageHeadProps {
   data: PageData
 }
 
 export default function PageHead({ data }: PageHeadProps) {
-  const { social, typekit } = data
+  const { social } = data
   const cleanSocial = stegaClean(social)
   const socialImage = cleanSocial?.image ? getAsset(cleanSocial.image) : null
 
@@ -69,18 +65,6 @@ export default function PageHead({ data }: PageHeadProps) {
           type="font/woff2"
         />
       ))}
-
-      {typekit && (
-        <>
-          <link rel="preconnect" href="https://use.typekit.net" />
-          <link rel="preload" href={`https://use.typekit.net/${typekit}.css`} as="style" />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://use.typekit.net/${typekit}.css';l.media='print';l.onload=function(){l.media='all'};document.head.appendChild(l)})()`,
-            }}
-          />
-        </>
-      )}
 
       {isDev ? (
         <link rel="stylesheet" href={`${viteOrigin}/styles/index.scss`} type="text/css" />

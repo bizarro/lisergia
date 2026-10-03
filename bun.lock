@@ -52,13 +52,13 @@
       },
       "devDependencies": {
         "@cloudflare/workers-types": "^5.20260830.1",
-        "@lisergia/cli": "25.0.0",
-        "@lisergia/config-stylelint": "25.0.0",
-        "@lisergia/config-tsconfig": "25.0.0",
-        "@lisergia/core": "25.0.0",
-        "@lisergia/managers": "25.0.0",
-        "@lisergia/styles": "25.0.0",
-        "@lisergia/utilities": "25.0.0",
+        "@lisergia/cli": "27.0.0",
+        "@lisergia/config-stylelint": "27.0.0",
+        "@lisergia/config-tsconfig": "27.0.0",
+        "@lisergia/core": "27.0.0",
+        "@lisergia/managers": "27.0.0",
+        "@lisergia/styles": "27.0.0",
+        "@lisergia/utilities": "27.0.0",
         "@sanity/browserslist-config": "^1.0.5",
         "@types/bun": "^1.4.0",
         "@types/node": "^26.4.0",
@@ -71,12 +71,12 @@
     },
     "packages/cli": {
       "name": "@lisergia/cli",
-      "version": "26.0.0",
+      "version": "27.0.0",
       "bin": {
         "lisergia": "index.js",
       },
       "dependencies": {
-        "@lisergia/config-tsconfig": "26.0.0",
+        "@lisergia/config-tsconfig": "27.0.0",
         "autoprefixer": "^10.5.4",
         "dotenv": "^17.4.2",
         "postcss": "^8.5.26",
@@ -87,7 +87,7 @@
     },
     "packages/config-stylelint": {
       "name": "@lisergia/config-stylelint",
-      "version": "26.0.0",
+      "version": "27.0.0",
       "dependencies": {
         "stylelint": "^17.14.1",
         "stylelint-config-standard-scss": "^17.0.0",
@@ -96,13 +96,13 @@
     },
     "packages/config-tsconfig": {
       "name": "@lisergia/config-tsconfig",
-      "version": "26.0.0",
+      "version": "27.0.0",
     },
     "packages/core": {
       "name": "@lisergia/core",
-      "version": "26.0.0",
+      "version": "27.0.0",
       "dependencies": {
-        "@lisergia/config-tsconfig": "25.0.0",
+        "@lisergia/config-tsconfig": "27.0.0",
         "auto-bind": "^5.0.1",
         "lenis": "^1.3.26",
         "nanoevents": "^10.0.0",
@@ -111,26 +111,26 @@
     },
     "packages/managers": {
       "name": "@lisergia/managers",
-      "version": "26.0.0",
+      "version": "27.0.0",
       "dependencies": {
-        "@lisergia/config-tsconfig": "25.0.0",
-        "@lisergia/core": "25.0.0",
+        "@lisergia/config-tsconfig": "27.0.0",
+        "@lisergia/core": "27.0.0",
         "nanoevents": "^10.0.0",
       },
     },
     "packages/styles": {
       "name": "@lisergia/styles",
-      "version": "26.0.0",
+      "version": "27.0.0",
       "dependencies": {
-        "@lisergia/config-stylelint": "25.0.0",
+        "@lisergia/config-stylelint": "27.0.0",
         "stylelint": "^17.14.1",
       },
     },
     "packages/utilities": {
       "name": "@lisergia/utilities",
-      "version": "26.0.0",
+      "version": "27.0.0",
       "dependencies": {
-        "@lisergia/config-tsconfig": "25.0.0",
+        "@lisergia/config-tsconfig": "27.0.0",
       },
     },
   },

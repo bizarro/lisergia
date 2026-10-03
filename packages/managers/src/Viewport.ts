@@ -65,8 +65,19 @@ export class ViewportManager extends EventEmitter {
     this.entries.delete(callback)
   }
 
+  // `--100vh` is set on the root and restyles the whole document, so it is only
+  // written when the height changes. Kept synchronous so the application resize
+  // flush, scheduled from the same event, measures with the new value.
+  lastHeight?: number
+
   onResize() {
-    document.documentElement.style.setProperty('--100vh', `${this.height}px`)
+    const { height } = this
+
+    if (height !== this.lastHeight) {
+      this.lastHeight = height
+
+      document.documentElement.style.setProperty('--100vh', `${height}px`)
+    }
 
     this.fire('resize', this)
   }

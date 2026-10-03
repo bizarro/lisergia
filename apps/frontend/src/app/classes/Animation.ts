@@ -1,11 +1,14 @@
 import { Component, type ComponentSelector, type ComponentSelectors } from '@lisergia/core'
 
+import { observeIntersection } from '../utilities/intersection'
+
 export default class extends Component {
   declare delay: number
   declare elements: {
     target: HTMLElement
   }
 
+  isObserved: boolean = false
   isVisible: boolean = false
 
   constructor({ element, elements }: { element: ComponentSelector; elements: ComponentSelectors }) {
@@ -24,26 +27,22 @@ export default class extends Component {
     this.delay = parseInt(animationDelay ?? '0', 10)
   }
 
-  declare observer: IntersectionObserver
+  declare unobserve?: () => void
 
-  isTargetInViewport() {
-    const bounds = this.elements.target.getBoundingClientRect()
-
-    return bounds.bottom > 0 && bounds.top < window.innerHeight
-  }
-
+  // The first report sets the initial state, so targets that start offscreen
+  // are hidden without measuring them right after their text is split.
   createObserver() {
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!this.isVisible && entry.isIntersecting) {
-          this.animateIn()
-        } else if (this.isVisible && !entry.isIntersecting) {
-          this.animateOut()
-        }
-      })
-    })
+    this.unobserve = observeIntersection(this.elements.target, (isIntersecting) => {
+      const isFirst = !this.isObserved
 
-    this.observer.observe(this.elements.target)
+      this.isObserved = true
+
+      if (!this.isVisible && isIntersecting) {
+        this.animateIn()
+      } else if ((this.isVisible || isFirst) && !isIntersecting) {
+        this.animateOut()
+      }
+    })
   }
 
   animateIn() {
@@ -59,10 +58,7 @@ export default class extends Component {
   }
 
   removeEventListeners() {
-    this.observer.unobserve(this.elements.target)
-  }
-
-  destroy() {
-    super.destroy()
+    this.unobserve?.()
+    this.unobserve = undefined
   }
 }

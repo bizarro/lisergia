@@ -9,7 +9,6 @@ export default class Seasons extends Component {
     media1: HTMLElement
     media2: HTMLElement
     media3: HTMLElement
-    media4: HTMLElement
   }
 
   declare bounds: DOMRectBounds
@@ -23,12 +22,13 @@ export default class Seasons extends Component {
         media1: '.seasons__gallery__media--1',
         media2: '.seasons__gallery__media--2',
         media3: '.seasons__gallery__media--3',
-        media4: '.seasons__gallery__media--4',
       },
     })
 
+    // Measure now and write in the next resize flush, batched with every other
+    // component, instead of forcing a layout per component while hydrating.
     this.onResize()
-    this.onScroll(this.application!.scroll)
+    this.application!.onResize()
   }
 
   scrollSpeed = 0

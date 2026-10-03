@@ -1,7 +1,6 @@
 import { type ApplicationManager, Component } from '@lisergia/core'
 import { type DOMRectBounds, DOMUtils, MathUtils } from '@lisergia/utilities'
 
-import { createTimeline } from 'animejs'
 import { splitText, type TextSplitter } from 'animejs/text'
 
 const WORD_TEMPLATE = '<div><div data-word="{i}">{value}</div></div>'
@@ -39,6 +38,9 @@ export default class Hero extends Component {
     const titleBounds = title.getBoundingClientRect()
     const isInitiallyVisible = titleBounds.bottom > 0 && titleBounds.top < window.innerHeight
 
+    // Measure before splitting the title, so reads aren't interleaved with writes.
+    this.onResize()
+
     if (isInitiallyVisible) {
       this.element.classList.add(this.classes.active)
     }
@@ -55,50 +57,57 @@ export default class Hero extends Component {
     })
 
     if (!isInitiallyVisible) {
-      const timeline = createTimeline({
-        defaults: {
-          duration: 2000,
-          ease: 'inOutCubic',
-        },
-      })
-
-      timeline.set(this.elements.heroBox, {
-        '--border': 0,
-        '--inset': 0,
-      })
-
-      timeline.set(this.elements.heroMedia, {
-        scale: 1.2,
-      })
-
-      timeline.label('start', 500)
-
-      timeline.call(() => {
-        this.element.classList.add(this.classes.active)
-      }, 1000)
-
-      timeline.add(
-        this.elements.heroBox,
-        {
-          '--border': { to: 1 },
-          '--inset': { to: 1 },
-        },
-        'start',
-      )
-
-      timeline.add(
-        this.elements.heroMedia,
-        {
-          scale: { to: 1 },
-        },
-        'start',
-      )
-
-      timeline.play()
+      void this.animateIn()
     }
 
-    this.onResize()
-    this.onScroll(this.application!.scroll)
+    this.application!.onResize()
+  }
+
+  // Only runs when the title starts offscreen, so the hero is hidden while the
+  // timeline loads on demand instead of shipping with the hero chunk.
+  async animateIn() {
+    const { createTimeline } = await import('animejs')
+
+    const timeline = createTimeline({
+      defaults: {
+        duration: 2000,
+        ease: 'inOutCubic',
+      },
+    })
+
+    timeline.set(this.elements.heroBox, {
+      '--border': 0,
+      '--inset': 0,
+    })
+
+    timeline.set(this.elements.heroMedia, {
+      scale: 1.2,
+    })
+
+    timeline.label('start', 500)
+
+    timeline.call(() => {
+      this.element.classList.add(this.classes.active)
+    }, 1000)
+
+    timeline.add(
+      this.elements.heroBox,
+      {
+        '--border': { to: 1 },
+        '--inset': { to: 1 },
+      },
+      'start',
+    )
+
+    timeline.add(
+      this.elements.heroMedia,
+      {
+        scale: { to: 1 },
+      },
+      'start',
+    )
+
+    timeline.play()
   }
 
   onResize() {

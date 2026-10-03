@@ -19,8 +19,10 @@ export default class Categories extends Component {
       },
     })
 
+    // Measure now and write in the next resize flush, batched with every other
+    // component, instead of forcing a layout per component while hydrating.
     this.onResize()
-    this.onScroll(this.application!.scroll)
+    this.application!.onResize()
   }
 
   onResize() {
@@ -32,6 +34,6 @@ export default class Categories extends Component {
 
     const x = MathUtils.map(scroll, top, top + height - Viewport.height, 0, -49, true)
 
-    this.elements.gallery.style.setProperty('--x', `${x}%`)
+    this.elements.gallery.style.transform = `translate3d(${x}%, -50%, 0)`
   }
 }

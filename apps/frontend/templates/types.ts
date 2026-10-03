@@ -71,7 +71,6 @@ export interface PageData {
     key: string
     host: string
   }
-  typekit?: string
   categories: Category[]
   footer: Footer
   menu: Menu

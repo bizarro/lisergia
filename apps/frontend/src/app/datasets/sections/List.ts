@@ -26,8 +26,10 @@ export default class List extends Component {
       },
     })
 
+    // Measure now and write in the next resize flush, batched with every other
+    // component, instead of forcing a layout per component while hydrating.
     this.onResize()
-    this.onScroll(this.application!.scroll)
+    this.application!.onResize()
   }
 
   onResize() {
@@ -47,7 +49,8 @@ export default class List extends Component {
     const x = MathUtils.map(scroll, top, top + width, 0, -100, true)
     const y = MathUtils.map(scroll, top, top + width, 0, 100, true)
 
-    this.elements.categories.style.setProperty('--x', `${x}%`)
-    this.elements.categories.style.setProperty('--y', `${y}vw`)
+    // Written as a transform instead of custom properties, which inherit and
+    // would restyle every descendant of the section on each frame.
+    this.elements.categories.style.transform = `translate(${x}%, ${y}vw)`
   }
 }

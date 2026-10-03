@@ -22,26 +22,26 @@ body {
 }
 
 .app {
-  border-radius: 0;
-  height: 100%;
-  top: 0;
-  transition: all 1s ease;
+  // Shrinks the visible area with `clip-path` and `transform` instead of
+  // animating `top` and `height`, so opening the menu never triggers layout.
+  clip-path: inset(0 round 0);
+  transition:
+    background 1s ease,
+    clip-path 1s ease,
+    transform 1s ease;
   z-index: z('box');
 
   .navigation--open & {
     background: var(--color-cod-gray);
-    border-radius: 1rem;
-    height: calc(100% - 7.5rem - 2.5rem);
+    clip-path: inset(0 0 calc(7.5rem + 2.5rem) round 1rem);
     pointer-events: none;
-    top: 7.5rem;
-    transform: translateX(62.5rem);
+    transform: translate(62.5rem, 7.5rem);
   }
 
   @include media('>=desktop') {
     .navigation--open & {
-      transform: translateX(625px);
-      top: 75px;
-      height: calc(100% - 75px - 25px);
+      clip-path: inset(0 0 calc(75px + 25px) round 1rem);
+      transform: translate(625px, 75px);
     }
   }
 }

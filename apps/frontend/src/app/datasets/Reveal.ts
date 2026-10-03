@@ -1,5 +1,7 @@
 import { Component } from '@lisergia/core'
 
+import { observeIntersection } from '../utilities/intersection'
+
 export default class Reveal extends Component {
   declare classes: {
     active: string
@@ -16,24 +18,21 @@ export default class Reveal extends Component {
     })
   }
 
-  declare observer: IntersectionObserver
+  declare unobserve?: () => void
 
   createObserver() {
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.animateIn()
-        } else {
-          this.animateOut()
-        }
-      })
+    this.unobserve = observeIntersection(this.element, (isIntersecting) => {
+      if (isIntersecting) {
+        this.animateIn()
+      } else {
+        this.animateOut()
+      }
     })
-
-    this.observer.observe(this.element)
   }
 
   destroyObserver() {
-    this.observer.disconnect()
+    this.unobserve?.()
+    this.unobserve = undefined
   }
 
   animateIn() {

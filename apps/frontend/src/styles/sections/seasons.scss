@@ -75,6 +75,7 @@
   text-transform: uppercase;
   transform: translateX(-11%);
   white-space: nowrap;
+  will-change: transform;
 
   @include media('>=desktop') {
     bottom: 90px;
@@ -90,6 +91,9 @@
 
 .seasons__gallery__media {
   @extend %cover;
+
+  // Scaled and faded on every scroll frame.
+  will-change: opacity, transform;
 
   &--1 {
     z-index: 4;

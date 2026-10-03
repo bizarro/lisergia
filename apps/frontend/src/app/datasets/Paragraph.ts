@@ -46,10 +46,6 @@ export default class extends Animation {
     this.splits.forEach((split) => {
       split.addEffect(this.refreshLines)
     })
-
-    if (!this.isTargetInViewport()) {
-      this.animateOut()
-    }
   }
 
   refreshLines() {

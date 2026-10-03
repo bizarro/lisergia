@@ -1,5 +1,7 @@
 import { Component } from '@lisergia/core'
 
+import { observeIntersection } from '../utilities/intersection'
+
 export default class Source extends Component {
   declare element: HTMLImageElement
 
@@ -9,23 +11,25 @@ export default class Source extends Component {
     })
   }
 
-  declare observer: IntersectionObserver
+  declare unobserve?: () => void
 
+  // Starts loading a viewport ahead, so images are usually decoded by the time
+  // they scroll in instead of fading in late.
   createObserver() {
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+    this.unobserve = observeIntersection(
+      this.element,
+      (isIntersecting) => {
+        if (isIntersecting) {
           this.animateIn()
         }
-      })
-    })
-
-    this.observer.observe(this.element)
+      },
+      { rootMargin: '100% 0px' },
+    )
   }
 
   destroyObserver() {
-    this.observer.unobserve(this.element)
-    this.observer.disconnect()
+    this.unobserve?.()
+    this.unobserve = undefined
   }
 
   animateIn() {

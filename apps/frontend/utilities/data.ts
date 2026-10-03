@@ -20,8 +20,6 @@ export async function getData(slug?: string, userAgent?: string, cookieHeader = 
           host: posthogHost,
         }
 
-  const typekit = process.env.TYPEKIT
-
   const resolvedSlug = slug ?? 'home'
 
   const ua = UAParser(userAgent)
@@ -52,7 +50,6 @@ export async function getData(slug?: string, userAgent?: string, cookieHeader = 
 
   return {
     posthog,
-    typekit,
 
     categories,
     footer,

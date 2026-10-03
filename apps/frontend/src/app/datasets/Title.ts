@@ -32,10 +32,6 @@ export default class extends Animation {
     this.elements.words.forEach((word, index) => {
       word.dataset.direction = directions[index]
     })
-
-    if (!this.isTargetInViewport()) {
-      this.animateOut()
-    }
   }
 
   animateIn() {

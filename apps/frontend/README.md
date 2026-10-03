@@ -14,8 +14,6 @@ SANITY_API_READ_TOKEN=sk...
 
 VITE_PORT=3002
 
-TYPEKIT=xxxxxxx
-
 KLAVIYO_API_KEY=xx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 KLAVIYO_COMPANY_ID=xxxxxx
 KLAVIYO_LIST_ID=xxxxxx
@@ -31,14 +29,13 @@ KLAVIYO_LIST_ID=xxxxxx
 - `SANITY_STUDIO_URL`: Base URL of the Sanity Studio used by visual-editing links.
 - `SANITY_API_READ_TOKEN`: Server-only Viewer token used to validate preview sessions and fetch drafts. Never expose this value to browser code.
 - `VITE_PORT`: Overrides the default Vite client asset port.
-- `TYPEKIT`: Injects Adobe Typekit fonts into the site.
 - `KLAVIYO_API_KEY`: API key used to connect with Klaviyo services.
 - `KLAVIYO_COMPANY_ID`: Identifier for your Klaviyo company account.
 - `KLAVIYO_LIST_ID`: Identifier for the Klaviyo mailing list used in forms or signups.
 
 ## Deployment
 
-The production Worker is routed to `https://lisergia.dev`, and its Sanity Studio URL is `https://studio.lisergia.dev`. Authenticate once with `bunx wrangler login`, then configure `POSTHOG_KEY`, `POSTHOG_HOST`, `TYPEKIT`, and optional `ASSET_VERSION` as Worker variables. The PostHog project token is safe to expose in the browser; do not use a PostHog personal API key. The non-secret Sanity production settings are defined in `wrangler.jsonc`. Store the Sanity read token and Klaviyo values as encrypted secrets. These Cloudflare secrets are separate from the root `.env`:
+The production Worker is routed to `https://lisergia.dev`, and its Sanity Studio URL is `https://studio.lisergia.dev`. Authenticate once with `bunx wrangler login`, then configure `POSTHOG_KEY`, `POSTHOG_HOST`, and optional `ASSET_VERSION` as Worker variables. The PostHog project token is safe to expose in the browser; do not use a PostHog personal API key. The non-secret Sanity production settings are defined in `wrangler.jsonc`. Store the Sanity read token and Klaviyo values as encrypted secrets. These Cloudflare secrets are separate from the root `.env`:
 
 ```sh
 bunx wrangler secret put KLAVIYO_API_KEY

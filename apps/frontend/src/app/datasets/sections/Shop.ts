@@ -19,8 +19,10 @@ export default class Shop extends Component {
       },
     })
 
+    // Measure now and write in the next resize flush, batched with every other
+    // component, instead of forcing a layout per component while hydrating.
     this.onResize()
-    this.onScroll(this.application!.scroll)
+    this.application!.onResize()
   }
 
   onResize() {

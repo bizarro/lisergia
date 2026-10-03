@@ -13,6 +13,8 @@ export default class Footer extends Component {
   declare bounds: DOMRectBounds
   declare boundsFooter: DOMRectBounds
 
+  height?: number
+
   constructor({ application, element }: { application: ApplicationManager; element: HTMLElement }) {
     super({
       application,
@@ -23,8 +25,10 @@ export default class Footer extends Component {
       },
     })
 
+    // Measure now and write in the next resize flush, batched with every other
+    // component, instead of forcing a layout per component while hydrating.
     this.onResize()
-    this.onScroll(this.application!.scroll)
+    this.application!.onResize()
   }
 
   onResize() {
@@ -32,15 +36,24 @@ export default class Footer extends Component {
 
     this.bounds = DOMUtils.getBounds(this.element, scroll)
     this.boundsFooter = DOMUtils.getBounds(this.elements.footer, scroll)
-
-    this.elements.footer.style.setProperty('--height', `${this.bounds.height}px`)
   }
 
+  // `onResize` only measures, so the spacer height is written here, and only
+  // when it changes, since the footer is fixed and scrolls every frame.
   onScroll(scroll: number) {
+    const { height } = this.bounds
     const { top } = this.boundsFooter
 
-    const scale = MathUtils.map(scroll + Viewport.height, top, top + this.bounds.height, 1, 0.95, true)
+    if (this.height !== height) {
+      this.height = height
 
+      this.elements.footer.style.setProperty('--height', `${height}px`)
+    }
+
+    const scale = MathUtils.map(scroll + Viewport.height, top, top + height, 1, 0.95, true)
+
+    // Only promote the page content to its own layer while it is scaling.
+    this.elements.content.style.willChange = scale < 1 ? 'transform' : ''
     this.elements.content.style.transform = `scale(${scale})`
   }
 }
